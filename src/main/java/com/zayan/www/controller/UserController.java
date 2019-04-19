@@ -5,6 +5,7 @@ import com.zayan.www.model.entity.User;
 import com.zayan.www.model.form.user.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.UserService;
+import com.zayan.www.util.RequestUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,11 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/{id}")
-    public User show(@PathVariable("id") Integer userId){
-        return userService.getUserById(userId);
+    @GetMapping("")
+    public BaseResult show(){
+        Integer userId = RequestUtil.getUserInfoByToken();
+        User user = userService.getById(userId);
+        return BaseResult.success(user);
     }
 
     @PostMapping("/login")
