@@ -20,7 +20,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     @Value("${jwt.token.expiration}")
-    private long expiration;
+    private Integer defaultExpiration;
 
     @Value("${jwt.token.isuser}")
     private String isuser;
@@ -30,16 +30,19 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createTokenWithExpiration(String id, Map<String, Object> data, Date expiration){
-        Claims claims = Jwts.claims().setSubject(id);
+    public String createTokenWithExpiration(Integer id, Map<String, Object> data, Date expiration){
+        Claims claims = Jwts.claims().setSubject(id.toString());
         if (data != null){
             claims.put("user", data);
         }
-        return commonCreateToken(data, expiration);
+        return commonCreateToken(claims, expiration);
     }
 
     private String commonCreateToken(Map claims, Date expiration){
         Date now = new Date();
+        if (expiration == null){
+            expiration = new Date(now.getTime()+defaultExpiration);
+        }
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)

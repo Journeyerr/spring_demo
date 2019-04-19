@@ -41,9 +41,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Map userMap = Maps.newHashMap();
         userMap.put("userId",user.getId());
         userMap.put("userName",user.getName());
-        Date date = new Date();
-        Date expireTime = new Date(date.getTime() + 2 * 60);
-        return jwtTokenProvider.createTokenWithExpiration(user.getId().toString(), userMap, expireTime);
+        return jwtTokenProvider.createTokenWithExpiration(user.getId(), userMap, null);
     }
 
     @Override
