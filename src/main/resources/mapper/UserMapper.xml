@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zayan.www.repository.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="email" property="email" />
+        <result column="phone" property="phone" />
+        <result column="phone_show" property="phoneShow" />
+        <result column="birthday" property="birthday" />
+        <result column="avatar_id" property="avatarId" />
+        <result column="image_url" property="imageUrl" />
+        <result column="sex" property="sex" />
+        <result column="wxlite_session_key" property="wxliteSessionKey" />
+        <result column="wxlite_open_id" property="wxliteOpenId" />
+        <result column="wx_union_id" property="wxUnionId" />
+        <result column="jpush_id" property="jpushId" />
+        <result column="district" property="district" />
+        <result column="password" property="password" />
+        <result column="last_login_at" property="lastLoginAt" />
+        <result column="remember_token" property="rememberToken" />
+        <result column="is_vip" property="isVip" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="deleted_at" property="deletedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, email, phone, phone_show, birthday, avatar_id, image_url, sex, wxlite_session_key, wxlite_open_id, wx_union_id, jpush_id, district, password, last_login_at, remember_token, is_vip, created_at, updated_at, deleted_at
+    </sql>
+
+</mapper>
