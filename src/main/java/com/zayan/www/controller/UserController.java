@@ -1,14 +1,15 @@
 package com.zayan.www.controller;
 
-import com.zayan.www.constant.enums.ErrorEnum;
+import com.google.common.collect.Maps;
 import com.zayan.www.model.entity.User;
+import com.zayan.www.model.form.user.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * @author AnYuan
@@ -26,14 +27,11 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @GetMapping("/test")
-    public BaseResult test(){
-        User user = userService.getUserById(1);
-        return BaseResult.success(user);
-    }
-
-    @GetMapping("/error")
-    public BaseResult error(){
-        return BaseResult.error(ErrorEnum.NO_FOUND);
+    @PostMapping("/login")
+    public BaseResult login(@Valid UserLoginForm loginForm){
+        Map userMap = Maps.newHashMap();
+        String token = userService.login(loginForm.getUserName(), loginForm.getPassword());
+        userMap.put("token", token);
+        return BaseResult.success(userMap);
     }
 }

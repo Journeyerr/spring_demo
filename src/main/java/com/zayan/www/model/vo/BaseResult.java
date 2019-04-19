@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * @author AnYuan 
+ * @author AnYuan
  * @param <T>
  */
 
