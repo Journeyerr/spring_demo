@@ -53,7 +53,7 @@ public class RequestUtil {
             }
             return userId;
         }catch (RuntimeException e){
-            throw new UnAuthorizedException("无token", e);
+            throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
         }
     }
 }
