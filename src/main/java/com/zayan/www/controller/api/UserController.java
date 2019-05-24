@@ -40,10 +40,4 @@ public class UserController {
         userMap.put("token", token);
         return BaseResult.success(userMap);
     }
-
-    public static void main(String[] args) {
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidXNlciI6eyJ1c2VyTmFtZSI6IkNoYXJsb3R0ZSIsInVzZXJJZCI6MX0sImlhdCI6MTU1NTY4NjI2OSwibmJmIjoxNTU1Njg2MjY5LCJleHAiOjE1NTU2OTIyNjksImlzcyI6InpheWFuIn0.JSRLmi55hYrXUIsatOQv65q-FOnarrRAvFB_oD2Lpp0";
-        String[] split = token.split("\\.");
-        System.out.println(split[1]);
-    }
 }
