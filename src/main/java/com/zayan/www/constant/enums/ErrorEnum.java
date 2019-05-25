@@ -9,8 +9,15 @@ import lombok.Getter;
 @Getter
 public enum ErrorEnum {
 
-    NO_FOUND(404, "未发现资源"),
-    UNAUTHORIZED(401003, "未认证"),
+    /**
+     * 未认证
+     */
+    UNAUTHORIZED(1002, "未认证"),
+    /**
+     * 查询为空
+     */
+    NO_FOUND(1003, "查询为空"),
+
 
     ;
 

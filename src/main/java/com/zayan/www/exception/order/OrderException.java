@@ -10,6 +10,6 @@ import com.zayan.www.exception.BaseException;
 public class OrderException extends BaseException {
 
     public OrderException(ErrorEnum errorEnum){
-        super(errorEnum.getCode(), errorEnum.getMessage());
+        super(errorEnum);
     }
 }

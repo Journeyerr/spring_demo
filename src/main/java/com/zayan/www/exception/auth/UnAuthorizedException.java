@@ -14,6 +14,6 @@ public class UnAuthorizedException extends BaseException {
     }
 
     public UnAuthorizedException(ErrorEnum errorEnum){
-        super(errorEnum.getCode(), errorEnum.getMessage());
+        super(errorEnum);
     }
 }

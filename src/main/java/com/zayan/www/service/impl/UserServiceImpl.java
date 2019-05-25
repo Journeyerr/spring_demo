@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Maps;
 import com.zayan.www.config.secure.JwtTokenProvider;
 import com.zayan.www.constant.enums.ErrorEnum;
-import com.zayan.www.exception.UserExcetpion;
+import com.zayan.www.exception.user.UserExcetpion;
 import com.zayan.www.model.entity.User;
 import com.zayan.www.repository.UserMapper;
 import com.zayan.www.service.UserService;
