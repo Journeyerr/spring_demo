@@ -14,3 +14,7 @@ jwt:
     secret: characterEncoding
     expiration: 6000000
     isuser: zayan
+
+logging:
+  level:
+    com.zayan.www.repository: debug
