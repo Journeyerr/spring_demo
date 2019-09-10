@@ -1,7 +1,11 @@
 package com.zayan.www.repository;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zayan.www.model.dto.user.admin.UserListDTO;
 import com.zayan.www.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zayan.www.model.form.user.admin.UserListForm;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    IPage<UserListDTO> list(IPage iPage, @Param("listForm") UserListForm listForm);
 }

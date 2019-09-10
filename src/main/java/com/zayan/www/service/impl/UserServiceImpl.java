@@ -1,12 +1,15 @@
 package com.zayan.www.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Maps;
 import com.zayan.www.config.secure.JwtTokenProvider;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.user.UserExcetpion;
+import com.zayan.www.model.dto.user.admin.UserListDTO;
 import com.zayan.www.model.entity.User;
+import com.zayan.www.model.form.user.admin.UserListForm;
 import com.zayan.www.repository.UserMapper;
 import com.zayan.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public String login(String userName, String password) {
@@ -46,5 +51,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getUserById(Integer userId) {
         return this.getById(userId);
+    }
+
+    @Override
+    public IPage<UserListDTO> users(IPage iPage, UserListForm listForm) {
+        IPage<UserListDTO> users = userMapper.list(iPage, listForm);
+        return users;
     }
 }

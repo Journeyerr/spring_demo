@@ -26,7 +26,7 @@ public class BaseResult<T> {
     }
 
     public static <T> BaseResult success(T data){
-        return new BaseResult<T>().setData(data);
+        return new BaseResult<T>().setCode(0).setData(data);
     }
 
     public static BaseResult error(String message){

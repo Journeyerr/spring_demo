@@ -24,7 +24,7 @@ public class GlobalExceptionHandler{
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Map<String, Object> exceptionHandler(Exception e) {
-        Map<String, Object> map = Maps.newHashMap();
+        Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);
         map.put("code", 1002);
         map.put("msg", e.getMessage());
         return map;

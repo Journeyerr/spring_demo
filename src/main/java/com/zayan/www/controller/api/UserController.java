@@ -2,15 +2,12 @@ package com.zayan.www.controller.api;
 
 import com.google.common.collect.Maps;
 import com.zayan.www.model.entity.User;
-import com.zayan.www.model.form.user.UserLoginForm;
+import com.zayan.www.model.form.user.api.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.UserService;
 import com.zayan.www.util.RequestUtil;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -34,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public BaseResult login(@Valid UserLoginForm loginForm){
+    public BaseResult login(@Valid @RequestBody UserLoginForm loginForm){
         Map userMap = Maps.newHashMap();
         String token = userService.login(loginForm.getUserName(), loginForm.getPassword());
         userMap.put("token", token);
