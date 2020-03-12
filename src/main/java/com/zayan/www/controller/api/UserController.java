@@ -7,6 +7,7 @@ import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.UserService;
 import com.zayan.www.util.RequestUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,11 +18,11 @@ import java.util.Map;
  */
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("")
     public BaseResult show(){

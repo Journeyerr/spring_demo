@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
@@ -21,6 +24,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("users")
+@NoArgsConstructor
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +55,7 @@ public class User implements Serializable {
     /**
      * 生日
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
     /**
@@ -101,6 +106,7 @@ public class User implements Serializable {
     /**
      * 最后登录时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLoginAt;
 
     /**
@@ -113,9 +119,11 @@ public class User implements Serializable {
      */
     private Integer isVip;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 
