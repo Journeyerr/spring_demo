@@ -16,19 +16,20 @@ import org.springframework.context.annotation.Configuration;
 public class MassageUserConfig {
 
 
-    @Bean
+//    @Bean
     public Queue userMassageQueue() {
         log.info("userMassageQueue init");
         return new Queue(RabbitMqMessageConstant.USER_QUEUE);
     }
 
-    @Bean
+//    @Bean
     public DirectExchange userMassageExchange() {
         log.info("userMassageExchange init");
         return new DirectExchange(RabbitMqMessageConstant.USER_EXCHANGE);
     }
 
-    @Bean public Binding queueBindingExchange() {
+//    @Bean
+    public Binding queueBindingExchange() {
         log.info("queueBindingExchange init");
         return BindingBuilder.bind(userMassageQueue())
                 .to(userMassageExchange()).with("");
