@@ -19,6 +19,7 @@ public class UserPublishTest {
 
     @Test
     public void userSendTest() {
+
         userPublish.send(userService.getById(1));
     }
 

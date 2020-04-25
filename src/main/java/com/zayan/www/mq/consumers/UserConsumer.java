@@ -27,6 +27,7 @@ public class UserConsumer {
             exchange = @Exchange(value = RabbitMqMessageConstant.USER_EXCHANGE)
     ))
     public void onMassageUser(Message message) {
+
         log.info("message--------{}", message);
         User user = JSONObject.parseObject(new String(message.getBody()), User.class);
         log.info("开始消费======={}", user.getName());
