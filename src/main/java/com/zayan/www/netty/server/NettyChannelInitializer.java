@@ -12,7 +12,7 @@ import io.netty.util.CharsetUtil;
  *
  */
 
-public class NettyChannelInit extends ChannelInitializer<SocketChannel> {
+public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {

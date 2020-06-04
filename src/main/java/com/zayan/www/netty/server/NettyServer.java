@@ -1,12 +1,9 @@
 package com.zayan.www.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -32,7 +29,7 @@ public class NettyServer {
                     .group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     // childHandler 必须传入一个 ChannelInitializer<SocketChannel> 类
-                    .childHandler(new NettyChannelInit())
+                    .childHandler(new NettyChannelInitializer())
                     .localAddress(address)
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);

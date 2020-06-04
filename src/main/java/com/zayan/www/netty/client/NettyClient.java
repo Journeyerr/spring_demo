@@ -7,6 +7,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.Scanner;
+
 /**
  * netty client
  * @author AnYuan
@@ -19,8 +21,9 @@ public class NettyClient {
     static final Integer SIZE = 256;
 
     public static void main(String[] args) {
-        sendMsg("Hello World , 你好啊");
+        sendMsg("Hello World ------11111----");
     }
+
 
     public static void sendMsg(String content) {
         NioEventLoopGroup group = new NioEventLoopGroup();
@@ -32,11 +35,14 @@ public class NettyClient {
                     .handler(new NettyClientChannelInitializer());
 
             ChannelFuture future = bootstrap.connect(HOST, PORT).sync();
+
             future.channel().writeAndFlush(content);
             future.channel().closeFuture().sync();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
+            group.shutdownGracefully();
+        }finally {
             group.shutdownGracefully();
         }
     }
