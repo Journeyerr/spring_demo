@@ -1,5 +1,6 @@
 package com.zayan.www.mq.publisher;
 
+import com.zayan.www.rabbitmq.publisher.UserPublish;
 import com.zayan.www.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

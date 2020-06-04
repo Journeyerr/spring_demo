@@ -1,4 +1,4 @@
-package com.zayan.www.mq.publisher;
+package com.zayan.www.rabbitmq.publisher;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;

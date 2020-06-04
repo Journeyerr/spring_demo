@@ -10,9 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @SpringBootApplication
-@ComponentScan(basePackages="com.zayan.www")
 @MapperScan(basePackages = "com.zayan.www.repository")
-public class ZayanApplication {
+public class ZayanApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(ZayanApplication.class, args);
