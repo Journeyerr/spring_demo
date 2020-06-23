@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class BaseResult<T> {
 
-    private Integer code = 1;
+    private Integer code = 0;
 
     private String message = "success";
 

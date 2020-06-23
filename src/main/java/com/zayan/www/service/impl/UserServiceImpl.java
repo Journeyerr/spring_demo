@@ -49,11 +49,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User getUserById(Integer userId) {
-        return this.getById(userId);
-    }
-
-    @Override
     public IPage<UserListDTO> users(IPage iPage, UserListForm listForm) {
         IPage<UserListDTO> users = userMapper.list(iPage, listForm);
         return users;

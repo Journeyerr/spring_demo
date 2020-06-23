@@ -26,14 +26,6 @@ public interface UserService extends IService<User> {
     String login(String userName, String password);
 
     /**
-     * 根据用户id获取用户
-     *
-     * @param userId 用户id
-     * @return user
-     */
-    User getUserById(Integer userId);
-
-    /**
      * 获取用户列表
      * @param iPage 分页
      * @param listForm 筛选条件
