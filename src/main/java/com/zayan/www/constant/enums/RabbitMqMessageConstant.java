@@ -8,7 +8,8 @@ package com.zayan.www.constant.enums;
 
 public final class RabbitMqMessageConstant {
 
-    public final static String USER_EXCHANGE = "user_exchange";
-    public final static String USER_ROUTING_KEY = "user_routing_key";
-    public final static String USER_QUEUE = "user_queue";
+    public static final String USER_EXCHANGE = "user_exchange";
+    public static final String USER_ROUTING_KEY = "user_routing_key";
+    public static final String USER_QUEUE = "user_queue";
+
 }

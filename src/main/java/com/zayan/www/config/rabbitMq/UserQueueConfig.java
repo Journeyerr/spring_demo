@@ -1,9 +1,8 @@
-package com.zayan.www.config.rabbit;
+package com.zayan.www.config.rabbitMq;
 
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
-public class MassageUserConfig {
+public class UserQueueConfig {
 
 
 //    @Bean

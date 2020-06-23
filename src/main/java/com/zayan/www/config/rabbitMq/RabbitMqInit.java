@@ -1,4 +1,4 @@
-package com.zayan.www.config.rabbit;
+package com.zayan.www.config.rabbitMq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
