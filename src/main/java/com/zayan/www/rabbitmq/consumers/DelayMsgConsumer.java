@@ -2,6 +2,7 @@ package com.zayan.www.rabbitmq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.config.rabbitMq.DelayQueueConfig;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -9,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 /**
  * 延时队列消息消费者
@@ -25,8 +28,8 @@ public class DelayMsgConsumer {
             exchange = @Exchange(DelayQueueConfig.DEAD_LETTER_EXCHANGE)))
     public void queueAConsumer(Message message) {
         log.info("DelayMsgConsumer 延时队列AAAAA 开始消费-----> {}", message);
-        JSONObject jsonObject = JSONObject.parseObject(new String(message.getBody()));
-        log.info("DelayMsgConsumer 延时队列AAAA 结果----> {}", jsonObject);
+        Msg msg = JSONObject.parseObject(new String(message.getBody()), Msg.class);
+        log.info("DelayMsgConsumer 延时队列AAAA 结果----> {}", msg);
     }
 
     @RabbitListener(bindings = @QueueBinding(
@@ -36,6 +39,14 @@ public class DelayMsgConsumer {
         log.info("DelayMsgConsumer 延时队列BBBBB 开始消费-----> {}", message);
         JSONObject jsonObject = JSONObject.parseObject(new String(message.getBody()));
         log.info("DelayMsgConsumer 延时队列BBBBB 结果----> {}", jsonObject);
+    }
+
+    @Data
+    public static class Msg {
+
+        private Integer type;
+        private String msg;
+        private LocalDateTime date;
     }
 
 }

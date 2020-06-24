@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -43,7 +42,7 @@ public class DelayQueueConfig {
 
     @Bean("delayQueueA")
     public Queue delayQueueA() {
-        Map<String, Object> maps = Maps.newHashMapWithExpectedSize(2);
+        Map<String, Object> maps = Maps.newHashMapWithExpectedSize(3);
         // 当前队列绑定死信交换机
         maps.put("x-dead-letter-exchange", DEAD_LETTER_EXCHANGE);
         // 当前队列绑定死信key
@@ -56,7 +55,7 @@ public class DelayQueueConfig {
 
     @Bean("delayQueueB")
     public Queue delayQueueB() {
-        Map<String, Object> maps = Maps.newHashMapWithExpectedSize(2);
+        Map<String, Object> maps = Maps.newHashMapWithExpectedSize(3);
         // 当前队列绑定死信交换机
         maps.put("x-dead-letter-exchange", DEAD_LETTER_EXCHANGE);
         // 当前队列绑定死信key
@@ -79,28 +78,28 @@ public class DelayQueueConfig {
         return new Queue(DEAD_LETTER_QUEUEB);
     }
 
-    // 声明延时队列A绑定关系
+    // 将 队列A 绑定到延迟交换机上面
     @Bean
     public Binding delayBindingA(@Qualifier("delayQueueA") Queue queue,
                                  @Qualifier("delayExchange") DirectExchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(DELAY_QUEUEA_ROUTING_KEY);
     }
 
-    // 声明业务队列B绑定关系
+    // 将 队列B 绑定到延迟交换机上面
     @Bean
     public Binding delayBindingB(@Qualifier("delayQueueB") Queue queue,
                                  @Qualifier("delayExchange") DirectExchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(DELAY_QUEUEB_ROUTING_KEY);
     }
 
-    // 声明死信队列A绑定关系
+    // 将 死信队列A 绑定到死信交换机上
     @Bean
     public Binding deadLetterBindingA(@Qualifier("deadLetterQueueA") Queue queue,
                                       @Qualifier("deadLetterExchange") DirectExchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(DEAD_LETTER_QUEUEA_ROUTING_KEY);
     }
 
-    // 声明死信队列B绑定关系
+    // 将 死信队列B 绑定到死信交换机上
     @Bean
     public Binding deadLetterBindingB(@Qualifier("deadLetterQueueB") Queue queue,
                                       @Qualifier("deadLetterExchange") DirectExchange exchange){
