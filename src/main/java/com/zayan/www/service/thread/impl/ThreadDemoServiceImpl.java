@@ -14,8 +14,8 @@ public class ThreadDemoServiceImpl implements ThreadDemoService {
 
     @Override
     public void forPrintHelloWorld() {
-        Thread[] threads = new Thread[10];
-        for (int i = 0; i<10; i++){
+        Thread[] threads = new Thread[5];
+        for (int i = 0; i<5; i++){
             threads[i] = new ThreadRunnable("ThreadRunnable:" + i);
         }
 

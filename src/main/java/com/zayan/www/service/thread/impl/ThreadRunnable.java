@@ -1,10 +1,11 @@
 package com.zayan.www.service.thread.impl;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ThreadRunnable extends Thread{
+
+    private static int count = 5;
 
     public ThreadRunnable() {
 
@@ -15,10 +16,10 @@ public class ThreadRunnable extends Thread{
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         try {
             Thread.sleep(1000);
-            System.out.println(Thread.currentThread().getName());
+            System.out.println(Thread.currentThread().getName() + ", count: " + count--);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
