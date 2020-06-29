@@ -32,11 +32,11 @@ public class GenertorServiceEntity {
     /** 数据库 .*/
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/heytea_pos?characterEncoding=utf8&useSSL=false&allowMultiQueries=true" ;
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true" ;
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
 
     /** 代码生成输出目录. */
-    private static final String OUTPUT_DIR = "/Users/AnYuan/web/java/zayan";
+    private static final String OUTPUT_DIR = "/Users/AnYuan/web/java/study/spring_demo/";
     /** 生成的包名 .*/
     private static final String PACKEGE_NAME = "com.zayan.www";
 
@@ -46,7 +46,7 @@ public class GenertorServiceEntity {
      */
     @Test
     public void generateCode() {
-        generateByTables(PACKEGE_NAME, "user");
+        generateByTables(PACKEGE_NAME, "skus");
     }
 
     private void generateByTables(String packageName, String... tableNames) {
