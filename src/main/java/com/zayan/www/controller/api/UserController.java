@@ -19,16 +19,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     private UserService userService;
 
     @GetMapping("")
     public BaseResult show(){
-        Integer userId = RequestUtil.getUserInfoByToken();
-        User user = userService.getById(userId);
-        return BaseResult.success(user);
+        return BaseResult.success(userService.getById(baseUser().getUserId()));
     }
 
     @PostMapping("/login")

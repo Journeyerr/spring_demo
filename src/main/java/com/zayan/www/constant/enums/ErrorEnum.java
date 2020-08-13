@@ -10,13 +10,12 @@ import lombok.Getter;
 public enum ErrorEnum {
 
     /**
-     * 未认证
+     * 错误码
      */
     UNAUTHORIZED(1002, "未认证"),
-    /**
-     * 查询为空
-     */
     NO_FOUND(1003, "查询为空"),
+    TOKEN_EXCEPTION(1004, "查询为空"),
+    USER_EXCEPTION(1005, "用户异常"),
 
 
     ;

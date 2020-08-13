@@ -12,6 +12,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * @author AnYuan
@@ -20,40 +21,30 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class RequestUtil {
 
-    private static HttpServletRequest getRequestFormContextHolder(){
+    public static Integer getUserIdFormContextToken(){
        try {
            HttpServletRequest request = ((ServletRequestAttributes)
                    RequestContextHolder.currentRequestAttributes()).getRequest();
            Assert.notNull(request);
-           return request;
+           String tokenStr = request.getHeader(CommonConstant.REQUEST_HEADER_NAME);
+           if (Objects.isNull(tokenStr) || !tokenStr.startsWith(CommonConstant.TOKEN_PREFIX)) {
+               throw new RuntimeException("error");
+           }
+           String[] split = tokenStr.split("\\.");
+           if (split.length > 2) {
+               throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
+           }
+           Base64 decode = new Base64();
+           String token = new String(decode.decode(split[1]));
+
+           JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
+           Integer userId = jsonObject.getInteger("userId");
+           if (Objects.isNull(userId)){
+               throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
+           }
+           return userId;
        }catch (RuntimeException e){
            throw new BaseException("request 解析错误", e);
        }
-    }
-
-    private static String getTokenFromRequest(){
-        HttpServletRequest request = getRequestFormContextHolder();
-        String token = request.getHeader(CommonConstant.REQUEST_HEADER_NAME);
-        if (token.startsWith(CommonConstant.TOKEN_PREFIX)) {
-            token = token.substring(CommonConstant.TOKEN_PREFIX.length(), token.length());
-        }
-        String[] split = token.split("\\.");
-        Assert.isTrue(split.length > 1, "无法获取到token主体，请检查token: "+token);
-        Base64 decode = new Base64();
-        return new String(decode.decode(split[1]));
-    }
-
-    public static Integer getUserInfoByToken(){
-        try {
-            String token = getTokenFromRequest();
-            JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
-            Integer userId = jsonObject.getInteger("userId");
-            if (userId == null){
-                throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
-            }
-            return userId;
-        }catch (RuntimeException e){
-            throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
-        }
     }
 }

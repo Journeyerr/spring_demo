@@ -9,10 +9,6 @@ import com.zayan.www.exception.BaseException;
 
 public class UnAuthorizedException extends BaseException {
 
-    public UnAuthorizedException(String message, Throwable throwable){
-        super(message, throwable);
-    }
-
     public UnAuthorizedException(ErrorEnum errorEnum){
         super(errorEnum);
     }
