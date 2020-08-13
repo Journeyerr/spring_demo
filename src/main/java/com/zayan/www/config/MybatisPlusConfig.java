@@ -2,10 +2,8 @@ package com.zayan.www.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -27,17 +25,8 @@ public class MybatisPlusConfig {
         return new DateFillMetaObjectHandler();
     }
 
-    /**
-     * mybatis-plus SQL执行效率插件【生产环境可以关闭】
-     */
-    @ConditionalOnProperty(value = {"sql-log"})
-    @Bean
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
-    }
-
     @Slf4j
-    public static class DateFillMetaObjectHandler implements   MetaObjectHandler {
+    public static class DateFillMetaObjectHandler implements MetaObjectHandler {
 
         /**
          * 插入时填充的字段.
