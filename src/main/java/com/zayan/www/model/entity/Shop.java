@@ -12,11 +12,11 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 门店表
+ * 
  * </p>
  *
  * @author AnYuan
- * @since 2019-05-25
+ * @since 2020-08-17
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -24,39 +24,15 @@ import lombok.experimental.Accessors;
 @TableName("shops")
 public class Shop implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID=1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 门店编号
-     */
-    private String code;
-
-    /**
-     * 店名
+     * 门店名称
      */
     private String name;
-
-    /**
-     * 关键字
-     */
-    private String addressKeyword;
-
-    private Integer coverPicId;
-
-    private Integer outerId;
-
-    /**
-     * 策略ID
-     */
-    private Integer policyId;
-
-    /**
-     * 公司ID
-     */
-    private Integer companyId;
 
     /**
      * 门店编码
@@ -64,28 +40,9 @@ public class Shop implements Serializable {
     private String no;
 
     /**
-     * 营业/休息状态
-     */
-    private Boolean isActived;
-
-    /**
      * 门店启停1为启用
      */
     private Integer isEnable;
-
-    /**
-     * 门店状态标签0：敬请期待,1:已经开启门店
-     */
-    private Integer isOpen;
-
-    /**
-     * 是否同步线下订单
-     */
-    private Boolean isSyncPosOrder;
-
-    private String contactPhone;
-
-    private String contactName;
 
     /**
      * 国家名称
@@ -93,17 +50,28 @@ public class Shop implements Serializable {
     private String country;
 
     /**
-     * 国家代码
+     * 省级名称
      */
-    private String countryCode;
-
     private String province;
 
     /**
-     * 城市
+     * 联系电话
+     */
+    private String contactPhone;
+
+    /**
+     * 城市名称
      */
     private String city;
 
+    /**
+     * 城市code
+     */
+    private String cityCode;
+
+    /**
+     * 区域名称
+     */
     private String district;
 
     /**
@@ -112,43 +80,28 @@ public class Shop implements Serializable {
     private String districtCode;
 
     /**
-     * 地址
+     * 门店地址
      */
     private String address;
 
-    private String gaodeCityCode;
-
     /**
-     * 城市编号
+     * 纬度
      */
-    private String cityCode;
-
-    private String latitude;
-
     private String longitude;
 
     /**
-     * 门店订单杯数限制
+     * 经度
      */
-    private Integer cupLimit;
-
-    private Integer beforeMinutes;
-
-    private String daysOfWeek;
-
-    private Integer timeInterval;
-
-    private Integer unitBoxSeconds;
-
-    private Integer unitBoxShares;
+    private String latitude;
 
     /**
-     * 起送价
+     * 开店时间
      */
-    private Integer minCharge;
-
     private String openAt;
 
+    /**
+     * 关店时间
+     */
     private String closeAt;
 
     /**
@@ -162,63 +115,24 @@ public class Shop implements Serializable {
     private BigDecimal deliveryFee;
 
     /**
-     * 外卖结束时间
-     */
-    private String deliveryCloseAt;
-
-    /**
-     * 外卖开始时间
-     */
-    private String deliveryOpenAt;
-
-    private LocalDateTime lastOperatedAt;
-
-    /**
-     * 外卖启停最后操作时间
-     */
-    private LocalDateTime takeawayLastOperateAt;
-
-    private Boolean supportTakeaway;
-
-    /**
-     * 是否支持美团外卖
-     */
-    private Boolean supportMtTakeaway;
-
-    /**
-     * 是否支持顺丰外卖
-     */
-    private Boolean supportSfTakeaway;
-
-    /**
-     * 外卖状态0关1开
+     * 外卖状态 0关1开
      */
     private Integer takeawayStatus;
-
-    /**
-     * 关闭订单类型：0 全部开启；1 禁用自取单；2 禁用预约单；3:全部禁用
-     */
-    private Boolean disableOrderType;
-
-    /**
-     * 小程序码
-     */
-    private String sceneCode;
-
-    /**
-     * 小程序二维码
-     */
-    private String qrcode;
 
     /**
      * 门店提示语
      */
     private String tips;
 
-    @TableField(fill = FieldFill.INSERT)
+    /**
+     * 门店二维码
+     */
+    private String qrCode;
+
+      @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+      @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;

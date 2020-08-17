@@ -38,11 +38,6 @@ public class User implements Serializable {
     private String name;
 
     /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
      * 手机号
      */
     private String phone;
@@ -57,11 +52,6 @@ public class User implements Serializable {
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-
-    /**
-     * 头像id
-     */
-    private Integer avatarId;
 
     /**
      * 微信头像url
@@ -89,11 +79,6 @@ public class User implements Serializable {
     private String wxUnionId;
 
     /**
-     * 极光推送设备号id
-     */
-    private String jpushId;
-
-    /**
      * 微信备注地区
      */
     private String district;
@@ -108,16 +93,6 @@ public class User implements Serializable {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLoginAt;
-
-    /**
-     * 记住登陆状态
-     */
-    private String rememberToken;
-
-    /**
-     * 测试用户字段
-     */
-    private Integer isVip;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT)

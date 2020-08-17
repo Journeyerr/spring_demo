@@ -31,6 +31,7 @@ public class AdminShopController {
     public List<Shop> index() {
         return shopService.shops();
     }
+//
 }
 
 

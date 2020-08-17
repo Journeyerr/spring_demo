@@ -5,54 +5,26 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Shop">
         <id column="id" property="id" />
-        <result column="code" property="code" />
         <result column="name" property="name" />
-        <result column="address_keyword" property="addressKeyword" />
-        <result column="cover_pic_id" property="coverPicId" />
-        <result column="outer_id" property="outerId" />
-        <result column="policy_id" property="policyId" />
-        <result column="company_id" property="companyId" />
         <result column="no" property="no" />
-        <result column="is_actived" property="isActived" />
         <result column="is_enable" property="isEnable" />
-        <result column="is_open" property="isOpen" />
-        <result column="is_sync_pos_order" property="isSyncPosOrder" />
-        <result column="contact_phone" property="contactPhone" />
-        <result column="contact_name" property="contactName" />
         <result column="country" property="country" />
-        <result column="country_code" property="countryCode" />
         <result column="province" property="province" />
+        <result column="contact_phone" property="contactPhone" />
         <result column="city" property="city" />
+        <result column="city_code" property="cityCode" />
         <result column="district" property="district" />
         <result column="district_code" property="districtCode" />
         <result column="address" property="address" />
-        <result column="gaode_city_code" property="gaodeCityCode" />
-        <result column="city_code" property="cityCode" />
-        <result column="latitude" property="latitude" />
         <result column="longitude" property="longitude" />
-        <result column="cup_limit" property="cupLimit" />
-        <result column="before_minutes" property="beforeMinutes" />
-        <result column="days_of_week" property="daysOfWeek" />
-        <result column="time_interval" property="timeInterval" />
-        <result column="unit_box_seconds" property="unitBoxSeconds" />
-        <result column="unit_box_shares" property="unitBoxShares" />
-        <result column="min_charge" property="minCharge" />
+        <result column="latitude" property="latitude" />
         <result column="open_at" property="openAt" />
         <result column="close_at" property="closeAt" />
         <result column="delivery_distance" property="deliveryDistance" />
         <result column="delivery_fee" property="deliveryFee" />
-        <result column="delivery_close_at" property="deliveryCloseAt" />
-        <result column="delivery_open_at" property="deliveryOpenAt" />
-        <result column="last_operated_at" property="lastOperatedAt" />
-        <result column="takeaway_last_operate_at" property="takeawayLastOperateAt" />
-        <result column="support_takeaway" property="supportTakeaway" />
-        <result column="support_mt_takeaway" property="supportMtTakeaway" />
-        <result column="support_sf_takeaway" property="supportSfTakeaway" />
         <result column="takeaway_status" property="takeawayStatus" />
-        <result column="disable_order_type" property="disableOrderType" />
-        <result column="scene_code" property="sceneCode" />
-        <result column="qrcode" property="qrcode" />
         <result column="tips" property="tips" />
+        <result column="qr_code" property="qrCode" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
         <result column="deleted_at" property="deletedAt" />
@@ -60,7 +32,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, code, name, address_keyword, cover_pic_id, outer_id, policy_id, company_id, no, is_actived, is_enable, is_open, is_sync_pos_order, contact_phone, contact_name, country, country_code, province, city, district, district_code, address, gaode_city_code, city_code, latitude, longitude, cup_limit, before_minutes, days_of_week, time_interval, unit_box_seconds, unit_box_shares, min_charge, open_at, close_at, delivery_distance, delivery_fee, delivery_close_at, delivery_open_at, last_operated_at, takeaway_last_operate_at, support_takeaway, support_mt_takeaway, support_sf_takeaway, takeaway_status, disable_order_type, scene_code, qrcode, tips, created_at, updated_at, deleted_at
+        id, name, no, is_enable, country, province, contact_phone, city, city_code, district, district_code, address, longitude, latitude, open_at, close_at, delivery_distance, delivery_fee, takeaway_status, tips, qr_code, created_at, updated_at, deleted_at
     </sql>
 
 </mapper>

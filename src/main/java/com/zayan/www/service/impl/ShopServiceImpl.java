@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * <p>
- * 门店表 服务实现类
+ *  服务实现类
  * </p>
  *
  * @author AnYuan
- * @since 2019-05-25
+ * @since 2020-08-17
  */
 @Service
 public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements ShopService {

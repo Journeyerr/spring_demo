@@ -46,7 +46,7 @@ public class GenertorServiceEntity {
      */
     @Test
     public void generateCode() {
-        generateByTables(PACKEGE_NAME, "skus");
+        generateByTables(PACKEGE_NAME, "shop");
     }
 
     private void generateByTables(String packageName, String... tableNames) {
@@ -72,7 +72,7 @@ public class GenertorServiceEntity {
         packageConfig.setParent(PACKEGE_NAME)
                 .setMapper("repository")
                 .setService("service")
-                .setController("controller")
+//                .setController("controller")
                 .setEntity("model.entity");
 
         globalConfig.setActiveRecord(false)
