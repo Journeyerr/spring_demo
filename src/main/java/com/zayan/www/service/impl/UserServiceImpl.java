@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * <p>
@@ -39,11 +40,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .lambda()
                 .eq(User::getName, userName)
                 .eq(User::getPhone, password));
-        if (user == null){
-            throw new UserExcetpion(ErrorEnum.NO_FOUND);
+        if (Objects.isNull(user)){
+            throw new UserExcetpion(ErrorEnum.ACCOUNT_ERROR);
         }
-        Map userMap = Maps.newHashMap();
-        userMap.put("userId",user.getId());
+        Map<String, Object> userMap = Maps.newHashMap();
+        userMap.put("userId", user.getId());
         userMap.put("userName",user.getName());
         return jwtTokenProvider.createTokenWithExpiration(user.getId(), userMap, null);
     }

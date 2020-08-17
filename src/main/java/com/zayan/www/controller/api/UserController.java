@@ -1,8 +1,10 @@
 package com.zayan.www.controller.api;
 
 import com.google.common.collect.Maps;
+import com.zayan.www.model.entity.User;
 import com.zayan.www.model.form.user.api.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
+import com.zayan.www.model.vo.user.UserVO;
 import com.zayan.www.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
@@ -36,7 +38,14 @@ public class UserController extends BaseController{
 
     @ApiOperation("用户信息")
     @GetMapping("")
-    public BaseResult<?> show(){
-        return BaseResult.success(userService.getById(baseUser().getUserId()));
+    public BaseResult<UserVO> show(){
+        User user = baseUser();
+        UserVO userVO = UserVO.builder()
+                .id(user.getId())
+                .userName(user.getName())
+                .phone(user.getPhone())
+                .imageUrl(user.getImageUrl())
+                .build();
+        return BaseResult.success(userVO);
     }
 }

@@ -17,11 +17,11 @@ public class BaseController {
     @Autowired
     private UserService userService;
 
-    protected BaseUser baseUser() {
+    protected User baseUser() {
         User user = userService.getById(RequestUtil.getUserIdFormContextToken());
         if (Objects.isNull(user)){
             throw new UnAuthorizedException(ErrorEnum.USER_EXCEPTION);
         }
-        return BaseUser.builder().userName(user.getName()).userId(user.getId()).build();
+        return user;
     }
 }

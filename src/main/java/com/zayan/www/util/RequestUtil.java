@@ -30,7 +30,7 @@ public class RequestUtil {
             throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
         }
         String[] split = tokenStr.split("\\.");
-        if (split.length > 2) {
+        if (split.length < 2) {
             throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
         }
         Base64 decode = new Base64();
