@@ -46,7 +46,7 @@ public class GenertorServiceEntity {
      */
     @Test
     public void generateCode() {
-        generateByTables(PACKEGE_NAME, "shop");
+        generateByTables(PACKEGE_NAME, "admin_user");
     }
 
     private void generateByTables(String packageName, String... tableNames) {

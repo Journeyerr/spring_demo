@@ -3,7 +3,6 @@ package com.zayan.www.controller.admin;
 
 import com.zayan.www.model.entity.Shop;
 import com.zayan.www.service.ShopService;
-import com.zayan.www.service.impl.ShopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +30,7 @@ public class AdminShopController {
     public List<Shop> index() {
         return shopService.shops();
     }
-//
+
 }
 
 
