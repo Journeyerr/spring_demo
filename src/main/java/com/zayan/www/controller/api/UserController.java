@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 import com.zayan.www.model.form.user.api.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.Map;
  * @author AnYuan
  */
 
+@Api(tags = "用户APi")
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController{
