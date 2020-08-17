@@ -14,9 +14,8 @@ public enum ErrorEnum {
      */
     UNAUTHORIZED(1002, "未认证"),
     NO_FOUND(1003, "查询为空"),
-    TOKEN_EXCEPTION(1004, "查询为空"),
+    TOKEN_EXCEPTION(1004, "Token Exception"),
     USER_EXCEPTION(1005, "用户异常"),
-
 
     ;
 

@@ -22,29 +22,25 @@ import java.util.Objects;
 public class RequestUtil {
 
     public static Integer getUserIdFormContextToken(){
-       try {
-           HttpServletRequest request = ((ServletRequestAttributes)
-                   RequestContextHolder.currentRequestAttributes()).getRequest();
-           Assert.notNull(request);
-           String tokenStr = request.getHeader(CommonConstant.REQUEST_HEADER_NAME);
-           if (Objects.isNull(tokenStr) || !tokenStr.startsWith(CommonConstant.TOKEN_PREFIX)) {
-               throw new RuntimeException("error");
-           }
-           String[] split = tokenStr.split("\\.");
-           if (split.length > 2) {
-               throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
-           }
-           Base64 decode = new Base64();
-           String token = new String(decode.decode(split[1]));
+        HttpServletRequest request = ((ServletRequestAttributes)
+                RequestContextHolder.currentRequestAttributes()).getRequest();
+        Assert.notNull(request);
+        String tokenStr = request.getHeader(CommonConstant.REQUEST_HEADER_NAME);
+        if (Objects.isNull(tokenStr) || !tokenStr.startsWith(CommonConstant.TOKEN_PREFIX)) {
+            throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
+        }
+        String[] split = tokenStr.split("\\.");
+        if (split.length > 2) {
+            throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
+        }
+        Base64 decode = new Base64();
+        String token = new String(decode.decode(split[1]));
 
-           JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
-           Integer userId = jsonObject.getInteger("userId");
-           if (Objects.isNull(userId)){
-               throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
-           }
-           return userId;
-       }catch (RuntimeException e){
-           throw new BaseException("request 解析错误", e);
-       }
+        JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
+        Integer userId = jsonObject.getInteger("userId");
+        if (Objects.isNull(userId)){
+            throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
+        }
+        return userId;
     }
 }
