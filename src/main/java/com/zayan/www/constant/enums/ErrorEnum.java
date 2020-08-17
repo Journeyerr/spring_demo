@@ -15,10 +15,14 @@ public enum ErrorEnum {
     UNAUTHORIZED(1001, "未认证"),
     TOKEN_EXCEPTION(1004, "Token Exception"),
     NO_FOUND(1010, "查询为空"),
+    PARAM_ERROR(1011, "参数错误"),
     UPDATE_FAIL(1012, "操作失败"),
     USER_EXCEPTION(1013, "用户异常"),
     DATA_ERROR(1014, "数据异常"),
     ACCOUNT_ERROR(1015, "账号或密码错误"),
+
+    FILE_ERROR(1030, "文件错误"),
+    FILE_UPLOAD_DIR_ERROR(1031, "文件路径错误"),
 
     ;
 

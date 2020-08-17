@@ -2,6 +2,7 @@ package com.zayan.www.controller.admin;
 
 
 import com.zayan.www.model.entity.Shop;
+import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +22,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/shop")
-public class AdminShopController {
+public class ShopController {
 
     @Autowired
     private ShopService shopService;
 
-    @GetMapping("/shops")
-    public List<Shop> index() {
-        return shopService.shops();
+    @GetMapping("/index")
+    public BaseResult<List<Shop>> index() {
+        return BaseResult.success(shopService.shops());
     }
+
+
 
 }
 

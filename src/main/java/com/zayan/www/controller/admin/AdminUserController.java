@@ -24,13 +24,13 @@ import java.util.Map;
  * @since 2020-08-17
  */
 @RestController
-@RequestMapping("/adminUser")
+@RequestMapping("/admin")
 public class AdminUserController {
 
     @Autowired
     private AdminUserService adminUserService;
 
-    @PostMapping("/login")
+    @PostMapping("/user/login")
     public BaseResult<Map<String, String>> login(@RequestBody AdminUserLoginForm loginForm) {
         HashMap<String, String> map = Maps.newHashMapWithExpectedSize(1);
         String token = adminUserService.login(loginForm.getPhone(), loginForm.getPassword());

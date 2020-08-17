@@ -59,6 +59,7 @@ CREATE TABLE `shops` (
 -- Records of shops
 -- ----------------------------
 BEGIN;
+INSERT INTO `spring_boot`.`shops`(`id`, `name`, `no`, `is_enable`, `country`, `province`, `contact_phone`, `city`, `city_code`, `district`, `district_code`, `address`, `longitude`, `latitude`, `open_at`, `close_at`, `delivery_distance`, `delivery_fee`, `takeaway_status`, `tips`, `qr_code`, `created_at`, `updated_at`, `deleted_at`) VALUES (1, '测试门店', '8001', 1, '中国', '湖南', '07467001', '冷水滩', '800', '冷水滩市区', '801', '冷水滩某个地方', '11', '11', '08:00', '12:00', 3000, 5.00, 1, '欢迎光临', '', '2020-08-17 15:42:54', '2020-08-17 15:42:59', NULL);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
