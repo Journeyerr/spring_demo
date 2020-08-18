@@ -1,4 +1,4 @@
-package com.zayan.www.rabbitmq.publisher;
+package com.zayan.www.config.rabbitMq.publisher;
 
 /**
  * @author AnYuan

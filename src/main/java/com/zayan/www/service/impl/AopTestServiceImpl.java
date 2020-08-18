@@ -1,6 +1,6 @@
 package com.zayan.www.service.impl;
 
-import com.zayan.www.security.AdminOnly;
+import com.zayan.www.config.security.AdminOnly;
 import com.zayan.www.service.AopTestService;
 import org.springframework.stereotype.Service;
 

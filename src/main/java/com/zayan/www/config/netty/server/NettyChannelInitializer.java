@@ -1,6 +1,5 @@
-package com.zayan.www.netty.client;
+package com.zayan.www.config.netty.server;
 
-import com.zayan.www.netty.server.NettyServerHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
@@ -8,19 +7,19 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 
 /**
- * 客户端初始化需执行
+ * 服务端初始化需执行
  * @author AnYuan
  *
  */
 
-public class NettyClientChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ch.pipeline().addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));
         ch.pipeline().addLast("encode", new StringEncoder(CharsetUtil.UTF_8));
-        ch.pipeline().addLast(new NettyClientHandler());
+        ch.pipeline().addLast(new NettyServerHandler());
 
-        System.out.println("NettyClientChannelInitializer------->>>>>>   " + ch.id().toString());
+        System.out.println("NettyChannelInit --->>> " + ch.id().toString());
     }
 }

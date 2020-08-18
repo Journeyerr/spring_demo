@@ -1,19 +1,15 @@
 package com.zayan.www.controller.test;
 
 import com.google.common.collect.Maps;
-import com.zayan.www.config.rabbitMq.DelayQueueConfig;
+import com.zayan.www.config.rabbitMq.config.DelayQueueConfig;
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;
-import com.zayan.www.model.entity.User;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.rabbitmq.publisher.RabbitMqService;
+import com.zayan.www.config.rabbitMq.publisher.RabbitMqService;
 import com.zayan.www.service.UserService;
-import lombok.Data;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController

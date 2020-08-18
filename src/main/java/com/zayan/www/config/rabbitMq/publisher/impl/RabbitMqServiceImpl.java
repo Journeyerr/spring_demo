@@ -1,7 +1,7 @@
-package com.zayan.www.rabbitmq.publisher.impl;
+package com.zayan.www.config.rabbitMq.publisher.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zayan.www.rabbitmq.publisher.RabbitMqService;
+import com.zayan.www.config.rabbitMq.publisher.RabbitMqService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

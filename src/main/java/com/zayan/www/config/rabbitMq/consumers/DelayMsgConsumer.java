@@ -1,7 +1,7 @@
-package com.zayan.www.rabbitmq.consumers;
+package com.zayan.www.config.rabbitMq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zayan.www.config.rabbitMq.DelayQueueConfig;
+import com.zayan.www.config.rabbitMq.config.DelayQueueConfig;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;

@@ -1,4 +1,4 @@
-package com.zayan.www.security;
+package com.zayan.www.config.security;
 
 
 import org.aspectj.lang.annotation.After;

@@ -1,13 +1,10 @@
-package com.zayan.www.netty.client;
+package com.zayan.www.config.netty.client;
 
-import cn.hutool.socket.nio.NioClient;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-
-import java.util.Scanner;
 
 /**
  * netty client

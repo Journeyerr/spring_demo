@@ -15,9 +15,6 @@ spring:
 #    virtual-host: /
     connection-timeout: 10s
 
-  resources:
-    static-locations: classpath:/images/,classpath:/images/*,classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
-
 jwt:
   token:
     secret: characterEncoding

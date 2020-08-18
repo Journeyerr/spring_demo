@@ -1,4 +1,4 @@
-package com.zayan.www.netty.server;
+package com.zayan.www.config.netty.server;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

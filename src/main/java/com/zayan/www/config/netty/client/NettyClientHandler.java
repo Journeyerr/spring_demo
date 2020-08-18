@@ -1,4 +1,4 @@
-package com.zayan.www.netty.client;
+package com.zayan.www.config.netty.client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

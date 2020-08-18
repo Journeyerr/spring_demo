@@ -1,4 +1,4 @@
-package com.zayan.www.netty.server;
+package com.zayan.www.config.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
