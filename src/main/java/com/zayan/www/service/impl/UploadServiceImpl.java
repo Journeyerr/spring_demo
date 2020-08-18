@@ -34,10 +34,9 @@ public class UploadServiceImpl implements UploadService {
             throw new UploadException(ErrorEnum.FILE_ERROR);
         }
 
-        String filePath = "src/main/resources/images/";
-        String format = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-        String fileName = UUID.randomUUID().toString().replace("-", "") +
-                "." + suffix;
+        String filePath = "src/main/resources/";
+        String format = "/images/products/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String fileName = UUID.randomUUID().toString().replace("-", "") + "." + suffix;
 
         File fileDir = new File(filePath + format);
         if (!fileDir.isDirectory()) {
@@ -50,7 +49,7 @@ public class UploadServiceImpl implements UploadService {
         try {
             File newFile = new File(fileDir.getAbsolutePath() + File.separator + fileName);
             multipartFile.transferTo(newFile);
-            log.info("文件上传成功：{}, currentName:{}", fileName, filePath + format);
+            log.info("文件上传成功：{}, pathName:{}", originalFileName, filePath + format + fileName);
             return format + "/" + fileName;
         } catch (IOException e) {
             log.info("文件上传失败：{}: error:{}", fileName, e.getMessage());

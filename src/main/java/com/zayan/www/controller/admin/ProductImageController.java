@@ -1,9 +1,9 @@
 package com.zayan.www.controller.admin;
 
 
-import com.zayan.www.model.entity.ProductImageShow;
+import com.zayan.www.model.entity.ProductImage;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.service.ProductImageShowService;
+import com.zayan.www.service.ProductImageService;
 import com.zayan.www.service.UploadService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +26,24 @@ import java.math.BigDecimal;
  */
 @RestController
 @RequestMapping("admin/product/image")
-public class ProductImageShowController {
+public class ProductImageController {
 
     @Autowired
     private UploadService uploadService;
 
     @Autowired
-    private ProductImageShowService productImageShowService;
+    private ProductImageService productImageService;
 
     @ApiOperation("创建商品图片")
     @PostMapping("/store")
-    public BaseResult<ProductImageShow> store(@RequestParam("file") MultipartFile multipartFile,
-                                              @RequestParam("price") BigDecimal price,
-                                              @RequestParam("describe") String remark){
+    public BaseResult<ProductImage> store(@RequestParam("file") MultipartFile multipartFile,
+                                          @RequestParam("price") BigDecimal price,
+                                          @RequestParam("remark") String remark,
+                                          @RequestParam("shopId") Integer shopId){
+
         String imagePath = uploadService.fileUpload(multipartFile);
-        ProductImageShow productImageShow = productImageShowService.saveImagesAndShow(imagePath, price, remark);
-        return BaseResult.success(productImageShow);
+        ProductImage productImage = productImageService.saveImagesAndShow(imagePath, shopId, price, remark);
+        return BaseResult.success(productImage);
     }
 }
 

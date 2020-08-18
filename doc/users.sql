@@ -52,7 +52,6 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `spring_boot`.`users`(`id`, `name`, `email`, `phone`, `phone_show`, `birthday`, `avatar_id`, `image_url`, `sex`, `wxlite_session_key`, `wxlite_open_id`, `wx_union_id`, `jpush_id`, `district`, `password`, `last_login_at`, `remember_token`, `is_vip`, `created_at`, `updated_at`, `deleted_at`) VALUES (1, 'javatest', NULL, '15011112222', 'f8e3c6c21204b747', '1995-02-01', 0, 'https://wx.qlogo.cn/mmopen/vi_32/6urYs11boWYhibaJIVgjv922CVpiaq75bjKcWicEK7rPWKNLw2Q8wgFIZwsxjYXicEK2j7WO1Yu4BTk4h6Ysc8nozQ/0', 'female', 'bZDAkTYGshWL1GOUZ64X4w==', 'onsAE0W60UG96BYYAbMey4wXEtHw', NULL, NULL, NULL, '', '2018-05-18 16:04:42', NULL, 0, '2018-02-07 16:03:35', '2018-12-05 10:27:22', NULL);
+INSERT INTO `spring_boot`.`shops` (`name`,`no`,`is_enable`,`country`,`province`,`contact_phone`,`city`,`city_code`,`district`,`district_code`,`address`,`longitude`,`latitude`,`open_at`,`close_at`,`delivery_distance`,`delivery_fee`,`takeaway_status`,`tips`,`qr_code`,`created_at`,`updated_at`,`deleted_at`) VALUES ('测试门店','8001',1,'中国','湖南','07467001','冷水滩','800','冷水滩市区','801','冷水滩某个地方','11','11','08:00','12:00',3000,5.00,1,'欢迎光临','','2020-08-17 15:42:54','2020-08-17 15:42:59',NULL);
 COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS=1;

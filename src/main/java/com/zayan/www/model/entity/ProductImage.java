@@ -24,12 +24,17 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class ProductImageShow implements Serializable {
+public class ProductImage implements Serializable {
 
     private static final long serialVersionUID=1L;
 
       @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
+    /**
+     * 门店id
+     */
+    private Integer shopId;
 
     /**
      * 价格
@@ -45,6 +50,11 @@ public class ProductImageShow implements Serializable {
      * 图片id
      */
     private Integer imageId;
+
+    /**
+     * 是否启用  1 是， 0 停用
+     */
+    private Integer status;
 
     /**
      * 创建时间

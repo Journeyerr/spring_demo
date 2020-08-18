@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zayan.www.model.dto.user.admin.UserListDTO;
 import com.zayan.www.model.entity.User;
-import com.zayan.www.model.form.user.admin.UserListForm;
+import com.zayan.www.model.form.admin.UserListForm;
 
 /**
  * <p>

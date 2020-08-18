@@ -2,7 +2,7 @@ package com.zayan.www.controller.admin;
 
 
 import com.google.common.collect.Maps;
-import com.zayan.www.model.form.user.admin.AdminUserLoginForm;
+import com.zayan.www.model.form.admin.AdminUserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;

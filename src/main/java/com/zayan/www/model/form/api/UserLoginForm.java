@@ -1,4 +1,4 @@
-package com.zayan.www.model.form.user.api;
+package com.zayan.www.model.form.api;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
