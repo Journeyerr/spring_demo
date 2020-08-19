@@ -21,14 +21,11 @@ public class ProductController {
 
 
     @GetMapping("/images")
-    public BaseResult<IPage<ProductImageVO>> images(HttpServletRequest request,
-                                                   @RequestParam("shopId") Integer shopId,
+    public BaseResult<IPage<ProductImageVO>> images(@RequestParam("shopId") Integer shopId,
                                                    @RequestParam("pageSize") Integer pageSize,
                                                    @RequestParam("page") Integer page) {
 
-        String host = request.getScheme() + "://" + request.getServerName()
-                + ":" +request.getServerPort() + "/";
-        IPage<ProductImageVO> imageVOIPage = productImageService.productImagesByShopId(host, shopId, page, pageSize);
+        IPage<ProductImageVO> imageVOIPage = productImageService.productImagesByShopId(shopId, page, pageSize);
         return BaseResult.success(imageVOIPage);
     }
 

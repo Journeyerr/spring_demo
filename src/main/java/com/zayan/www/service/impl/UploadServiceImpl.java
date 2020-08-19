@@ -4,9 +4,7 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.GetObjectRequest;
-import com.aliyun.oss.model.UploadFileRequest;
-import com.aliyun.oss.model.UploadUdfImageRequest;
+import com.zayan.www.constant.common.ALiYunOss;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.UploadException;
 import com.zayan.www.service.UploadService;
@@ -16,10 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -28,7 +24,6 @@ import java.util.UUID;
 @Slf4j
 public class UploadServiceImpl implements UploadService {
 
-    private static final String ENDPOINT = "";
     private static final String ACCESS_KEY_ID = "";
     private static final String ACCESS_KEY_SECRET = "";
     private static final String BUCKET_NAME = "";
@@ -78,23 +73,15 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public String fileUploadToOss(MultipartFile multipartFile, List<String> allowSuffix, String dirName) {
 
-        String filePath = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         String fileName = checkFile(multipartFile, allowSuffix);
+        String filePath = dirName + "/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + "/" + fileName;
 
-        OSS ossClient = new OSSClientBuilder().build(ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        OSS ossClient = new OSSClientBuilder().build(ALiYunOss.ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
 
         try {
-
-            ossClient.putObject(BUCKET_NAME, filePath + fileName, multipartFile.getInputStream());
-
-            Date expiration = new Date(System.currentTimeMillis() + 3600 * 1000);
-
-            URL url = ossClient.generatePresignedUrl(BUCKET_NAME, filePath + fileName, expiration);
-
-            System.out.println(url);
-
+            ossClient.putObject(BUCKET_NAME, filePath, multipartFile.getInputStream());
             log.info("文件上传阿里云成功：{}", multipartFile.getOriginalFilename());
-            return fileName;
+            return "/" + filePath;
         } catch (IOException ioException) {
             log.info("文件读取失败：{}: error:{}", fileName, ioException.getMessage());
         } catch (OSSException ossException){

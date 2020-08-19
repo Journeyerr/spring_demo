@@ -1,11 +1,13 @@
 package com.zayan.www.controller.admin;
 
 
+import com.zayan.www.constant.common.ALiYunOss;
 import com.zayan.www.constant.common.FileConstant;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.UploadException;
 import com.zayan.www.model.entity.ProductImage;
 import com.zayan.www.model.vo.BaseResult;
+import com.zayan.www.model.vo.ProductImageVO;
 import com.zayan.www.service.ProductImageService;
 import com.zayan.www.service.UploadService;
 import io.swagger.annotations.ApiOperation;
@@ -40,17 +42,23 @@ public class ProductImageController {
 
     @ApiOperation("创建商品图片")
     @PostMapping("/store")
-    public BaseResult<ProductImage> store(@RequestParam("file") MultipartFile multipartFile,
-                                          @RequestParam("price") BigDecimal price,
-                                          @RequestParam("remark") String remark,
-                                          @RequestParam("shopId") Integer shopId){
-
+    public BaseResult<ProductImageVO> store(@RequestParam("file") MultipartFile multipartFile,
+                                            @RequestParam("price") BigDecimal price,
+                                            @RequestParam("remark") String remark,
+                                            @RequestParam("shopId") Integer shopId){
         String imagePath = uploadService.fileUploadToOss(multipartFile, FileConstant.IMAGE_SUFFIX, FileConstant.PRODUCT_IMAGE_DIR);
         if (Objects.isNull(imagePath)) {
             throw new UploadException(ErrorEnum.FILE_UPLOAD_ERROR);
         }
+
         ProductImage productImage = productImageService.saveImagesAndShow(imagePath, shopId, price, remark);
-        return BaseResult.success(productImage);
+        ProductImageVO productImageVO = ProductImageVO.builder()
+                .price(productImage.getPrice())
+                .remark(productImage.getRemark())
+                .productImage(ALiYunOss.BUCKET + imagePath)
+                .build();
+
+        return BaseResult.success(productImageVO);
     }
 }
 

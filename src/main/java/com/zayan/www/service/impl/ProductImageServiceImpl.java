@@ -3,6 +3,7 @@ package com.zayan.www.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zayan.www.constant.common.ALiYunOss;
 import com.zayan.www.model.entity.Image;
 import com.zayan.www.model.entity.ProductImage;
 import com.zayan.www.model.vo.ProductImageVO;
@@ -45,21 +46,20 @@ public class ProductImageServiceImpl extends ServiceImpl<ProductImageMapper, Pro
         productImage.setShopId(shopId);
         productImage.setPrice(price);
         productImage.setRemark(remark);
-
         save(productImage);
 
         return productImage;
     }
 
     @Override
-    public IPage<ProductImageVO> productImagesByShopId(String host, Integer shopId, Integer page, Integer pageSize) {
+    public IPage<ProductImageVO> productImagesByShopId(Integer shopId, Integer page, Integer pageSize) {
 
         IPage<ProductImageVO> imageVOIPage = this.baseMapper.imagesList(new Page(page, pageSize), shopId);
         List<ProductImageVO> listVo = imageVOIPage.getRecords();
         if (CollectionUtils.isEmpty(listVo)) {
             return imageVOIPage;
         }
-        listVo.forEach( v -> v.setProductImageUrl( host + v.getProductImageUrl()));
+        listVo.forEach( v -> v.setProductImage(ALiYunOss.BUCKET + v.getProductImage()));
         return imageVOIPage;
     }
 }

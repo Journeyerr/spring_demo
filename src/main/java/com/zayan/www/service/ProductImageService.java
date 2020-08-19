@@ -31,11 +31,10 @@ public interface ProductImageService extends IService<ProductImage> {
 
     /**
      * 获取门店商品展示图
-     * @param host host
      * @param shopId shopId
      * @param page
      * @param pageSize
      * @return List<ProductImageVO>
      */
-    IPage<ProductImageVO> productImagesByShopId(String host, Integer shopId, Integer page, Integer pageSize);
+    IPage<ProductImageVO> productImagesByShopId(Integer shopId, Integer page, Integer pageSize);
 }

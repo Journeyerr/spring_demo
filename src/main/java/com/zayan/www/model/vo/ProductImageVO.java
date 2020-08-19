@@ -3,11 +3,13 @@ package com.zayan.www.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
+@Builder
 public class ProductImageVO {
 
     @ApiModelProperty("价格")
@@ -19,7 +21,7 @@ public class ProductImageVO {
     private String remark;
 
     @ApiModelProperty("图片url")
-    @JsonProperty("product_image_url")
-    private String productImageUrl;
+    @JsonProperty("product_image")
+    private String productImage;
 
 }
