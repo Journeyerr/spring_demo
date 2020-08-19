@@ -23,6 +23,7 @@ public enum ErrorEnum {
 
     FILE_ERROR(1030, "文件错误"),
     FILE_UPLOAD_DIR_ERROR(1031, "文件路径错误"),
+    FILE_UPLOAD_ERROR(1032, "文件上传失败"),
 
     ;
 
