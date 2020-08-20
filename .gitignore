@@ -29,3 +29,4 @@ HELP.md
 .vscode/
 
 src/main/resources/images/*
+src/main/java/com/zayan/www/constant/common/ALiYunOss.java
