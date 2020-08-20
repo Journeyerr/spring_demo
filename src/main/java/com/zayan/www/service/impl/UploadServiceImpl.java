@@ -4,7 +4,7 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
-import com.zayan.www.constant.common.ALiYunOss;
+import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.UploadException;
 import com.zayan.www.service.UploadService;

@@ -1,7 +1,7 @@
 package com.zayan.www.controller.admin;
 
 
-import com.zayan.www.constant.common.ALiYunOss;
+import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.constant.common.FileConstant;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.UploadException;

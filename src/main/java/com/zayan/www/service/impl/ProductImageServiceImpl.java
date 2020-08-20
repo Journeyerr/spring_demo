@@ -3,7 +3,7 @@ package com.zayan.www.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zayan.www.constant.common.ALiYunOss;
+import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.model.entity.Image;
 import com.zayan.www.model.entity.ProductImage;
 import com.zayan.www.model.vo.ProductImageVO;
@@ -14,11 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * <p>
