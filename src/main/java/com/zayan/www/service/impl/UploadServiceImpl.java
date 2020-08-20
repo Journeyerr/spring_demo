@@ -24,10 +24,6 @@ import java.util.UUID;
 @Slf4j
 public class UploadServiceImpl implements UploadService {
 
-    private static final String ACCESS_KEY_ID = "";
-    private static final String ACCESS_KEY_SECRET = "";
-    private static final String BUCKET_NAME = "";
-
     private String checkFile(MultipartFile multipartFile, List<String> allowSuffix)  {
 
         String originalFileName = multipartFile.getOriginalFilename();
@@ -48,7 +44,7 @@ public class UploadServiceImpl implements UploadService {
     public String fileUploadToLocal(MultipartFile multipartFile, List<String> allowSuffix, String dirName) {
 
         String filePath = "src/main/resources/";
-        String format = "/images/products/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+        String format = "/images/" + dirName + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
         String fileName = checkFile(multipartFile, allowSuffix);
 
         File fileDir = new File(filePath + format);
@@ -76,10 +72,10 @@ public class UploadServiceImpl implements UploadService {
         String fileName = checkFile(multipartFile, allowSuffix);
         String filePath = dirName + "/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + "/" + fileName;
 
-        OSS ossClient = new OSSClientBuilder().build(ALiYunOss.ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        OSS ossClient = new OSSClientBuilder().build(ALiYunOss.ENDPOINT, ALiYunOss.ACCESS_KEY_ID, ALiYunOss.ACCESS_KEY_SECRET);
 
         try {
-            ossClient.putObject(BUCKET_NAME, filePath, multipartFile.getInputStream());
+            ossClient.putObject(ALiYunOss.BUCKET_NAME, filePath, multipartFile.getInputStream());
             log.info("文件上传阿里云成功：{}", multipartFile.getOriginalFilename());
             return "/" + filePath;
         } catch (IOException ioException) {
