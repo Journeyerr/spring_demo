@@ -4,7 +4,9 @@ package com.zayan.www.controller.admin;
 import com.google.common.collect.Maps;
 import com.zayan.www.model.form.admin.AdminUserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
+import com.zayan.www.model.vo.admin.AdminUserInfoVO;
 import com.zayan.www.service.AdminUserService;
+import com.zayan.www.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +38,11 @@ public class AdminUserController {
         String token = adminUserService.login(loginForm.getPhone(), loginForm.getPassword());
         map.put("token", token);
         return BaseResult.success(map);
+    }
+
+    @PostMapping("/user")
+    public BaseResult<AdminUserInfoVO> userInfo() {
+        return BaseResult.success(adminUserService.userInfo(RequestUtil.getUserIdFormContextToken()));
     }
 }
 

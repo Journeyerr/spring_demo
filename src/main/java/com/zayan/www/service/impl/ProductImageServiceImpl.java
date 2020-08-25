@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.model.entity.Image;
 import com.zayan.www.model.entity.ProductImage;
-import com.zayan.www.model.vo.ProductImageVO;
+import com.zayan.www.model.vo.api.product.ProductImageVO;
 import com.zayan.www.repository.ProductImageMapper;
 import com.zayan.www.service.ImageService;
 import com.zayan.www.service.ProductImageService;

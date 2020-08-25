@@ -27,7 +27,7 @@
         id, name, phone, phone_show, birthday, image_url, sex, wxlite_session_key, wxlite_open_id, wx_union_id, district, password, last_login_at, created_at, updated_at, deleted_at
     </sql>
 
-    <select id="list" resultType="com.zayan.www.model.dto.user.admin.UserListDTO">
+    <select id="list" resultType="com.zayan.www.model.dto.admin.user.UserListDTO">
         select * from users
     </select>
 </mapper>

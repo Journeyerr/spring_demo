@@ -7,7 +7,7 @@ import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.UploadException;
 import com.zayan.www.model.entity.ProductImage;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.ProductImageVO;
+import com.zayan.www.model.vo.api.product.ProductImageVO;
 import com.zayan.www.service.ProductImageService;
 import com.zayan.www.service.UploadService;
 import io.swagger.annotations.ApiOperation;

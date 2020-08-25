@@ -2,7 +2,6 @@ package com.zayan.www.controller.api;
 
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.auth.UnAuthorizedException;
-import com.zayan.www.model.dto.user.api.BaseUser;
 import com.zayan.www.model.entity.User;
 import com.zayan.www.service.UserService;
 import com.zayan.www.util.RequestUtil;

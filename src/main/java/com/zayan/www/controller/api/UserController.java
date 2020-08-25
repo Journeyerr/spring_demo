@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.zayan.www.model.entity.User;
 import com.zayan.www.model.form.api.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.user.UserVO;
+import com.zayan.www.model.vo.api.user.UserVO;
 import com.zayan.www.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

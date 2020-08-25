@@ -2,6 +2,7 @@ package com.zayan.www.service;
 
 import com.zayan.www.model.entity.AdminUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zayan.www.model.vo.admin.AdminUserInfoVO;
 
 /**
  * <p>
@@ -21,4 +22,11 @@ public interface AdminUserService extends IService<AdminUser> {
      * @return String token
      */
     String login(String phone, String password);
+
+    /**
+     * 用户信息
+     * @param userId userId
+     * @return AdminUserInfoVO
+     */
+    AdminUserInfoVO userInfo(Integer userId);
 }

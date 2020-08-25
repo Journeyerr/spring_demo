@@ -1,4 +1,4 @@
-package com.zayan.www.model.vo;
+package com.zayan.www.model.vo.api.product;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

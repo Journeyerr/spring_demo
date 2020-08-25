@@ -2,15 +2,13 @@ package com.zayan.www.controller.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.ProductImageVO;
+import com.zayan.www.model.vo.api.product.ProductImageVO;
 import com.zayan.www.service.ProductImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("api/product")

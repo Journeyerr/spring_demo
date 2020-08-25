@@ -1,7 +1,7 @@
 package com.zayan.www.repository;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zayan.www.model.dto.user.admin.UserListDTO;
+import com.zayan.www.model.dto.admin.user.UserListDTO;
 import com.zayan.www.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zayan.www.model.form.admin.UserListForm;
