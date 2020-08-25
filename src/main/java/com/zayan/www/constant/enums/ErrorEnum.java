@@ -13,7 +13,7 @@ public enum ErrorEnum {
      * 错误码
      */
     UNAUTHORIZED(1001, "未认证"),
-    TOKEN_EXCEPTION(1004, "Token Exception"),
+    TOKEN_EXCEPTION(1004, "身份信息异常"),
     NO_FOUND(1010, "查询为空"),
     PARAM_ERROR(1011, "参数错误"),
     UPDATE_FAIL(1012, "操作失败"),

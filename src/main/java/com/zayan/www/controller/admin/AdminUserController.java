@@ -8,11 +8,7 @@ import com.zayan.www.model.vo.admin.AdminUserInfoVO;
 import com.zayan.www.service.AdminUserService;
 import com.zayan.www.util.RequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +36,7 @@ public class AdminUserController {
         return BaseResult.success(map);
     }
 
-    @PostMapping("/user")
+    @GetMapping("/user")
     public BaseResult<AdminUserInfoVO> userInfo() {
         return BaseResult.success(adminUserService.userInfo(RequestUtil.getUserIdFormContextToken()));
     }
