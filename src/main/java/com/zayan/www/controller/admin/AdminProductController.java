@@ -32,7 +32,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("admin/product/image")
-public class ProductImageController {
+public class AdminProductController {
 
     @Autowired
     private UploadService uploadService;

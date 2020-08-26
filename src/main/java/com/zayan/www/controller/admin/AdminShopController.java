@@ -22,7 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/shop")
-public class ShopController {
+public class AdminShopController {
 
     @Autowired
     private ShopService shopService;
