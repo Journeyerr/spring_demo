@@ -2,7 +2,7 @@ package com.zayan.www.controller.admin;
 
 
 import com.google.common.collect.Maps;
-import com.zayan.www.model.form.admin.AdminUserLoginForm;
+import com.zayan.www.model.form.admin.user.UserLoginForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.model.vo.admin.AdminUserInfoVO;
 import com.zayan.www.service.AdminUserService;
@@ -29,7 +29,7 @@ public class AdminUserController {
     private AdminUserService adminUserService;
 
     @PostMapping("/user/login")
-    public BaseResult<Map<String, String>> login(@RequestBody AdminUserLoginForm loginForm) {
+    public BaseResult<Map<String, String>> login(@RequestBody UserLoginForm loginForm) {
         HashMap<String, String> map = Maps.newHashMapWithExpectedSize(1);
         String token = adminUserService.login(loginForm.getPhone(), loginForm.getPassword());
         map.put("token", token);

@@ -12,6 +12,10 @@ import java.math.BigDecimal;
 @Builder
 public class ProductImageVO {
 
+    @ApiModelProperty("商品图片id")
+    @JsonProperty("product_image_id")
+    private Integer productImageId;
+
     @ApiModelProperty("价格")
     @JsonProperty("price")
     private BigDecimal price;

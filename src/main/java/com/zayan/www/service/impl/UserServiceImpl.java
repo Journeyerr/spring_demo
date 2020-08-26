@@ -9,7 +9,7 @@ import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.user.UserExcetpion;
 import com.zayan.www.model.dto.admin.user.UserListDTO;
 import com.zayan.www.model.entity.User;
-import com.zayan.www.model.form.admin.UserListForm;
+import com.zayan.www.model.form.admin.user.UserListForm;
 import com.zayan.www.repository.UserMapper;
 import com.zayan.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

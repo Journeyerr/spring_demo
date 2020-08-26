@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.dto.admin.user.UserListDTO;
 import com.zayan.www.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zayan.www.model.form.admin.UserListForm;
+import com.zayan.www.model.form.admin.user.UserListForm;
 import org.apache.ibatis.annotations.Param;
 
 /**

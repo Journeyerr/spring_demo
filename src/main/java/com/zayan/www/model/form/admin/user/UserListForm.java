@@ -1,4 +1,4 @@
-package com.zayan.www.model.form.admin;
+package com.zayan.www.model.form.admin.user;
 
 import lombok.Data;
 

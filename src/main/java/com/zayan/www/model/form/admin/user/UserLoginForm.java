@@ -1,10 +1,10 @@
-package com.zayan.www.model.form.admin;
+package com.zayan.www.model.form.admin.user;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class AdminUserLoginForm {
+public class UserLoginForm {
 
     @ApiModelProperty("登录账号")
     private String phone;
