@@ -26,8 +26,9 @@ CREATE TABLE `skus` (
   `no` int(11) DEFAULT NULL COMMENT 'skuNo',
   `stock` int(11) DEFAULT NULL COMMENT '库存',
   `version` int(11) DEFAULT NULL COMMENT '版本控制 防止并发',
-  `created_at` datetime DEFAULT NULL COMMENT '创建时间',
-  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` timestamp NULL COMMENT '删除时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

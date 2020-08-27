@@ -42,13 +42,13 @@ public class AdminProductController {
     @PostMapping("/store")
     public BaseResult<ProductImageVO> store(@RequestBody ProductImageCreateForm createForm){
         ProductImage productImage = productImageService.saveProductImage(createForm);
-        ProductImageVO productImageVO = ProductImageVO.builder()
-                .price(productImage.getPrice())
-                .remark(productImage.getRemark())
-                .id(productImage.getId())
-                .build();
 
-        return BaseResult.success(productImageVO);
+        ProductImageVO imageVO = new ProductImageVO();
+        imageVO.setPrice(productImage.getPrice());
+        imageVO.setRemark(productImage.getRemark());
+        imageVO.setId(productImage.getId());
+
+        return BaseResult.success(imageVO);
     }
 
 }

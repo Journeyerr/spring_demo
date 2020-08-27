@@ -20,7 +20,7 @@
         id, shop_id, price, remark, image_id, status, created_at, updated_at, deleted_at
     </sql>
     <select id="list" resultType="com.zayan.www.model.vo.api.product.ProductImageVO">
-        select a.id, a.price, a.remark, a.shop_id, a.status, b.path as product_image, c.name as shop_name from product_image a left join images b on a.image_id = b.id
+        select a.id, a.price, a.remark, a.shop_id, a.status, a.created_at, b.path as product_image, c.name as shop_name from product_image a left join images b on a.image_id = b.id
          left join shops c on a.shop_id = c.id
          where 1
         <if test="shopId != null and shopId != ''">

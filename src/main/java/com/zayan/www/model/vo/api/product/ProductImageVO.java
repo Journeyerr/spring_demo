@@ -1,15 +1,16 @@
 package com.zayan.www.model.vo.api.product;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
-@Builder
 public class ProductImageVO {
 
     @ApiModelProperty("商品图片id")
@@ -36,9 +37,12 @@ public class ProductImageVO {
     @JsonProperty("status")
     private String status;
 
-
     @ApiModelProperty("图片url")
     @JsonProperty("product_image")
     private String productImage;
 
+    @ApiModelProperty("创建时间")
+    @JsonProperty("created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 }
