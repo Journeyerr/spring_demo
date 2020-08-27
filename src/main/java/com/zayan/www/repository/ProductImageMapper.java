@@ -16,6 +16,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ProductImageMapper extends BaseMapper<ProductImage> {
 
-    IPage<ProductImageVO> list(IPage iPage, @Param("shopId") Integer shopId, @Param("status") Integer status);
+    IPage<ProductImageVO> list(@Param("shopId") Integer shopId, @Param("status") Integer status, IPage iPage);
 
 }

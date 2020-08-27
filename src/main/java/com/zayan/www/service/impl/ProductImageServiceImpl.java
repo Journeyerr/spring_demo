@@ -42,9 +42,8 @@ public class ProductImageServiceImpl extends ServiceImpl<ProductImageMapper, Pro
     @Override
     public IPage<ProductImageVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize) {
 
-        IPage<ProductImageVO> imageVOIPage = this.baseMapper.list(new Page(page, pageSize), shopId, status);
+        IPage<ProductImageVO> imageVOIPage = this.baseMapper.list(shopId, status, new Page(page, pageSize));
         List<ProductImageVO> listVo = imageVOIPage.getRecords();
-        System.out.println(listVo);
         if (CollectionUtils.isEmpty(listVo)) {
             return imageVOIPage;
         }

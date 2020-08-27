@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 /**
  * <p>
  *  前端控制器
@@ -28,7 +30,7 @@ public class AdminProductController {
 
     @ApiOperation("商品图片列表")
     @GetMapping("/index")
-    public BaseResult<IPage<ProductImageVO>> index(@RequestParam("shopId") Integer shopId,
+    public BaseResult<IPage<ProductImageVO>> index(@RequestParam(value = "shopId", required = false) Integer shopId,
                                                    @RequestParam("page") Integer page,
                                                    @RequestParam("pageSize") Integer pageSize ) {
 
