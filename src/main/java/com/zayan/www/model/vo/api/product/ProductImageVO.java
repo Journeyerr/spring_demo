@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 public class ProductImageVO {
 
     @ApiModelProperty("商品图片id")
-    @JsonProperty("product_image_id")
-    private Integer productImageId;
+    @JsonProperty("id")
+    private Integer id;
 
     @ApiModelProperty("价格")
     @JsonProperty("price")

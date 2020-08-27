@@ -9,6 +9,7 @@ import com.zayan.www.model.form.admin.product.ProductImageCreateForm;
 import com.zayan.www.model.vo.api.product.ProductImageVO;
 import com.zayan.www.repository.ProductImageMapper;
 import com.zayan.www.service.ProductImageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -39,10 +40,11 @@ public class ProductImageServiceImpl extends ServiceImpl<ProductImageMapper, Pro
     }
 
     @Override
-    public IPage<ProductImageVO> productImagesByShopId(Integer shopId, Integer page, Integer pageSize) {
+    public IPage<ProductImageVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize) {
 
-        IPage<ProductImageVO> imageVOIPage = this.baseMapper.imagesList(new Page(page, pageSize), shopId);
+        IPage<ProductImageVO> imageVOIPage = this.baseMapper.list(new Page(page, pageSize), shopId, status);
         List<ProductImageVO> listVo = imageVOIPage.getRecords();
+        System.out.println(listVo);
         if (CollectionUtils.isEmpty(listVo)) {
             return imageVOIPage;
         }

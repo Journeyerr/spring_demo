@@ -19,8 +19,11 @@
     <sql id="Base_Column_List">
         id, shop_id, price, remark, image_id, status, created_at, updated_at, deleted_at
     </sql>
-    <select id="imagesList" resultType="com.zayan.www.model.vo.api.product.ProductImageVO">
-        select a.price, a.remark, b.path as product_image_url from product_image a left join images b on a.image_id = b.id where a.shop_id = #{shopId} and status = 1
+    <select id="list" resultType="com.zayan.www.model.vo.api.product.ProductImageVO">
+        select a.id, a.price, a.remark, b.path as product_image from product_image a left join images b on a.image_id = b.id where a.shop_id = #{shopId}
+        <if test="status != null and status != ''">
+            and status = 1
+        </if>
     </select>
 
 </mapper>
