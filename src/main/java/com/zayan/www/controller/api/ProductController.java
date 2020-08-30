@@ -23,8 +23,8 @@ public class ProductController {
                                                @RequestParam("pageSize") Integer pageSize,
                                                @RequestParam("page") Integer page) {
 
-        IPage<ProductVO> productVOIPage = productService.productsByShopId(shopId, page, pageSize);
-        return BaseResult.success(productVOIPage);
+        IPage<ProductImageVO> imageVOIPage = productImageService.listRecord(shopId, 1, page, pageSize);
+        return BaseResult.success(imageVOIPage);
     }
 
 }

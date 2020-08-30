@@ -35,9 +35,9 @@ CREATE TABLE `users` (
   `district` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信备注地区',
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
   `last_login_at` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted_at` timestamp NULL COMMENT '删除时间',
   PRIMARY KEY (`id`),
   KEY `users_name_index` (`name`),
   KEY `users_sex_index` (`sex`),
@@ -47,7 +47,6 @@ CREATE TABLE `users` (
   KEY `users_phone_show_index` (`phone_show`),
   KEY `users_created_at_index` (`created_at`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
-
 -- ----------------------------
 -- Records of users
 -- ----------------------------

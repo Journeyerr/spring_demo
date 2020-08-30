@@ -35,4 +35,7 @@
         id, name, no, is_enable, country, province, contact_phone, city, city_code, district, district_code, address, longitude, latitude, open_at, close_at, delivery_distance, delivery_fee, takeaway_status, tips, qr_code, created_at, updated_at, deleted_at
     </sql>
 
+    <select id="list" resultType="com.zayan.www.model.entity.Shop">
+        select * from shops
+    </select>
 </mapper>

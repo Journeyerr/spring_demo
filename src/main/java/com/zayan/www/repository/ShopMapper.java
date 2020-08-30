@@ -1,5 +1,6 @@
 package com.zayan.www.repository;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.entity.Shop;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ShopMapper extends BaseMapper<Shop> {
 
+    /**
+     * 获取shop列表
+     * @param page page
+     * @return Shops
+     */
+    IPage<Shop> list(IPage page);
 }

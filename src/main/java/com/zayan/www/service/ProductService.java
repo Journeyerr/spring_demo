@@ -26,9 +26,10 @@ public interface ProductService extends IService<Product> {
     /**
      * 获取门店商品展示图
      * @param shopId shopId
-     * @param page
-     * @param pageSize
+     * @param status status
+     * @param page page
+     * @param pageSize pageSize
      * @return List<ProductImageVO>
      */
-    IPage<ProductVO> productsByShopId(Integer shopId, Integer page, Integer pageSize);
+    IPage<ProductImageVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize);
 }
