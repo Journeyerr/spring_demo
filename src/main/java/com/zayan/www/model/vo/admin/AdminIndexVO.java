@@ -18,7 +18,7 @@ public class AdminIndexVO {
     @ApiModelProperty("门店总数")
     private Integer shopCount;
 
-    @ApiModelProperty("商品图片总数")
+    @ApiModelProperty("商品总数")
     @JsonProperty("productImageCount")
-    private Integer productImageCount;
+    private Integer productCount;
 }

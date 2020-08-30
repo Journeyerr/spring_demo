@@ -2,7 +2,7 @@ package com.zayan.www.controller.admin;
 
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.model.vo.admin.AdminIndexVO;
-import com.zayan.www.service.ProductImageService;
+import com.zayan.www.service.ProductService;
 import com.zayan.www.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,13 +21,13 @@ public class AdminIndexController {
     @Autowired
     private ShopService shopService;
     @Autowired
-    private ProductImageService productImageService;
+    private ProductService productService;
 
     @GetMapping("")
     public BaseResult<AdminIndexVO> index() {
         AdminIndexVO indexVO = AdminIndexVO.builder()
                 .shopCount(shopService.count())
-                .productImageCount(productImageService.count())
+                .productCount(productService.count())
                 .build();
 
         return BaseResult.success(indexVO);

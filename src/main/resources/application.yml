@@ -13,7 +13,7 @@ spring:
     password: guest
     addresses: localhost:5672
 #    virtual-host: /
-    connection-timeout: 10s
+    connection-timeout: 3
 
 jwt:
   token:

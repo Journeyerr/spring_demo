@@ -1,6 +1,7 @@
-CREATE TABLE `product_image` (
+CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `shop_id` int(11) NOT NULL COMMENT '门店id',
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '商品名称',
   `price` decimal(8,2) DEFAULT NULL COMMENT '价格',
   `remark` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '描述备注',
   `image_id` int(11) DEFAULT NULL COMMENT '图片id',

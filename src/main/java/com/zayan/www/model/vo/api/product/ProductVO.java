@@ -9,12 +9,15 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-@Builder
-public class ProductImageVO {
+public class ProductVO {
+
+    @ApiModelProperty("商品名称")
+    @JsonProperty("name")
+    private String name;
 
     @ApiModelProperty("商品图片id")
-    @JsonProperty("product_image_id")
-    private Integer productImageId;
+    @JsonProperty("image_id")
+    private Integer imageId;
 
     @ApiModelProperty("价格")
     @JsonProperty("price")

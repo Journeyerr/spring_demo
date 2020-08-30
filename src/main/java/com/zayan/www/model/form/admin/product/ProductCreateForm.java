@@ -6,7 +6,10 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class ProductImageCreateForm {
+public class ProductCreateForm {
+
+    @ApiModelProperty("商品价格")
+    private String name;
 
     @ApiModelProperty("商品价格")
     private BigDecimal price;

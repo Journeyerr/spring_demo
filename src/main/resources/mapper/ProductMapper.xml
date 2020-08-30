@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zayan.www.repository.ProductImageMapper">
+<mapper namespace="com.zayan.www.repository.ProductMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.ProductImage">
+    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Product">
         <id column="id" property="id" />
         <result column="shop_id" property="shopId" />
+        <result column="name" property="name" />
         <result column="price" property="price" />
         <result column="remark" property="remark" />
         <result column="image_id" property="imageId" />
@@ -17,10 +18,10 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, shop_id, price, remark, image_id, status, created_at, updated_at, deleted_at
+        id, shop_id, name, price, remark, image_id, status, created_at, updated_at, deleted_at
     </sql>
-    <select id="imagesList" resultType="com.zayan.www.model.vo.api.product.ProductImageVO">
-        select a.price, a.remark, b.path as product_image_url from product_image a left join images b on a.image_id = b.id where a.shop_id = #{shopId} and status = 1
+    <select id="productsList" resultType="com.zayan.www.model.vo.api.product.ProductVO">
+        select a.price, a.name, a.remark, a.image_id, b.path as product_image_url from products a left join images b on a.image_id = b.id where a.shop_id = #{shopId} and status = 1
     </select>
 
 </mapper>

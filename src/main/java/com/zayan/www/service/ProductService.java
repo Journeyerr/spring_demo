@@ -2,9 +2,9 @@ package com.zayan.www.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zayan.www.model.entity.ProductImage;
-import com.zayan.www.model.form.admin.product.ProductImageCreateForm;
-import com.zayan.www.model.vo.api.product.ProductImageVO;
+import com.zayan.www.model.entity.Product;
+import com.zayan.www.model.form.admin.product.ProductCreateForm;
+import com.zayan.www.model.vo.api.product.ProductVO;
 
 /**
  * <p>
@@ -14,14 +14,14 @@ import com.zayan.www.model.vo.api.product.ProductImageVO;
  * @author AnYuan
  * @since 2020-08-17
  */
-public interface ProductImageService extends IService<ProductImage> {
+public interface ProductService extends IService<Product> {
 
     /**
      * 保存图片路径 和 商品图片
      * @param createForm createForm
      * @return ProductImageShow
      */
-    ProductImage saveProductImage(ProductImageCreateForm createForm);
+    Product saveProduct(ProductCreateForm createForm);
 
     /**
      * 获取门店商品展示图
@@ -30,5 +30,5 @@ public interface ProductImageService extends IService<ProductImage> {
      * @param pageSize
      * @return List<ProductImageVO>
      */
-    IPage<ProductImageVO> productImagesByShopId(Integer shopId, Integer page, Integer pageSize);
+    IPage<ProductVO> productsByShopId(Integer shopId, Integer page, Integer pageSize);
 }

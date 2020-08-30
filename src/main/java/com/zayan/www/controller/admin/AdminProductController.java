@@ -1,11 +1,11 @@
 package com.zayan.www.controller.admin;
 
 
-import com.zayan.www.model.entity.ProductImage;
-import com.zayan.www.model.form.admin.product.ProductImageCreateForm;
+import com.zayan.www.model.entity.Product;
+import com.zayan.www.model.form.admin.product.ProductCreateForm;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.api.product.ProductImageVO;
-import com.zayan.www.service.ProductImageService;
+import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,19 +26,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminProductController {
 
     @Autowired
-    private ProductImageService productImageService;
+    private ProductService productService;
 
-    @ApiOperation("创建商品图片")
+    @ApiOperation("创建商品")
     @PostMapping("/store")
-    public BaseResult<ProductImageVO> store(@RequestBody ProductImageCreateForm createForm){
-        ProductImage productImage = productImageService.saveProductImage(createForm);
-        ProductImageVO productImageVO = ProductImageVO.builder()
-                .price(productImage.getPrice())
-                .remark(productImage.getRemark())
-                .productImageId(productImage.getId())
-                .build();
+    public BaseResult<ProductVO> store(@RequestBody ProductCreateForm createForm){
+        Product product = productService.saveProduct(createForm);
 
-        return BaseResult.success(productImageVO);
+        ProductVO productVO = new ProductVO();
+        productVO.setPrice(product.getPrice());
+        productVO.setName(product.getName());
+        productVO.setRemark(product.getRemark());
+        productVO.setImageId(product.getImageId());
+
+        return BaseResult.success(productVO);
     }
 }
 

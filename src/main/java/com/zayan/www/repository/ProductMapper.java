@@ -1,9 +1,9 @@
 package com.zayan.www.repository;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zayan.www.model.entity.ProductImage;
+import com.zayan.www.model.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zayan.www.model.vo.api.product.ProductImageVO;
+import com.zayan.www.model.vo.api.product.ProductVO;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -14,8 +14,8 @@ import org.apache.ibatis.annotations.Param;
  * @author AnYuan
  * @since 2020-08-17
  */
-public interface ProductImageMapper extends BaseMapper<ProductImage> {
+public interface ProductMapper extends BaseMapper<Product> {
 
-    IPage<ProductImageVO> imagesList(IPage iPage, @Param("shopId") Integer shopId);
+    IPage<ProductVO> productsList(IPage iPage, @Param("shopId") Integer shopId);
 
 }
