@@ -57,6 +57,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         //添加不拦截路径
         registration.excludePathPatterns(
                 "/admin/user/login",
+                "/admin/upload/image",
                 "/**/*.html",
                 "/**/*.js",
                 "/**/*.css"

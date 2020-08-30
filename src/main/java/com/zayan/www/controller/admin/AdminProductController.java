@@ -4,15 +4,12 @@ package com.zayan.www.controller.admin;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.BaseException;
-import com.zayan.www.model.entity.ProductImage;
-import com.zayan.www.model.form.admin.product.ProductImageCreateForm;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.model.vo.api.product.ProductVO;
 import com.zayan.www.service.ProductService;
 import io.swagger.annotations.ApiOperation;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +25,7 @@ import java.util.Objects;
  * @since 2020-08-17
  */
 @RestController
-@RequestMapping("admin/product/images")
+@RequestMapping("admin/product")
 public class AdminProductController {
 
     @Autowired
@@ -36,11 +33,11 @@ public class AdminProductController {
 
     @ApiOperation("商品图片列表")
     @GetMapping("/index")
-    public BaseResult<IPage<ProductImageVO>> index(@RequestParam(value = "shopId", required = false) Integer shopId,
+    public BaseResult<IPage<ProductVO>> index(@RequestParam(value = "shopId", required = false) Integer shopId,
                                                    @RequestParam("page") Integer page,
                                                    @RequestParam("pageSize") Integer pageSize ) {
 
-        return BaseResult.success(productImageService.listRecord(shopId, null,  page, pageSize));
+        return BaseResult.success(productService.listRecord(shopId, null,  page, pageSize));
     }
 
 
@@ -58,29 +55,29 @@ public class AdminProductController {
         return BaseResult.success(productVO);
     }
 
-    @ApiOperation("删除商品图片")
-    @PostMapping("/delete/{imageId}")
-    public BaseResult<?> delete(@PathVariable("imageId") Integer imageId){
-        ProductImage productImage = productImageService.getById(imageId);
+    @ApiOperation("删除商品")
+    @PostMapping("/delete/{productId}")
+    public BaseResult<?> delete(@PathVariable("productId") Integer productId){
+        Product product = productService.getById(productId);
 
-        if (Objects.isNull(productImage)) {
+        if (Objects.isNull(product)) {
             throw new BaseException(ErrorEnum.UPDATE_FAIL);
         }
-        productImage.setDeletedAt(LocalDateTime.now());
-        productImageService.updateById(productImage);
+        product.setDeletedAt(LocalDateTime.now());
+        productService.updateById(product);
         return BaseResult.success();
     }
 
-    @ApiOperation("更新商品图片状态")
-    @PostMapping("/update/{imageId}")
-    public BaseResult<?> update(@PathVariable("imageId") Integer imageId){
-        ProductImage productImage = productImageService.getById(imageId);
+    @ApiOperation("更新商品状态")
+    @PostMapping("/update/{productId}")
+    public BaseResult<?> update(@PathVariable("productId") Integer productId){
+        Product product = productService.getById(productId);
 
-        if (Objects.isNull(productImage)) {
+        if (Objects.isNull(product)) {
             throw new BaseException(ErrorEnum.UPDATE_FAIL);
         }
-        productImage.setStatus(productImage.getStatus().equals(1) ? 0 : 1);
-        productImageService.updateById(productImage);
+        product.setStatus(product.getStatus().equals(1) ? 0 : 1);
+        productService.updateById(product);
         return BaseResult.success();
     }
 }

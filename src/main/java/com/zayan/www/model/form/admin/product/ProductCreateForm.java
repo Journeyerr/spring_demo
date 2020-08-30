@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductCreateForm {
 
-    @ApiModelProperty("商品价格")
+    @ApiModelProperty("商品名称")
     private String name;
 
     @ApiModelProperty("商品价格")

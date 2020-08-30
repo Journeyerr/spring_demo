@@ -18,12 +18,12 @@ public class ProductController {
     private ProductService productService;
 
 
-    @GetMapping("/images")
+    @GetMapping("/index")
     public BaseResult<IPage<ProductVO>> images(@RequestParam("shopId") Integer shopId,
                                                @RequestParam("pageSize") Integer pageSize,
                                                @RequestParam("page") Integer page) {
 
-        IPage<ProductImageVO> imageVOIPage = productImageService.listRecord(shopId, 1, page, pageSize);
+        IPage<ProductVO> imageVOIPage = productService.listRecord(shopId, 1, page, pageSize);
         return BaseResult.success(imageVOIPage);
     }
 

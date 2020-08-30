@@ -29,7 +29,7 @@ public interface ProductService extends IService<Product> {
      * @param status status
      * @param page page
      * @param pageSize pageSize
-     * @return List<ProductImageVO>
+     * @return List<ProductVO>
      */
-    IPage<ProductImageVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize);
+    IPage<ProductVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize);
 }

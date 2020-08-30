@@ -28,6 +28,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public Product saveProduct(ProductCreateForm createForm) {
         Product product = new Product();
+        product.setName(createForm.getName());
         product.setImageId(createForm.getImageId());
         product.setShopId(createForm.getShopId());
         product.setPrice(createForm.getPrice());
@@ -39,9 +40,10 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductVO> productsByShopId(Integer shopId, Integer page, Integer pageSize) {
+    public IPage<ProductVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize) {
 
-        IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(new Page(page, pageSize), shopId);
+        System.out.println(shopId);
+        IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(shopId, status, new Page(page, pageSize));
         List<ProductVO> listVo = imageVOIPage.getRecords();
         if (CollectionUtils.isEmpty(listVo)) {
             return imageVOIPage;
