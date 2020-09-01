@@ -6,7 +6,6 @@ import com.zayan.www.config.secure.JwtTokenProvider;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.user.UserExcetpion;
 import com.zayan.www.model.entity.AdminUser;
-import com.zayan.www.model.entity.User;
 import com.zayan.www.model.vo.admin.AdminUserInfoVO;
 import com.zayan.www.repository.AdminUserMapper;
 import com.zayan.www.service.AdminUserService;

@@ -28,7 +28,7 @@
             and a.shop_id = #{shopId}
         </if>
         <if test="status != null and status != ''">
-            and status = 1
+            and status = #{status}
         </if>
     </select>
 
