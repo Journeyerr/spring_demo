@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zayan.www.repository.BannerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Banner">
+        <id column="id" property="id" />
+        <result column="shop_id" property="shopId" />
+        <result column="image_id" property="imageId" />
+        <result column="status" property="status" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="deleted_at" property="deletedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, shop_id, image_id, status, created_at, updated_at, deleted_at
+    </sql>
+
+    <select id="bannerList" resultType="com.zayan.www.model.vo.admin.BannerVO">
+        select a.id, a.shop_id, a.status, a.created_at, b.path as banner_image, c.name as shop_name from banners a left join images b on a.image_id = b.id
+        left join shops c on a.shop_id = c.id
+        where a.deleted_at is null
+        <if test="shopId != null and shopId != ''">
+            and a.shop_id = #{shopId}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
+</mapper>
