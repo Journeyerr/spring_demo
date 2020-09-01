@@ -35,6 +35,14 @@ public class ProductVO {
     @JsonProperty("price")
     private BigDecimal price;
 
+    @ApiModelProperty("单元")
+    @JsonProperty("unit")
+    private String unit;
+
+    @ApiModelProperty("单元数量")
+    @JsonProperty("quantity")
+    private BigDecimal quantity;
+
     @ApiModelProperty("描述")
     @JsonProperty("remark")
     private String remark;

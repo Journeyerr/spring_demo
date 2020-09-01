@@ -47,6 +47,16 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     /**
+     * 数量
+     */
+    private Integer quantity;
+
+    /**
+     * 单元
+     */
+    private String unit;
+
+    /**
      * 描述
      */
     private String remark;

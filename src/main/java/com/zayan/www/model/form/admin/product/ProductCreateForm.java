@@ -14,6 +14,12 @@ public class ProductCreateForm {
     @ApiModelProperty("商品价格")
     private BigDecimal price;
 
+    @ApiModelProperty("商品数量")
+    private Integer quantity;
+
+    @ApiModelProperty("商品单位")
+    private String unit;
+
     @ApiModelProperty("图片id")
     private Integer imageId;
 
