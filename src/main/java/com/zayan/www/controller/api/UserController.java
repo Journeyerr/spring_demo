@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Api(tags = "用户APi")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController extends BaseController{
 
     @Autowired

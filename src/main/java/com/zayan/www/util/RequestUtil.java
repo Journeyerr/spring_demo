@@ -1,7 +1,7 @@
 package com.zayan.www.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zayan.www.constant.enums.CommonConstant;
+import com.zayan.www.constant.CommonConstant;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.auth.UnAuthorizedException;
 import io.jsonwebtoken.lang.Assert;

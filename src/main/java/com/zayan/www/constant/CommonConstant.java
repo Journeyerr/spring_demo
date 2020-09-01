@@ -1,4 +1,4 @@
-package com.zayan.www.constant.enums;
+package com.zayan.www.constant;
 
 /**
  * 公共常量

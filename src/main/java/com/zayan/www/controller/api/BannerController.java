@@ -29,7 +29,7 @@ public class BannerController {
     private BannerService bannerService;
 
     @ApiOperation("Banner列表")
-    @PostMapping("/index")
+    @GetMapping("/index")
     public BaseResult<IPage<BannerVO>> store(@RequestParam("shopId") Integer shopId,
                                              @RequestParam("pageSize") Integer pageSize,
                                              @RequestParam("page") Integer page){

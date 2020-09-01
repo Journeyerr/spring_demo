@@ -58,6 +58,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registration.excludePathPatterns(
                 "/admin/user/login",
                 "/admin/upload/image",
+                "/api/user/login",
                 "/**/*.html",
                 "/**/*.js",
                 "/**/*.css"
