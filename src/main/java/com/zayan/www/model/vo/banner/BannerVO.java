@@ -1,4 +1,4 @@
-package com.zayan.www.model.vo.admin;
+package com.zayan.www.model.vo.banner;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

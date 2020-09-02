@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
-import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.model.vo.product.ProductVO;
 
 /**
  * <p>

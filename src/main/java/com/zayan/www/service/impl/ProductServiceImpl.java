@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
-import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.model.vo.product.ProductVO;
 import com.zayan.www.repository.ProductMapper;
 import com.zayan.www.service.ProductService;
 import org.springframework.stereotype.Service;

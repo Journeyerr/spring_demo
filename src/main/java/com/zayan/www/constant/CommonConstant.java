@@ -10,4 +10,6 @@ public interface CommonConstant {
     String REQUEST_HEADER_NAME = "Authorization";
 
     String TOKEN_PREFIX = "Bearer ";
+
+    String BASE_URL = "http://localhost:9999";
 }

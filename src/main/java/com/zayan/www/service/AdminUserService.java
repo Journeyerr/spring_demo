@@ -2,7 +2,7 @@ package com.zayan.www.service;
 
 import com.zayan.www.model.entity.AdminUser;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zayan.www.model.vo.admin.AdminUserInfoVO;
+import com.zayan.www.model.vo.user.AdminUserVO;
 
 /**
  * <p>
@@ -28,5 +28,5 @@ public interface AdminUserService extends IService<AdminUser> {
      * @param userId userId
      * @return AdminUserInfoVO
      */
-    AdminUserInfoVO userInfo(Integer userId);
+    AdminUserVO userInfo(Integer userId);
 }

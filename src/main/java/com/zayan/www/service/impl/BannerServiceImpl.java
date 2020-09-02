@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.model.entity.Banner;
-import com.zayan.www.model.vo.admin.BannerVO;
+import com.zayan.www.model.vo.banner.BannerVO;
 import com.zayan.www.repository.BannerMapper;
 import com.zayan.www.service.BannerService;
 import org.springframework.stereotype.Service;

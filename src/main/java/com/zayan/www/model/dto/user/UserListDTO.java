@@ -1,4 +1,4 @@
-package com.zayan.www.model.dto.admin.user;
+package com.zayan.www.model.dto.user;
 
 import lombok.Data;
 

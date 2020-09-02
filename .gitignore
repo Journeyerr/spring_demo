@@ -30,3 +30,4 @@ HELP.md
 
 src/main/resources/images/*
 src/main/java/com/zayan/www/constant/common/aliyun/*
+src/main/java/com/zayan/www/constant/common/wx/*

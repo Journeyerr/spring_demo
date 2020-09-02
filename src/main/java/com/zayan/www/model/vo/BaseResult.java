@@ -1,6 +1,5 @@
 package com.zayan.www.model.vo;
 
-import com.zayan.www.constant.enums.ErrorEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

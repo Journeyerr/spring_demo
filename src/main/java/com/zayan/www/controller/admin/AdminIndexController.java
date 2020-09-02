@@ -1,7 +1,7 @@
 package com.zayan.www.controller.admin;
 
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.admin.AdminIndexVO;
+import com.zayan.www.model.vo.AdminIndexVO;
 import com.zayan.www.service.ProductService;
 import com.zayan.www.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;

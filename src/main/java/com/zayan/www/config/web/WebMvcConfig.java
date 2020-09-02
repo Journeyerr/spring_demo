@@ -59,6 +59,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 "/admin/user/login",
                 "/admin/upload/image",
                 "/api/user/login",
+                "/api/user/wx/login",
                 "/**/*.html",
                 "/**/*.js",
                 "/**/*.css"

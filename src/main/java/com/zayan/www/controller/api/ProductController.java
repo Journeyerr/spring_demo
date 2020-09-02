@@ -2,7 +2,7 @@ package com.zayan.www.controller.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.model.vo.product.ProductVO;
 import com.zayan.www.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

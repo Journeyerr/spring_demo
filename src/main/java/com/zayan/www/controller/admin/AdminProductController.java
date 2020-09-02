@@ -7,7 +7,7 @@ import com.zayan.www.exception.BaseException;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.model.vo.product.ProductVO;
 import com.zayan.www.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

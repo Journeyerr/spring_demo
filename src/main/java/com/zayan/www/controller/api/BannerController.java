@@ -2,16 +2,12 @@ package com.zayan.www.controller.api;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.zayan.www.model.entity.Banner;
-import com.zayan.www.model.form.admin.banner.BannerCreateForm;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.model.vo.admin.BannerVO;
+import com.zayan.www.model.vo.banner.BannerVO;
 import com.zayan.www.service.BannerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * <p>

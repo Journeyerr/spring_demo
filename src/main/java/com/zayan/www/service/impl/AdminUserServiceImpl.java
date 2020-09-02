@@ -6,7 +6,7 @@ import com.zayan.www.config.secure.JwtTokenProvider;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.user.UserExcetpion;
 import com.zayan.www.model.entity.AdminUser;
-import com.zayan.www.model.vo.admin.AdminUserInfoVO;
+import com.zayan.www.model.vo.user.AdminUserVO;
 import com.zayan.www.repository.AdminUserMapper;
 import com.zayan.www.service.AdminUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -49,17 +49,17 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
 
         Map<String, Object> userMap = Maps.newHashMap();
         userMap.put("userId", adminUser.getId());
-        return jwtTokenProvider.createTokenWithExpiration(adminUser.getId(), userMap, null);
+        return jwtTokenProvider.createTokenWithExpiration(userMap, null);
     }
 
     @Override
-    public AdminUserInfoVO userInfo(Integer userId) {
+    public AdminUserVO userInfo(Integer userId) {
         AdminUser adminUser = getById(userId);
         if (Objects.isNull(adminUser)) {
             throw new UserExcetpion(ErrorEnum.TOKEN_EXCEPTION);
         }
 
-        return AdminUserInfoVO.builder()
+        return AdminUserVO.builder()
                 .id(adminUser.getId())
                 .name(adminUser.getUserName())
                 .phone(adminUser.getPhone())

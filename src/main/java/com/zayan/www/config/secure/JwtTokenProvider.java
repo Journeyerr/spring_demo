@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 @Slf4j
@@ -30,18 +31,14 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createTokenWithExpiration(Integer id, Map<String, Object> data, Date expiration){
-        Claims claims = Jwts.claims().setSubject(id.toString());
-        if (data != null){
+    public String createTokenWithExpiration(Map<String, Object> data, Date expiration){
+        Claims claims = Jwts.claims().setSubject(data.get("userId").toString());
+        if (Objects.nonNull(data)) {
             claims.put("user", data);
         }
-        return commonCreateToken(claims, expiration);
-    }
-
-    private String commonCreateToken(Map claims, Date expiration){
         Date now = new Date();
-        if (expiration == null){
-            expiration = new Date(now.getTime()+defaultExpiration);
+        if (Objects.isNull(expiration)){
+            expiration = new Date(now.getTime() + defaultExpiration);
         }
         return Jwts.builder()
                 .setClaims(claims)

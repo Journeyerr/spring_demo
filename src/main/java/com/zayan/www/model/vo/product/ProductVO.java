@@ -1,10 +1,9 @@
-package com.zayan.www.model.vo.api.product;
+package com.zayan.www.model.vo.product;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;

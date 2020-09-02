@@ -1,4 +1,4 @@
-package com.zayan.www.model.vo.admin;
+package com.zayan.www.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

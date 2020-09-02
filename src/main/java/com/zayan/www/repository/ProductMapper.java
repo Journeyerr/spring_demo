@@ -3,7 +3,7 @@ package com.zayan.www.repository;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.entity.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zayan.www.model.vo.api.product.ProductVO;
+import com.zayan.www.model.vo.product.ProductVO;
 import org.apache.ibatis.annotations.Param;
 
 /**

@@ -18,7 +18,7 @@ spring:
 jwt:
   token:
     secret: characterEncoding
-    expiration: 6000000
+    expiration: 600000
     isuser: zayan
 
 logging:

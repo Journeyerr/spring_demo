@@ -1,4 +1,4 @@
-package com.zayan.www.model.vo.admin;
+package com.zayan.www.model.vo.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AdminUserInfoVO {
+public class AdminUserVO {
 
     @ApiModelProperty("用户id")
     @JsonProperty("id")
