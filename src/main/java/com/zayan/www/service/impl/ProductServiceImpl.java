@@ -34,6 +34,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         product.setPrice(createForm.getPrice());
         product.setRemark(createForm.getRemark());
         product.setStatus(createForm.getStatus());
+        product.setQuantity(createForm.getQuantity());
+        product.setUnit(createForm.getUnit());
         save(product);
 
         return product;

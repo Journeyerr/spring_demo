@@ -15,7 +15,7 @@ public class ProductCreateForm {
     private BigDecimal price;
 
     @ApiModelProperty("商品数量")
-    private Integer quantity;
+    private Integer quantity = 1;
 
     @ApiModelProperty("商品单位")
     private String unit;
