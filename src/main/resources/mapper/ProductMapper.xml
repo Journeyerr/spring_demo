@@ -30,7 +30,10 @@
             and a.shop_id = #{shopId}
         </if>
         <if test="status != null and status != ''">
-            and status = #{status}
+            and a.status = #{status}
+        </if>
+        <if test="keyWord != null and keyWord != ''">
+            and a.name like '%${keyWord}%'
         </if>
     </select>
 

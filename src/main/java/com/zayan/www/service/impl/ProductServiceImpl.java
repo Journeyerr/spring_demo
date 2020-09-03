@@ -42,9 +42,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize) {
+    public IPage<ProductVO> listRecord( Integer page, Integer pageSize, Integer shopId, Integer status, String keyWord) {
 
-        IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(shopId, status, new Page(page, pageSize));
+        IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(new Page(page, pageSize), shopId, status, keyWord);
         List<ProductVO> listVo = imageVOIPage.getRecords();
         if (CollectionUtils.isEmpty(listVo)) {
             return imageVOIPage;

@@ -27,8 +27,8 @@ public class BannerController {
     @ApiOperation("Banner列表")
     @GetMapping("/index")
     public BaseResult<IPage<BannerVO>> store(@RequestParam("shopId") Integer shopId,
-                                             @RequestParam("pageSize") Integer pageSize,
-                                             @RequestParam("page") Integer page){
+                                             @RequestParam(value = "pageSize", required = false) Integer pageSize,
+                                             @RequestParam(value = "page", required = false) Integer page){
 
         return BaseResult.success(bannerService.listRecord(shopId, 1, page, pageSize));
     }

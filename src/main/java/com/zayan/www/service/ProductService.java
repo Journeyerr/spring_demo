@@ -25,11 +25,12 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 获取门店商品展示图
-     * @param shopId shopId
-     * @param status status
      * @param page page
      * @param pageSize pageSize
+     * @param shopId shopId
+     * @param status status
+     * @param keyWorld keyWorld
      * @return List<ProductVO>
      */
-    IPage<ProductVO> listRecord(Integer shopId, Integer status, Integer page, Integer pageSize);
+    IPage<ProductVO> listRecord(Integer page, Integer pageSize, Integer shopId, Integer status, String keyWorld);
 }

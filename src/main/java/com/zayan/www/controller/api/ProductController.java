@@ -8,6 +8,7 @@ import com.zayan.www.repository.ProductMapper;
 import com.zayan.www.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.tools.jconsole.Worker;
 
 @RestController
 @RequestMapping("api/product")
@@ -21,10 +22,11 @@ public class ProductController {
 
     @GetMapping("/index")
     public BaseResult<IPage<ProductVO>> images(@RequestParam("shopId") Integer shopId,
+                                               @RequestParam(value = "keyWord", required = false) String keyWord,
                                                @RequestParam("pageSize") Integer pageSize,
                                                @RequestParam("page") Integer page) {
-
-        IPage<ProductVO> imageVOIPage = productService.listRecord(shopId, 1, page, pageSize);
+        System.out.println(keyWord);
+        IPage<ProductVO> imageVOIPage = productService.listRecord(page, pageSize, shopId, 1, keyWord);
         return BaseResult.success(imageVOIPage);
     }
 

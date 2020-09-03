@@ -37,7 +37,7 @@ public class AdminProductController {
                                                    @RequestParam("page") Integer page,
                                                    @RequestParam("pageSize") Integer pageSize ) {
 
-        return BaseResult.success(productService.listRecord(shopId, null,  page, pageSize));
+        return BaseResult.success(productService.listRecord(page, pageSize, shopId, null, null));
     }
 
 
