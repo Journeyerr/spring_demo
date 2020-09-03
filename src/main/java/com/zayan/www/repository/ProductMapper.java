@@ -18,4 +18,5 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     IPage<ProductVO> productsList(@Param("shopId") Integer shopId, @Param("status") Integer status, IPage iPage);
 
+    ProductVO detail(@Param("productId") Integer productId);
 }

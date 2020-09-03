@@ -34,4 +34,8 @@
         </if>
     </select>
 
+    <select id="detail" resultType="com.zayan.www.model.vo.product.ProductVO">
+        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.created_at, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
+        left join shops c on a.shop_id = c.id where a.id = #{productId}
+    </select>
 </mapper>
