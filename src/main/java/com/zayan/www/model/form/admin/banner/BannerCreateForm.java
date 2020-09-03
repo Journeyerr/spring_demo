@@ -13,6 +13,9 @@ public class BannerCreateForm {
     @ApiModelProperty("图片id")
     private Integer imageId;
 
+    @ApiModelProperty("商品id")
+    private Integer productId;
+
     @ApiModelProperty("门店id")
     private Integer shopId;
 

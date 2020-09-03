@@ -46,6 +46,7 @@ public class AdminBannerController {
 
         Banner banner = new Banner();
         banner.setImageId(createForm.getImageId());
+        banner.setProductId(createForm.getProductId());
         banner.setShopId(createForm.getShopId());
         banner.setStatus(createForm.getStatus());
         bannerService.save(banner);

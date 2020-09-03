@@ -7,6 +7,7 @@
         <id column="id" property="id" />
         <result column="shop_id" property="shopId" />
         <result column="image_id" property="imageId" />
+        <result column="product_id" property="productId" />
         <result column="status" property="status" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
@@ -15,18 +16,20 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, shop_id, image_id, status, created_at, updated_at, deleted_at
+        id, shop_id, image_id, product_id, status, created_at, updated_at, deleted_at
     </sql>
 
     <select id="bannerList" resultType="com.zayan.www.model.vo.banner.BannerVO">
-        select a.id, a.shop_id, a.status, a.created_at, b.path as banner_image, c.name as shop_name from banners a left join images b on a.image_id = b.id
-        left join shops c on a.shop_id = c.id
-        where a.deleted_at is null
+        select a.id, a.shop_id, a.status, a.created_at, b.path as banner_image, c.name as shop_name, d.name as product_name from banners a
+         left join images b on a.image_id = b.id
+         left join shops c on a.shop_id = c.id
+         left join products d on a.product_id = d.id
+         where a.deleted_at is null
         <if test="shopId != null and shopId != ''">
             and a.shop_id = #{shopId}
         </if>
         <if test="status != null and status != ''">
-            and status = #{status}
+            and a.status = #{status}
         </if>
     </select>
 </mapper>

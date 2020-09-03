@@ -38,6 +38,11 @@ public class Banner implements Serializable {
     private Integer imageId;
 
     /**
+     * 商品Id
+     */
+    private Integer productId;
+
+    /**
      * 状态 是否启用  1 是， 0 停用
      */
     private Integer status;

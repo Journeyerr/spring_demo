@@ -27,6 +27,10 @@ public class BannerVO {
     @JsonProperty("status")
     private String status;
 
+    @ApiModelProperty("商品名称")
+    @JsonProperty("product_name")
+    private String productName;
+
     @ApiModelProperty("图片url")
     @JsonProperty("banner_image")
     private String bannerImage;
