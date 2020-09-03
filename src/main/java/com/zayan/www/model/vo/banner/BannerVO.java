@@ -27,6 +27,10 @@ public class BannerVO {
     @JsonProperty("status")
     private String status;
 
+    @ApiModelProperty("商品id")
+    @JsonProperty("product_id")
+    private String productId;
+
     @ApiModelProperty("商品名称")
     @JsonProperty("product_name")
     private String productName;

@@ -20,7 +20,7 @@
     </sql>
 
     <select id="bannerList" resultType="com.zayan.www.model.vo.banner.BannerVO">
-        select a.id, a.shop_id, a.status, a.created_at, b.path as banner_image, c.name as shop_name, d.name as product_name from banners a
+        select a.id, a.shop_id, a.status, a.product_id, a.created_at, b.path as banner_image, c.name as shop_name, d.name as product_name from banners a
          left join images b on a.image_id = b.id
          left join shops c on a.shop_id = c.id
          left join products d on a.product_id = d.id
