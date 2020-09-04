@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +35,7 @@ public class AddressController extends BaseController{
     private AddressService addressService;
 
     @ApiOperation("地址列表")
-    @PostMapping("/index")
+    @GetMapping("")
     public BaseResult<List<Address>> index(){
         User user = baseUser();
         return BaseResult.success(addressService.addressList(user.getId()));
@@ -42,13 +43,8 @@ public class AddressController extends BaseController{
 
     @ApiOperation("创建地址")
     @PostMapping("/store")
-    public BaseResult<Address> store(@RequestBody AddressCreateForm createForm){
-        Address address = new Address();
-        address.setName(createForm.getName());
-        address.setPhone(createForm.getPhone());
-        address.setAddress(createForm.getAddress());
-        addressService.save(address);
-        return BaseResult.success(address);
+    public BaseResult<Address> store(@Valid @RequestBody AddressCreateForm createForm){
+        return BaseResult.success(addressService.saveAddress(createForm, baseUser().getId()));
     }
 
     @ApiOperation("删除地址")

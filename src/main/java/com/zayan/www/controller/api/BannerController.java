@@ -25,7 +25,7 @@ public class BannerController {
     private BannerService bannerService;
 
     @ApiOperation("Banner列表")
-    @GetMapping("/index")
+    @GetMapping("")
     public BaseResult<IPage<BannerVO>> store(@RequestParam("shopId") Integer shopId,
                                              @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                              @RequestParam(value = "page", required = false) Integer page){

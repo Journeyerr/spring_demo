@@ -23,23 +23,14 @@ public class RequestUtil {
     public static Integer getUserIdFormContextToken(){
         HttpServletRequest request = ((ServletRequestAttributes)
                 RequestContextHolder.currentRequestAttributes()).getRequest();
-        Assert.notNull(request);
-        String tokenStr = request.getHeader(CommonConstant.REQUEST_HEADER_NAME);
-        if (Objects.isNull(tokenStr) || !tokenStr.startsWith(CommonConstant.TOKEN_PREFIX)) {
+        try {
+            Base64 decode = new Base64();
+            String[] split = request.getHeader(CommonConstant.REQUEST_HEADER_NAME).split("\\.");
+            String token = new String(decode.decode(split[1]));
+            JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
+            return jsonObject.getInteger("userId");
+        }catch (Exception e) {
             throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
         }
-        String[] split = tokenStr.split("\\.");
-        if (split.length < 2) {
-            throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
-        }
-        Base64 decode = new Base64();
-        String token = new String(decode.decode(split[1]));
-
-        JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
-        Integer userId = jsonObject.getInteger("userId");
-        if (Objects.isNull(userId)){
-            throw new UnAuthorizedException(ErrorEnum.UNAUTHORIZED);
-        }
-        return userId;
     }
 }

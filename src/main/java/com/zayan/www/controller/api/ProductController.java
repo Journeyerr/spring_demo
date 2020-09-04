@@ -20,7 +20,7 @@ public class ProductController {
     private ProductMapper productMapper;
 
 
-    @GetMapping("/index")
+    @GetMapping("")
     public BaseResult<IPage<ProductVO>> images(@RequestParam("shopId") Integer shopId,
                                                @RequestParam(value = "keyWord", required = false) String keyWord,
                                                @RequestParam("pageSize") Integer pageSize,
