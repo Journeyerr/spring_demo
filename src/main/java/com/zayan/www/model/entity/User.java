@@ -77,6 +77,21 @@ public class User implements Serializable {
     private String district;
 
     /**
+     * 微信获取的国家名称
+     */
+    private String country;
+
+    /**
+     * 微信获取的省级名称
+     */
+    private String province;
+
+    /**
+     * 微信获取的城市名称
+     */
+    private String city;
+
+    /**
      * 密码
      */
     private String password;

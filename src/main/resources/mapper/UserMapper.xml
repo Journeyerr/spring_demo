@@ -13,6 +13,9 @@
         <result column="wx_session_key" property="wxSessionKey" />
         <result column="wx_open_id" property="wxOpenId" />
         <result column="wx_union_id" property="wxUnionId" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
         <result column="district" property="district" />
         <result column="password" property="password" />
         <result column="last_login_at" property="lastLoginAt" />
@@ -23,7 +26,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, phone, birthday, image_url, sex, wx_session_key, wx_open_id, wx_union_id, district, password, last_login_at, created_at, updated_at, deleted_at
+        id, name, phone, birthday, image_url, sex, wx_session_key, wx_open_id, wx_union_id, country, province, city, district, password, last_login_at, created_at, updated_at, deleted_at
     </sql>
 
 </mapper>

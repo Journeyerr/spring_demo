@@ -23,7 +23,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
+  `name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户名',
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '密码',
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号',
   `birthday` date DEFAULT NULL COMMENT '生日',
   `image_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信头像url',
@@ -31,8 +32,10 @@ CREATE TABLE `users` (
   `wx_session_key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '小程序session',
   `wx_open_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '小程序openid',
   `wx_union_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信unionid',
-  `district` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信备注地区',
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
+  `country` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信获取的国家名称',
+  `province` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信获取的省级名称',
+  `city` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信获取的城市名称',
+  `district` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '微信备注地区',
   `last_login_at` timestamp NULL DEFAULT NULL COMMENT '最后登录时间',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

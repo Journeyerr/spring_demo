@@ -43,8 +43,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             user.setWxOpenId(openId);
             user.setWxSessionKey(sessionKey);
             user.setLastLoginAt(LocalDateTime.now());
-            user.setName("");
-            user.setPassword("");
             save(user);
             userMap.put("userId", user.getId());
         }else {
