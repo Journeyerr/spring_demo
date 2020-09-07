@@ -12,6 +12,7 @@
         <result column="unit" property="unit" />
         <result column="remark" property="remark" />
         <result column="image_id" property="imageId" />
+        <result column="sort" property="sort" />
         <result column="status" property="status" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
@@ -20,10 +21,10 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, shop_id, name, price, quantity, unit, remark, image_id, status, created_at, updated_at, deleted_at
+        id, shop_id, name, price, quantity, unit, remark, image_id, status, sort, created_at, updated_at, deleted_at
     </sql>
     <select id="productsList" resultType="com.zayan.www.model.vo.product.ProductVO">
-        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.created_at, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
+        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.sort, a.created_at, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
         left join shops c on a.shop_id = c.id
         where a.deleted_at is null
         <if test="shopId != null and shopId != ''">
@@ -35,10 +36,11 @@
         <if test="keyWord != null and keyWord != ''">
             and a.name like '%${keyWord}%'
         </if>
+        order by a.sort asc, a.id desc
     </select>
 
     <select id="detail" resultType="com.zayan.www.model.vo.product.ProductVO">
-        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.created_at, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
+        select a.*, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
         left join shops c on a.shop_id = c.id where a.id = #{productId}
     </select>
 </mapper>

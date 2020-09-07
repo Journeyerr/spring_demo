@@ -67,6 +67,11 @@ public class Product implements Serializable {
     private Integer imageId;
 
     /**
+     * 排序  越小越靠前
+     */
+    private Integer sort;
+
+    /**
      * 是否启用  1 是， 0 停用
      */
     private Integer status;

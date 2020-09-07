@@ -2,12 +2,15 @@ package com.zayan.www.controller.admin;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.BaseException;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
+import com.zayan.www.model.form.admin.product.ProductEditForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.model.vo.product.ProductVO;
+import com.zayan.www.repository.ProductMapper;
 import com.zayan.www.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,8 @@ public class AdminProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductMapper productMapper;
 
     @ApiOperation("商品图片列表")
     @GetMapping("/index")
@@ -79,6 +84,19 @@ public class AdminProductController {
         product.setStatus(product.getStatus().equals(1) ? 0 : 1);
         productService.updateById(product);
         return BaseResult.success();
+    }
+
+    @GetMapping("/detail/{productId}")
+    public BaseResult<ProductVO> detail(@PathVariable("productId") Integer productId) {
+        ProductVO detail = productMapper.detail(productId);
+        detail.setProductImage(ALiYunOss.BUCKET + detail.getProductImage());
+        return BaseResult.success(detail);
+    }
+
+    @PostMapping("/edit")
+    public BaseResult<Product> edit(@RequestBody ProductEditForm editForm) {
+        Product product = productService.editProduct(editForm);
+        return BaseResult.success(product);
     }
 }
 

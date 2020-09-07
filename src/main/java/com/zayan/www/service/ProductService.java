@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zayan.www.model.entity.Product;
 import com.zayan.www.model.form.admin.product.ProductCreateForm;
+import com.zayan.www.model.form.admin.product.ProductEditForm;
 import com.zayan.www.model.vo.product.ProductVO;
 
 /**
@@ -33,4 +34,11 @@ public interface ProductService extends IService<Product> {
      * @return List<ProductVO>
      */
     IPage<ProductVO> listRecord(Integer page, Integer pageSize, Integer shopId, Integer status, String keyWorld);
+
+    /**
+     * 保存图片路径 和 商品图片
+     * @param createForm createForm
+     * @return ProductImageShow
+     */
+    Product editProduct(ProductEditForm editFormForm);
 }

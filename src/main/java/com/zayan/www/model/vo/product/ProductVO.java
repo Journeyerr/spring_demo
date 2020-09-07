@@ -50,6 +50,10 @@ public class ProductVO {
     @JsonProperty("status")
     private String status;
 
+    @ApiModelProperty("排序")
+    @JsonProperty("sort")
+    private String sort;
+
     @ApiModelProperty("图片url")
     @JsonProperty("product_image")
     private String productImage;

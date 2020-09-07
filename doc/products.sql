@@ -7,6 +7,7 @@ CREATE TABLE `products` (
   `unit` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品单元',
   `remark` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品描述',
   `image_id` int(11) DEFAULT NULL COMMENT '图片id',
+  `sort` int(4) DEFAULT '1' COMMENT '排序  越小越靠前',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否启用  1 是， 0 停用',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
