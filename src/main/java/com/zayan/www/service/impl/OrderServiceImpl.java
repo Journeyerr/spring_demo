@@ -56,20 +56,16 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Order> implement
         List<Product> products = productMapper.listProductByIds(productIds);
         Map<Integer, Product> idProductMap = products.stream().collect(Collectors.toMap(Product::getId, Function.identity()));
 
-        DecimalFormat df = new DecimalFormat("#.00");
-
         BigDecimal totalFee = BigDecimal.ZERO;
         for (OrderItemsForm itemsForm : itemsForms ) {
             Product product = idProductMap.get(itemsForm.getId());
-            String format = df.format(itemsForm.getPrice());
-            if (!product.getPrice().equals(new BigDecimal(format))) {
+            if (!product.getPrice().equals(itemsForm.getPrice())) {
                 throw new OrderException(ErrorEnum.ORDER_PRODUCT_PRICE_ERROR);
             }
             totalFee = totalFee.add(product.getPrice().multiply(BigDecimal.valueOf(itemsForm.getCount())));
         }
 
-        String totalFeeString = df.format(form.getTotalFee());
-        if (!totalFee.equals(new BigDecimal(totalFeeString))) {
+        if (!totalFee.equals(form.getTotalFee())) {
             throw new OrderException(ErrorEnum.ORDER_TOTAL_FEE_ERROR);
         }
 

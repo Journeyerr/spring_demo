@@ -35,7 +35,7 @@ public class CreateOrderForm {
     @JsonProperty("phone")
     private String phone;
 
-    @JsonProperty("pickuptime")
+    @JsonProperty("pickupTime")
     private String pickupTime;
 
 
@@ -56,9 +56,11 @@ public class CreateOrderForm {
 
     public static OrderAddress coverOrderAddress(Order order, Address address) {
         OrderAddress orderAddress = new OrderAddress();
+        orderAddress.setOrderId(order.getId());
         orderAddress.setUserId(order.getUserId());
         orderAddress.setShopId(order.getShopId());
         orderAddress.setName(address.getName());
+        orderAddress.setPhone(address.getPhone());
         orderAddress.setAddressId(address.getId());
         orderAddress.setAddress(address.getAddress());
         return orderAddress;
