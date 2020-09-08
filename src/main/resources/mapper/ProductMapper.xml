@@ -43,4 +43,11 @@
         select a.*, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
         left join shops c on a.shop_id = c.id where a.id = #{productId}
     </select>
+
+    <select id="listProductByIds" resultType="com.zayan.www.model.entity.Product">
+        select * from products where id IN
+        <foreach collection="ids" item="id"  open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

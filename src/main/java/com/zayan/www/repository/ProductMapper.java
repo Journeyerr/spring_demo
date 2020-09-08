@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zayan.www.model.vo.product.ProductVO;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -22,4 +24,11 @@ public interface ProductMapper extends BaseMapper<Product> {
                                   @Param("keyWord") String keyWord);
 
     ProductVO detail(@Param("productId") Integer productId);
+
+    /**
+     * 查询商品list
+     * @param ids ids
+     * @return List<Product>
+     */
+    List<Product> listProductByIds(@Param("ids") List<Integer> ids);
 }

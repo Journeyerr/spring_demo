@@ -7,6 +7,8 @@ import com.zayan.www.model.form.admin.product.ProductCreateForm;
 import com.zayan.www.model.form.admin.product.ProductEditForm;
 import com.zayan.www.model.vo.product.ProductVO;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -37,7 +39,7 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 保存图片路径 和 商品图片
-     * @param createForm createForm
+     * @param editFormForm createForm
      * @return ProductImageShow
      */
     Product editProduct(ProductEditForm editFormForm);

@@ -32,6 +32,11 @@ public enum ErrorEnum {
     ADDRESS_NAME_ERROR(1041, "联系人不能为空"),
     ADDRESS_ERROR(1042, "该地址可能无法准确配送"),
 
+    ORDER_PRODUCT_ERROR(1060, "商品信息错误"),
+    ORDER_PRODUCT_PRICE_ERROR(1061, "商品价格错误"),
+    ORDER_TOTAL_FEE_ERROR(1062, "订单总价错误"),
+    ORDER_ADDRESS_ERROR(1063, "配送地址异常"),
+
     ;
 
     private Integer code;

@@ -1,12 +1,13 @@
 package com.zayan.www.model.entity;
 
 import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -22,7 +23,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Orders implements Serializable {
+@TableName("orders")
+public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -52,7 +54,7 @@ public class Orders implements Serializable {
     /**
      * 是否外卖
      */
-    private Boolean isTakeaway;
+    private Integer isTakeaway;
 
     /**
      * 用户下单经纬度
@@ -102,28 +104,33 @@ public class Orders implements Serializable {
     /**
      * 预约送货时间
      */
-    private LocalDateTime pickupTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private String pickupTime;
 
     /**
      * 关闭时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime closedAt;
 
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
       @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
       @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 
     /**
      * 删除时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deletedAt;
 
 

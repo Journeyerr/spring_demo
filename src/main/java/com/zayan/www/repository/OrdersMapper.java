@@ -1,6 +1,6 @@
 package com.zayan.www.repository;
 
-import com.zayan.www.model.entity.Orders;
+import com.zayan.www.model.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author AnYuan
  * @since 2020-09-08
  */
-public interface OrdersMapper extends BaseMapper<Orders> {
+public interface OrdersMapper extends BaseMapper<Order> {
 
 }

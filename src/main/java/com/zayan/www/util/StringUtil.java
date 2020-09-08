@@ -2,8 +2,12 @@ package com.zayan.www.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class StringUtil {
 
@@ -21,5 +25,16 @@ public class StringUtil {
             return matcher.matches();
         }
         return false;
+    }
+
+    /**
+     * 生成订单号
+     * @return String
+     */
+    public static String no() {
+        String yyyyMMddHHmmss = DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(LocalDateTime.now());
+        Random random = new Random();
+        int asInt = random.ints(1000, 9999).findFirst().getAsInt();
+        return yyyyMMddHHmmss.concat(String.valueOf(asInt));
     }
 }
