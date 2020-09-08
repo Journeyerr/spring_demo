@@ -82,14 +82,7 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Order> implement
         }
 
         for (OrderItemsForm itemsForm : itemsForms) {
-            OrderItems orderItems = new OrderItems();
-            orderItems.setOrderId(order.getId());
-            orderItems.setName(itemsForm.getName());
-            orderItems.setPrice(itemsForm.getPrice());
-            orderItems.setProductId(itemsForm.getId());
-            orderItems.setQuantity(itemsForm.getCount());
-            orderItems.setShopId(form.getShopId());
-            orderItems.setTotalFee(itemsForm.getPrice().multiply(new BigDecimal(itemsForm.getCount())));
+            OrderItems orderItems = CreateOrderForm.coverOrderItems(order, itemsForm);
             orderItemsService.save(orderItems);
         }
         return order;

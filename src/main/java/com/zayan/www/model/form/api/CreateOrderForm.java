@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zayan.www.model.entity.Address;
 import com.zayan.www.model.entity.Order;
 import com.zayan.www.model.entity.OrderAddress;
+import com.zayan.www.model.entity.OrderItems;
 import com.zayan.www.util.StringUtil;
 import lombok.Data;
 
@@ -64,5 +65,18 @@ public class CreateOrderForm {
         orderAddress.setAddressId(address.getId());
         orderAddress.setAddress(address.getAddress());
         return orderAddress;
+    }
+
+    public static OrderItems coverOrderItems(Order order, OrderItemsForm itemsForm) {
+
+        OrderItems orderItems = new OrderItems();
+        orderItems.setOrderId(order.getId());
+        orderItems.setName(itemsForm.getName());
+        orderItems.setPrice(itemsForm.getPrice());
+        orderItems.setProductId(itemsForm.getId());
+        orderItems.setQuantity(itemsForm.getCount());
+        orderItems.setShopId(order.getShopId());
+        orderItems.setTotalFee(itemsForm.getPrice().multiply(new BigDecimal(itemsForm.getCount())));
+        return orderItems;
     }
 }
