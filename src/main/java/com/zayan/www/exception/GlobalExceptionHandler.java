@@ -20,27 +20,32 @@ public class GlobalExceptionHandler{
     @ResponseBody
     @ExceptionHandler(value = BaseException.class)
     public Map<String, Object> exceptionHandler(BaseException e) {
-        Map<String, Object> map = Maps.newHashMap();
+        log.error("BaseException:{}", e.getMessage());
+        Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);
         map.put("code", e.getCode());
         map.put("msg", e.getMessage());
+        e.printStackTrace();
         return map;
     }
 
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Map<String, Object> exceptionHandler(Exception e) {
+        log.error("Exception:{}", e.getMessage());
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);
         map.put("code", ErrorEnum.SERVICE_ERROR.getCode());
         map.put("msg", e.getMessage());
+        e.printStackTrace();
         return map;
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
-    public Map<String, Object> ValidExceptionHandle(MethodArgumentNotValidException exception){
-        BindingResult result = exception.getBindingResult();
-        Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);
+    public Map<String, Object> ValidExceptionHandle(MethodArgumentNotValidException e){
 
+        BindingResult result = e.getBindingResult();
+        Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);
+        log.error("Exception:{}", e.getMessage());
         map.put("code", ErrorEnum.PARAM_ERROR.getCode());
         map.put("msg", ErrorEnum.PARAM_ERROR.getMessage());
         if (result.hasErrors()) {
@@ -48,10 +53,8 @@ public class GlobalExceptionHandler{
             fieldErrors.forEach(error -> {
                 map.put("msg", error.getDefaultMessage());
             });
-        }else {
-
         }
-        exception.printStackTrace();
+        e.printStackTrace();
         return map;
     }
 }

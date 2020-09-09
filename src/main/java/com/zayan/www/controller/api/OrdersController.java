@@ -1,6 +1,7 @@
 package com.zayan.www.controller.api;
 
 
+import com.zayan.www.constant.common.aliyun.ALiYunOss;
 import com.zayan.www.model.entity.Order;
 import com.zayan.www.model.entity.User;
 import com.zayan.www.model.form.api.CreateOrderForm;
@@ -10,8 +11,10 @@ import com.zayan.www.repository.OrderMapper;
 import com.zayan.www.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.rmi.runtime.Log;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -40,7 +43,15 @@ public class OrdersController extends BaseController{
     @GetMapping("/list")
     public BaseResult<List<OrderDetailVO>> list() {
         User user = baseUser();
-        return BaseResult.success(orderMapper.listByUserId(user.getId()));
+        List<OrderDetailVO> orderDetailVOS = orderMapper.listByUserId(user.getId());
+        orderDetailVOS.forEach(order -> {
+            order.getItems().forEach(item -> {
+                if (Objects.nonNull(item.getImage())) {
+                    item.setImage(ALiYunOss.BUCKET.concat(item.getImage()));
+                }
+            });
+        });
+        return BaseResult.success(orderDetailVOS);
     }
 }
 
