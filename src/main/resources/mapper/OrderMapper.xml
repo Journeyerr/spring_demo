@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zayan.www.repository.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Order">
+        <id column="id" property="id" />
+        <result column="no" property="no" />
+        <result column="user_id" property="userId" />
+        <result column="phone" property="phone" />
+        <result column="shop_id" property="shopId" />
+        <result column="is_takeaway" property="isTakeaway" />
+        <result column="location" property="location" />
+        <result column="total_fee" property="totalFee" />
+        <result column="payment" property="payment" />
+        <result column="actual_total_fee" property="actualTotalFee" />
+        <result column="actual_payment" property="actualPayment" />
+        <result column="box_fee" property="boxFee" />
+        <result column="delivery_fee" property="deliveryFee" />
+        <result column="discount_fee" property="discountFee" />
+        <result column="coupon_fee" property="couponFee" />
+        <result column="status" property="status" />
+        <result column="remarks" property="remarks" />
+        <result column="pickup_time" property="pickupTime" />
+        <result column="closed_at" property="closedAt" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="deleted_at" property="deletedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, no, user_id, phone, shop_id, is_takeaway, location, total_fee, payment, a.actual_total_fee, a.actual_payment, box_fee, delivery_fee, discount_fee, coupon_fee, status, remarks, pickup_time, closed_at, created_at, updated_at, deleted_at
+    </sql>
+
+
+    <select id="listByUserId" resultType="com.zayan.www.model.vo.order.OrderDetailVO">
+        select
+         a.id,
+         a.no,
+         a.user_id,
+         a.phone,
+         a.is_takeaway,
+         a.actual_total_fee,
+         a.total_fee,
+         a.actual_payment,
+         a.payment,
+         a.discount_fee,
+         a.delivery_fee,
+         a.coupon_fee,
+         a.status,
+         a.remarks,
+         a.pickup_time,
+         a.closed_at,
+         a.created_at,
+         b.id item_id,
+         b.order_id item_order_id,
+         b.product_id item_product_id,
+         b.name item_name,
+         b.discount_price item_discount_price,
+         b.price item_price,
+         b.total_fee item_total_fee,
+         b.quantity item_quantity,
+         b.actual_quantity item_actual_quantity,
+         b.actual_total_fee item_actual_total_fee,
+         b.image item_image,
+         b.created_at item_created_at,
+         c.name shop_name,
+         d.name address_name,
+         d.phone address_phone,
+         d.address address_address
+          from orders a
+           left join order_items b on a.id = b.order_id
+           left join shops c on a.shop_id = c.id
+           left join order_address d on a.id = d.order_id
+         where a.user_id = #{userId} order by a.id desc
+    </select>
+    
+    <resultMap id="OrderDetailMap" type="com.zayan.www.model.vo.order.OrderDetailVO">
+        <id column="id" property="id"/>
+        <result column="no" property="no"/>
+        <result column="user_id" property="userId"/>
+        <result column="phone" property="phone"/>
+        <result column="is_takeaway" property="isTakeaway"/>
+        <result column="actual_total_fee" property="actualTotalFee"/>
+        <result column="total_fee" property="totalFee"/>
+        <result column="actual_payment" property="actualPayment"/>
+        <result column="payment" property="payment"/>
+        <result column="discount_fee" property="discountFee"/>
+        <result column="delivery_fee" property="deliveryFee"/>
+        <result column="coupon_fee" property="couponFee"/>
+        <result column="remarks" property="remarks"/>
+        <result column="pickup_time" property="pickupTime"/>
+        <result column="closed_at" property="closedAt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="shop_name" property="shopName"/>
+        <collection property="items" ofType="com.zayan.www.model.vo.order.OrderItemsVO">
+            <id column="item_id" property="id"/>
+            <result column="item_name" property="name"/>
+            <result column="item_order_id" property="orderId"/>
+            <result column="item_product_id" property="productId"/>
+            <result column="item_discount_price" property="discountPrice"/>
+            <result column="item_price" property="price"/>
+            <result column="item_total_fee" property="totalFee"/>
+            <result column="item_quantity" property="quantity"/>
+            <result column="item_actual_quantity" property="actualQuantity"/>
+            <result column="item_actual_total_fee" property="actualTotalFee"/>
+            <result column="item_image" property="image"/>
+            <result column="item_created_at" property="createdAt"/>
+        </collection>
+        <collection property="address" ofType="com.zayan.www.model.vo.address.AddressVO">
+            <result column="address_name" property="name"/>
+            <result column="address_phone" property="phone"/>
+            <result column="address_address" property="address"/>
+        </collection>
+    </resultMap>
+</mapper>

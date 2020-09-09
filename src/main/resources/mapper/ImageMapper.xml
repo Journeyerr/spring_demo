@@ -16,4 +16,11 @@
         id, path, type, created_at, updated_at
     </sql>
 
+    <select id="listByIds" resultType="com.zayan.www.model.entity.Image">
+        select * from images where id IN
+        <foreach collection="ids" item="id"  open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
 </mapper>

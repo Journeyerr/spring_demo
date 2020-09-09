@@ -12,6 +12,7 @@ CREATE TABLE `order_items` (
   `total_fee` decimal(8,2) NOT NULL COMMENT '总金额',
   `actual_quantity` varchar(10) COLLATE utf8mb4_unicode_ci NULL COMMENT '实际数量',
   `actual_total_fee` decimal(8,2) NULL COMMENT '总金额',
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '下单商品快照',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `deleted_at` timestamp NULL COMMENT '删除时间',

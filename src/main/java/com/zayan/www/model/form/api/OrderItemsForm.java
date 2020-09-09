@@ -19,4 +19,7 @@ public class OrderItemsForm {
 
     @JsonProperty("count")
     private Integer count;
+
+    @JsonProperty("image_id")
+    private Integer imageId;
 }

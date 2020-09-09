@@ -5,17 +5,16 @@ import com.zayan.www.exception.order.OrderException;
 import com.zayan.www.model.entity.*;
 import com.zayan.www.model.form.api.CreateOrderForm;
 import com.zayan.www.model.form.api.OrderItemsForm;
-import com.zayan.www.repository.OrdersMapper;
+import com.zayan.www.repository.ImageMapper;
+import com.zayan.www.repository.OrderMapper;
 import com.zayan.www.repository.ProductMapper;
 import com.zayan.www.service.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zayan.www.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -31,7 +30,7 @@ import java.util.stream.Collectors;
  * @since 2020-09-08
  */
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Order> implements OrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
     @Autowired
     private ProductMapper productMapper;
@@ -41,6 +40,8 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Order> implement
     private OrderAddressService orderAddressService;
     @Autowired
     private OrderItemsService orderItemsService;
+    @Autowired
+    private ImageMapper imageMapper;
 
     @Transactional( rollbackFor = Exception.class)
     @Override
@@ -81,8 +82,13 @@ public class OrderServiceImpl extends ServiceImpl<OrdersMapper, Order> implement
             orderAddressService.save(orderAddress);
         }
 
+        List<Integer> imagesIds = itemsForms.stream().map(OrderItemsForm::getImageId).collect(Collectors.toList());
+        List<Image> images = imageMapper.listByIds(imagesIds);
+        Map<Integer, String> imageIdAndPaths = images.stream().collect(Collectors.toMap(Image::getId, Image::getPath));
+
         for (OrderItemsForm itemsForm : itemsForms) {
             OrderItems orderItems = CreateOrderForm.coverOrderItems(order, itemsForm);
+            orderItems.setImage(imageIdAndPaths.get(itemsForm.getImageId()));
             orderItemsService.save(orderItems);
         }
         return order;

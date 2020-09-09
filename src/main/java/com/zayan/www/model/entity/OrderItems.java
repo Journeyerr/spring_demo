@@ -91,6 +91,11 @@ public class OrderItems implements Serializable {
      */
     private BigDecimal actualTotalFee;
 
+   /**
+     * 商品快照
+     */
+    private String image;
+
     /**
      * 创建时间
      */

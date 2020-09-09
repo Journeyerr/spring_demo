@@ -1,34 +1,16 @@
-package com.zayan.www.model.entity;
-
-import java.math.BigDecimal;
-
-import com.baomidou.mybatisplus.annotation.*;
-
-import java.time.LocalDateTime;
-import java.io.Serializable;
+package com.zayan.www.model.vo.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zayan.www.model.vo.address.AddressVO;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
-/**
- * <p>
- * 订单表
- * </p>
- *
- * @author AnYuan
- * @since 2020-09-08
- */
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("orders")
-public class Order implements Serializable {
+public class OrderDetailVO {
 
-    private static final long serialVersionUID=1L;
-
-      @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -40,6 +22,11 @@ public class Order implements Serializable {
      * 用户ID
      */
     private Integer userId;
+
+    /**
+     * 门店名称
+     */
+    private String shopName;
 
     /**
      * 手机号
@@ -55,11 +42,6 @@ public class Order implements Serializable {
      * 是否外卖
      */
     private Integer isTakeaway;
-
-    /**
-     * 用户下单经纬度
-     */
-    private String location;
 
     /**
      * 总金额
@@ -80,11 +62,6 @@ public class Order implements Serializable {
      * 实际支付金额
      */
     private BigDecimal actualPayment;
-
-    /**
-     * 打包费
-     */
-    private BigDecimal boxFee;
 
     /**
      * 配送费
@@ -127,21 +104,10 @@ public class Order implements Serializable {
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-      @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
-    /**
-     * 更新时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-      @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updatedAt;
 
-    /**
-     * 删除时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime deletedAt;
+    private List<OrderItemsVO>  items;
 
-
+    private AddressVO address;
 }
