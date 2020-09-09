@@ -34,12 +34,13 @@
     </sql>
 
 
-    <select id="listByUserId" resultType="com.zayan.www.model.vo.order.OrderDetailVO">
+    <select id="listByUserId" resultMap="OrderDetailMap">
         select
          a.id,
          a.no,
          a.user_id,
          a.phone,
+         a.shop_id,
          a.is_takeaway,
          a.actual_total_fee,
          a.total_fee,
@@ -93,6 +94,7 @@
         <result column="pickup_time" property="pickupTime"/>
         <result column="closed_at" property="closedAt"/>
         <result column="created_at" property="createdAt"/>
+        <result column="shop_id" property="shopId"/>
         <result column="shop_name" property="shopName"/>
         <collection property="items" ofType="com.zayan.www.model.vo.order.OrderItemsVO">
             <id column="item_id" property="id"/>
