@@ -20,4 +20,5 @@ public class AdminUserVO {
     @ApiModelProperty("用户手机")
     @JsonProperty("phone")
     private String phone;
+
 }

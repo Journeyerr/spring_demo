@@ -32,6 +32,6 @@ netty:
   port: 7000
   url: 127.0.0.1
 
-sale:
-  admin: adminUserLoginSale
+admin:
+  sale: adminUserLoginSale
 

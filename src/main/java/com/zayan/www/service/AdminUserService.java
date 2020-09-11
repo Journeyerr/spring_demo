@@ -2,6 +2,7 @@ package com.zayan.www.service;
 
 import com.zayan.www.model.entity.AdminUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zayan.www.model.form.admin.user.AdminEditPasswordForm;
 import com.zayan.www.model.vo.user.AdminUserVO;
 
 /**
@@ -29,4 +30,11 @@ public interface AdminUserService extends IService<AdminUser> {
      * @return AdminUserInfoVO
      */
     AdminUserVO userInfo(Integer userId);
+
+    /**
+     * 用户更改密码
+     * @param form form
+     * @return AdminUserVO
+     */
+    AdminUserVO editPassword(AdminEditPasswordForm form);
 }

@@ -2,6 +2,8 @@ package com.zayan.www.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -36,5 +38,19 @@ public class StringUtil {
         Random random = new Random();
         int asInt = random.ints(1000, 9999).findFirst().getAsInt();
         return yyyyMMddHHmmss.concat(String.valueOf(asInt));
+    }
+
+    /**
+     * md5加密
+     * @return String
+     */
+    public static String md5(String string) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(string.getBytes());
+            return new BigInteger(1, md.digest()).toString(16);
+        } catch (Exception e) {
+            throw new RuntimeException("加密出现错误");
+        }
     }
 }

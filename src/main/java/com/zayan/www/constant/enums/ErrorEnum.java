@@ -37,6 +37,11 @@ public enum ErrorEnum {
     ORDER_TOTAL_FEE_ERROR(1062, "订单总价错误"),
     ORDER_ADDRESS_ERROR(1063, "配送地址异常"),
 
+
+    EDIT_PASSWORD_ERROR(1070, "密码错误"),
+    EDIT_PASSWORD_NO_EQUALS(1070, "两次密码不一致"),
+
+
     ;
 
     private Integer code;

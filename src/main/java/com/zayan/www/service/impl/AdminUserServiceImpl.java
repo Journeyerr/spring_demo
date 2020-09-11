@@ -6,15 +6,18 @@ import com.zayan.www.config.secure.JwtTokenProvider;
 import com.zayan.www.constant.enums.ErrorEnum;
 import com.zayan.www.exception.user.UserExcetpion;
 import com.zayan.www.model.entity.AdminUser;
+import com.zayan.www.model.form.admin.user.AdminEditPasswordForm;
 import com.zayan.www.model.vo.user.AdminUserVO;
 import com.zayan.www.repository.AdminUserMapper;
 import com.zayan.www.service.AdminUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zayan.www.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Map;
 import java.util.Objects;
 
@@ -32,7 +35,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    @Value("${sale.admin}")
+    @Value("${admin.sale}")
     private String sale;
 
     @Override
@@ -64,5 +67,21 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
                 .name(adminUser.getUserName())
                 .phone(adminUser.getPhone())
                 .build();
+    }
+
+    @Override
+    public AdminUserVO editPassword(AdminEditPasswordForm form) {
+
+        if (!form.getPasswordNew().equals(form.getPasswordConfirm())){
+            throw new UserExcetpion(ErrorEnum.EDIT_PASSWORD_NO_EQUALS);
+        }
+        AdminUser adminUser = getById(form.getId());
+        if (!adminUser.getPassword().equals(StringUtil.md5(form.getPasswordOld() + sale))) {
+            throw new UserExcetpion(ErrorEnum.EDIT_PASSWORD_ERROR);
+        }
+        adminUser.setPassword(StringUtil.md5(form.getPasswordNew() + sale));
+        updateById(adminUser);
+
+        return userInfo(adminUser.getId());
     }
 }
