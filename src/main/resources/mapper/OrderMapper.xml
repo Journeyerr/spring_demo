@@ -69,7 +69,94 @@
            left join order_items b on a.id = b.order_id
            left join shops c on a.shop_id = c.id
            left join order_address d on a.id = d.order_id
-         where a.user_id = #{userId} order by a.id desc
+        where a.user_id = #{userId} order by a.id desc
+    </select>
+
+    <select id="listRecord" resultMap="OrderDetailMap">
+        select
+         a.id,
+         a.no,
+         a.user_id,
+         a.phone,
+         a.shop_id,
+         a.is_takeaway,
+         a.total_fee,
+         a.payment,
+         a.discount_fee,
+         a.delivery_fee,
+         a.coupon_fee,
+         a.status,
+         a.remarks,
+         a.pickup_time,
+         a.closed_at,
+         a.created_at,
+         b.id item_id,
+         b.order_id item_order_id,
+         b.product_id item_product_id,
+         b.name item_name,
+         b.discount_price item_discount_price,
+         b.price item_price,
+         b.total_fee item_total_fee,
+         b.quantity item_quantity,
+         b.actual_quantity item_actual_quantity,
+         b.image item_image,
+         b.created_at item_created_at,
+         c.name shop_name,
+         d.name address_name,
+         d.phone address_phone,
+         d.address address_address
+          from orders a
+           left join order_items b on a.id = b.order_id
+           left join shops c on a.shop_id = c.id
+           left join order_address d on a.id = d.order_id
+        where a.deleted_at is null
+        <if test="shopId != null and shopId != ''">
+            and a.shop_id = #{shopId}
+        </if>
+        <if test="status != null and status != ''">
+            and a.status = #{status}
+        </if>
+         order by a.id desc
+    </select>
+
+    <select id="getByNo" resultMap="OrderDetailMap">
+        select
+        a.id,
+        a.no,
+        a.user_id,
+        a.phone,
+        a.shop_id,
+        a.is_takeaway,
+        a.total_fee,
+        a.payment,
+        a.discount_fee,
+        a.delivery_fee,
+        a.coupon_fee,
+        a.status,
+        a.remarks,
+        a.pickup_time,
+        a.closed_at,
+        a.created_at,
+        b.id item_id,
+        b.order_id item_order_id,
+        b.product_id item_product_id,
+        b.name item_name,
+        b.discount_price item_discount_price,
+        b.price item_price,
+        b.total_fee item_total_fee,
+        b.quantity item_quantity,
+        b.actual_quantity item_actual_quantity,
+        b.image item_image,
+        b.created_at item_created_at,
+        c.name shop_name,
+        d.name address_name,
+        d.phone address_phone,
+        d.address address_address
+        from orders a
+        left join order_items b on a.id = b.order_id
+        left join shops c on a.shop_id = c.id
+        left join order_address d on a.id = d.order_id
+        where a.no = #{no}
     </select>
     
     <resultMap id="OrderDetailMap" type="com.zayan.www.model.vo.order.OrderDetailVO">
@@ -83,6 +170,7 @@
         <result column="discount_fee" property="discountFee"/>
         <result column="delivery_fee" property="deliveryFee"/>
         <result column="coupon_fee" property="couponFee"/>
+        <result column="status" property="status"/>
         <result column="remarks" property="remarks"/>
         <result column="pickup_time" property="pickupTime"/>
         <result column="closed_at" property="closedAt"/>

@@ -23,4 +23,16 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return List<OrderDetailVO>
      */
     List<OrderDetailVO> listByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 根据shopId status查询所有订单
+     * @param shopId shopId
+     * @param status status
+     * @return List<OrderDetailVO>
+     */
+    List<OrderDetailVO> listRecord(@Param("shopId") Integer shopId, @Param("status") String status);
+
+
+    OrderDetailVO getByNo(@Param("no") String no);
+
 }
