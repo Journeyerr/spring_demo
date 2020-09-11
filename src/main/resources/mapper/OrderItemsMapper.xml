@@ -16,7 +16,6 @@
         <result column="price" property="price" />
         <result column="total_fee" property="totalFee" />
         <result column="actual_quantity" property="actualQuantity" />
-        <result column="actual_total_fee" property="actualTotalFee" />
         <result column="image" property="image" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
@@ -25,7 +24,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, order_id, shop_id, product_id, name, sku_id, quantity, discount_price, box_fee, price, total_fee, actual_quantity, actual_total_fee, image, created_at, updated_at, deleted_at
+        id, order_id, shop_id, product_id, name, sku_id, quantity, discount_price, box_fee, price, total_fee, actual_quantity, image, created_at, updated_at, deleted_at
     </sql>
 
 </mapper>

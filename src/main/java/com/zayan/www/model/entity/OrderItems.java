@@ -86,11 +86,6 @@ public class OrderItems implements Serializable {
      */
     private String actualQuantity;
 
-    /**
-     * 总金额
-     */
-    private BigDecimal actualTotalFee;
-
    /**
      * 商品快照
      */

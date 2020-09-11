@@ -13,8 +13,6 @@
         <result column="location" property="location" />
         <result column="total_fee" property="totalFee" />
         <result column="payment" property="payment" />
-        <result column="actual_total_fee" property="actualTotalFee" />
-        <result column="actual_payment" property="actualPayment" />
         <result column="box_fee" property="boxFee" />
         <result column="delivery_fee" property="deliveryFee" />
         <result column="discount_fee" property="discountFee" />
@@ -30,7 +28,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, no, user_id, phone, shop_id, is_takeaway, location, total_fee, payment, a.actual_total_fee, a.actual_payment, box_fee, delivery_fee, discount_fee, coupon_fee, status, remarks, pickup_time, closed_at, created_at, updated_at, deleted_at
+        id, no, user_id, phone, shop_id, is_takeaway, location, total_fee, payment, box_fee, delivery_fee, discount_fee, coupon_fee, status, remarks, pickup_time, closed_at, created_at, updated_at, deleted_at
     </sql>
 
 
@@ -42,9 +40,7 @@
          a.phone,
          a.shop_id,
          a.is_takeaway,
-         a.actual_total_fee,
          a.total_fee,
-         a.actual_payment,
          a.payment,
          a.discount_fee,
          a.delivery_fee,
@@ -63,7 +59,6 @@
          b.total_fee item_total_fee,
          b.quantity item_quantity,
          b.actual_quantity item_actual_quantity,
-         b.actual_total_fee item_actual_total_fee,
          b.image item_image,
          b.created_at item_created_at,
          c.name shop_name,
@@ -83,9 +78,7 @@
         <result column="user_id" property="userId"/>
         <result column="phone" property="phone"/>
         <result column="is_takeaway" property="isTakeaway"/>
-        <result column="actual_total_fee" property="actualTotalFee"/>
         <result column="total_fee" property="totalFee"/>
-        <result column="actual_payment" property="actualPayment"/>
         <result column="payment" property="payment"/>
         <result column="discount_fee" property="discountFee"/>
         <result column="delivery_fee" property="deliveryFee"/>
@@ -106,7 +99,6 @@
             <result column="item_total_fee" property="totalFee"/>
             <result column="item_quantity" property="quantity"/>
             <result column="item_actual_quantity" property="actualQuantity"/>
-            <result column="item_actual_total_fee" property="actualTotalFee"/>
             <result column="item_image" property="image"/>
             <result column="item_created_at" property="createdAt"/>
         </collection>

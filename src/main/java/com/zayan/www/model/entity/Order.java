@@ -72,16 +72,6 @@ public class Order implements Serializable {
     private BigDecimal payment;
 
     /**
-     * 实际总金额
-     */
-    private BigDecimal actualTotalFee;
-
-    /**
-     * 实际支付金额
-     */
-    private BigDecimal actualPayment;
-
-    /**
      * 打包费
      */
     private BigDecimal boxFee;

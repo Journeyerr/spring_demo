@@ -54,16 +54,6 @@ public class OrderDetailVO {
     private BigDecimal payment;
 
     /**
-     * 实际总金额
-     */
-    private BigDecimal actualTotalFee;
-
-    /**
-     * 实际支付金额
-     */
-    private BigDecimal actualPayment;
-
-    /**
      * 配送费
      */
     private BigDecimal deliveryFee;

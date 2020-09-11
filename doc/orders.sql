@@ -8,8 +8,6 @@ CREATE TABLE `orders` (
   `location` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户下单经纬度',
   `total_fee` decimal(8,2) NOT NULL COMMENT '总金额',
   `payment` decimal(8,2) NOT NULL COMMENT '实付金额',
-  `actual_total_fee` decimal(8,2) DEFAULT NULL COMMENT '实际总金额',
-  `actual_payment` decimal(8,2) DEFAULT NULL COMMENT '实际支付金额',
   `box_fee` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '打包费',
   `delivery_fee` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '配送费',
   `discount_fee` decimal(8,2) NOT NULL DEFAULT '0.00' COMMENT '优惠金额',

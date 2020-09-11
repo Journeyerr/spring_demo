@@ -54,11 +54,6 @@ public class OrderItemsVO {
     private String actualQuantity;
 
     /**
-     * 总金额
-     */
-    private BigDecimal actualTotalFee;
-
-    /**
      * 商品快照
      */
     private String image;
