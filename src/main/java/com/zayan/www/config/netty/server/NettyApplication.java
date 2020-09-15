@@ -13,7 +13,7 @@ import java.net.InetSocketAddress;
  *
  */
 
-@SpringBootApplication
+//@SpringBootApplication
 public class NettyApplication implements CommandLineRunner{
 
     @Value("${netty.port}")
@@ -25,7 +25,7 @@ public class NettyApplication implements CommandLineRunner{
     @Autowired
     private NettyServer nettyServer;
 
-    @Override
+//    @Override
     public void run(String... args) throws Exception {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(url, prot);
         System.out.println("NettyApplication Run --->>> " + url + ":" + prot);
