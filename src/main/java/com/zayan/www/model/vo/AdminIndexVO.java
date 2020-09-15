@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 首页概况
  * @author AnYuan
@@ -15,18 +17,20 @@ import lombok.Data;
 @Builder
 public class AdminIndexVO {
 
-    @ApiModelProperty("门店总数")
-    private Integer shopCount;
+    private List<Info> infos;
 
-    @ApiModelProperty("商品总数")
-    @JsonProperty("productCount")
-    private Integer productCount;
+    @Data
+    public static class Info{
+        private String name;
+        private Integer count;
+    }
 
-    @ApiModelProperty("banner总数")
-    @JsonProperty("bannerCount")
-    private Integer bannerCount;
 
-    @ApiModelProperty("订单总数")
-    @JsonProperty("orderCount")
-    private Integer orderCount;
+    public static Info coverInfo(String name, Integer count) {
+        Info info = new Info();
+        info.setName(name);
+        info.setCount(count);
+        return info;
+    }
+
 }

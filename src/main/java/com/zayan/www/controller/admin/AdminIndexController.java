@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @date 2020-08-26
  * @author AnYuan
@@ -31,11 +34,16 @@ public class AdminIndexController {
 
     @GetMapping("")
     public BaseResult<AdminIndexVO> index() {
+
+        List<AdminIndexVO.Info> infos = new ArrayList<>();
+
+        infos.add(AdminIndexVO.coverInfo("门店总数", shopService.count()));
+        infos.add(AdminIndexVO.coverInfo("商品总数", productService.count()));
+        infos.add(AdminIndexVO.coverInfo("banner总数", bannerService.count()));
+        infos.add(AdminIndexVO.coverInfo("订单总数", OrderService.count()));
+
         AdminIndexVO indexVO = AdminIndexVO.builder()
-                .shopCount(shopService.count())
-                .productCount(productService.count())
-                .bannerCount(bannerService.count())
-                .orderCount(OrderService.count())
+                .infos(infos)
                 .build();
 
         return BaseResult.success(indexVO);
