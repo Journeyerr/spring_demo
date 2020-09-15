@@ -3,6 +3,7 @@ package com.zayan.www.controller.admin;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.model.vo.AdminIndexVO;
 import com.zayan.www.service.BannerService;
+import com.zayan.www.service.OrderService;
 import com.zayan.www.service.ProductService;
 import com.zayan.www.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class AdminIndexController {
     private ProductService productService;
     @Autowired
     private BannerService bannerService;
+    @Autowired
+    private OrderService OrderService;
 
     @GetMapping("")
     public BaseResult<AdminIndexVO> index() {
@@ -32,6 +35,7 @@ public class AdminIndexController {
                 .shopCount(shopService.count())
                 .productCount(productService.count())
                 .bannerCount(bannerService.count())
+                .orderCount(OrderService.count())
                 .build();
 
         return BaseResult.success(indexVO);

@@ -25,4 +25,8 @@ public class AdminIndexVO {
     @ApiModelProperty("banner总数")
     @JsonProperty("bannerCount")
     private Integer bannerCount;
+
+    @ApiModelProperty("订单总数")
+    @JsonProperty("orderCount")
+    private Integer orderCount;
 }
