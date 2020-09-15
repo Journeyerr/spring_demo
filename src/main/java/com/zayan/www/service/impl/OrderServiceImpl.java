@@ -1,10 +1,14 @@
 package com.zayan.www.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zayan.www.constant.enums.ErrorEnum;
+import com.zayan.www.constant.enums.OrderStatusEnum;
 import com.zayan.www.exception.order.OrderException;
 import com.zayan.www.model.entity.*;
 import com.zayan.www.model.form.api.CreateOrderForm;
 import com.zayan.www.model.form.api.OrderItemsForm;
+import com.zayan.www.model.vo.order.OrderDetailVO;
 import com.zayan.www.repository.ImageMapper;
 import com.zayan.www.repository.OrderMapper;
 import com.zayan.www.repository.ProductMapper;
@@ -42,6 +46,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private OrderItemsService orderItemsService;
     @Autowired
     private ImageMapper imageMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Transactional( rollbackFor = Exception.class)
     @Override
@@ -95,5 +101,16 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
 
+    @Override
+    public IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status) {
 
+        IPage<OrderDetailVO> orderDetailVOIPage = orderMapper.listRecord(iPage, shopId, status);
+        List<OrderDetailVO> records = orderDetailVOIPage.getRecords();
+        if (!records.isEmpty()) {
+            records.forEach( order -> {
+                order.setStatusName(OrderStatusEnum.getMsgByCode(order.getStatus()));
+            });
+        }
+        return orderDetailVOIPage;
+    }
 }

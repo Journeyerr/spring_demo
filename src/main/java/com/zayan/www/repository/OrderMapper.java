@@ -1,5 +1,6 @@
 package com.zayan.www.repository;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zayan.www.model.vo.order.OrderDetailVO;
@@ -30,7 +31,9 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @param status status
      * @return List<OrderDetailVO>
      */
-    List<OrderDetailVO> listRecord(@Param("shopId") Integer shopId, @Param("status") String status);
+    IPage<OrderDetailVO> listRecord(IPage iPage,
+                                   @Param("shopId") Integer shopId,
+                                   @Param("status") String status);
 
 
     OrderDetailVO getByNo(@Param("no") String no);

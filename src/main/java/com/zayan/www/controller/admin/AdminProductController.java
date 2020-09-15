@@ -40,7 +40,7 @@ public class AdminProductController {
     @GetMapping("/index")
     public BaseResult<IPage<ProductVO>> index(@RequestParam(value = "shopId", required = false) Integer shopId,
                                                    @RequestParam("page") Integer page,
-                                                   @RequestParam("pageSize") Integer pageSize ) {
+                                                   @RequestParam("pageSize") Integer pageSize) {
 
         return BaseResult.success(productService.listRecord(page, pageSize, shopId, null, null));
     }

@@ -1,8 +1,11 @@
 package com.zayan.www.controller.admin;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Maps;
 import com.zayan.www.constant.common.aliyun.ALiYunOss;
+import com.zayan.www.constant.enums.OrderStatusEnum;
 import com.zayan.www.model.form.admin.user.AdminEditPasswordForm;
 import com.zayan.www.model.form.admin.user.AdminLoginForm;
 import com.zayan.www.model.vo.BaseResult;
@@ -35,11 +38,16 @@ public class AdminOrderController {
 
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/list")
-    public BaseResult<List<OrderDetailVO>> orderList(@PathVariable(value="shopId",required=false) Integer shopId,
-                                                     @PathVariable(value="status",required=false) String status) {
-        return BaseResult.success(orderMapper.listRecord(shopId, status));
+    public BaseResult<IPage<OrderDetailVO>> orderList(@PathVariable(value="shopId",required=false) Integer shopId,
+                                       @PathVariable(value="status",required=false) String status,
+                                       @RequestParam("page") Integer page,
+                                       @RequestParam("pageSize") Integer pageSize) {
+
+        return BaseResult.success(orderService.orderIPage(new Page(page, pageSize), shopId, status));
     }
 
     @GetMapping("/detail/{no}")
@@ -48,6 +56,7 @@ public class AdminOrderController {
         orderDetailVO.getItems().forEach(item->{
             item.setImage(ALiYunOss.BUCKET + item.getImage());
         });
+        orderDetailVO.setStatusName(OrderStatusEnum.getMsgByCode(orderDetailVO.getStatus()));
         return BaseResult.success(orderDetailVO);
     }
 }

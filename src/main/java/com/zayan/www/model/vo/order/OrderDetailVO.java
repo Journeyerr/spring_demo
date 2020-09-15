@@ -74,6 +74,11 @@ public class OrderDetailVO {
     private String status;
 
     /**
+     * 状态
+     */
+    private String statusName;
+
+    /**
      * 订单备注
      */
     private String remarks;

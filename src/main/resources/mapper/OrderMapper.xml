@@ -90,25 +90,9 @@
          a.pickup_time,
          a.closed_at,
          a.created_at,
-         b.id item_id,
-         b.order_id item_order_id,
-         b.product_id item_product_id,
-         b.name item_name,
-         b.discount_price item_discount_price,
-         b.price item_price,
-         b.total_fee item_total_fee,
-         b.quantity item_quantity,
-         b.actual_quantity item_actual_quantity,
-         b.image item_image,
-         b.created_at item_created_at,
-         c.name shop_name,
-         d.name address_name,
-         d.phone address_phone,
-         d.address address_address
+         c.name shop_name
           from orders a
-           left join order_items b on a.id = b.order_id
            left join shops c on a.shop_id = c.id
-           left join order_address d on a.id = d.order_id
         where a.deleted_at is null
         <if test="shopId != null and shopId != ''">
             and a.shop_id = #{shopId}

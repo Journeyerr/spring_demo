@@ -58,10 +58,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(new Page(page, pageSize), shopId, status, keyWord);
         List<ProductVO> listVo = imageVOIPage.getRecords();
-        if (CollectionUtils.isEmpty(listVo)) {
-            return imageVOIPage;
+        if (!listVo.isEmpty()) {
+            listVo.forEach( v -> v.setProductImage(ALiYunOss.BUCKET + v.getProductImage()));
         }
-        listVo.forEach( v -> v.setProductImage(ALiYunOss.BUCKET + v.getProductImage()));
         return imageVOIPage;
     }
 
