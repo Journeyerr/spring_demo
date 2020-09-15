@@ -102,9 +102,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
 
     @Override
-    public IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status) {
+    public IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status, String no) {
 
-        IPage<OrderDetailVO> orderDetailVOIPage = orderMapper.listRecord(iPage, shopId, status);
+        IPage<OrderDetailVO> orderDetailVOIPage = orderMapper.listRecord(iPage, shopId, status, no);
         List<OrderDetailVO> records = orderDetailVOIPage.getRecords();
         if (!records.isEmpty()) {
             records.forEach( order -> {

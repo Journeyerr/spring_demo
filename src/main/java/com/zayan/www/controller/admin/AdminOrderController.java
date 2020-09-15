@@ -42,12 +42,13 @@ public class AdminOrderController {
     private OrderService orderService;
 
     @GetMapping("/list")
-    public BaseResult<IPage<OrderDetailVO>> orderList(@PathVariable(value="shopId",required=false) Integer shopId,
-                                       @PathVariable(value="status",required=false) String status,
+    public BaseResult<IPage<OrderDetailVO>> orderList(@RequestParam(value="shopId",required=false) Integer shopId,
+                                       @RequestParam(value="status",required=false) String status,
+                                       @RequestParam(value="no",required=false) String no,
                                        @RequestParam("page") Integer page,
                                        @RequestParam("pageSize") Integer pageSize) {
 
-        return BaseResult.success(orderService.orderIPage(new Page(page, pageSize), shopId, status));
+        return BaseResult.success(orderService.orderIPage(new Page(page, pageSize), shopId, status, no));
     }
 
     @GetMapping("/detail/{no}")

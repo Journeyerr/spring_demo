@@ -33,7 +33,8 @@ public interface OrderService extends IService<Order> {
      * @param iPage 分页
      * @param shopId shopId
      * @param status 订单状态
+     * @param no no
      * @return ipage
      */
-    IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status);
+    IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status, String no);
 }

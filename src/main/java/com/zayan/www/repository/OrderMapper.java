@@ -33,7 +33,8 @@ public interface OrderMapper extends BaseMapper<Order> {
      */
     IPage<OrderDetailVO> listRecord(IPage iPage,
                                    @Param("shopId") Integer shopId,
-                                   @Param("status") String status);
+                                   @Param("status") String status,
+                                   @Param("no") String no);
 
 
     OrderDetailVO getByNo(@Param("no") String no);
