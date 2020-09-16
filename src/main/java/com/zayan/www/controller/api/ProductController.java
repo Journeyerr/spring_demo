@@ -8,7 +8,6 @@ import com.zayan.www.repository.ProductMapper;
 import com.zayan.www.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import sun.tools.jconsole.Worker;
 
 @RestController
 @RequestMapping("api/product")
