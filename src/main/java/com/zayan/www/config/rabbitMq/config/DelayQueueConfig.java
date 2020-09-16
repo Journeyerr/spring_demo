@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class DelayQueueConfig {
 
     public static final String DELAY_EXCHANGE = "delay.queue.demo.business.exchange";

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 03-12
  */
 
-@Configuration
+//@Configuration
 @Slf4j
 public class UserQueueConfig {
 

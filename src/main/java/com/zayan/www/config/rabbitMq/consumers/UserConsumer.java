@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @date 03-14
  */
 
-@Component
+//@Component
 @Slf4j
 public class UserConsumer {
 

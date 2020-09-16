@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  * @date 2020-06-23
  */
 
-@Component
+//@Component
 @Slf4j
 public class DelayMsgConsumer {
 
