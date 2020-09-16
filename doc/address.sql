@@ -19,5 +19,5 @@ CREATE TABLE `address` (
   KEY `addresses_user_id_index` (`user_id`),
   KEY `addresses_name_index` (`name`),
   KEY `addresses_phone_index` (`phone`),
-  KEY `addresses_sex_index` (`sex`),
+  KEY `addresses_sex_index` (`sex`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
