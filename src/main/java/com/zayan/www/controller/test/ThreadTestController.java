@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("thread/")
+@RequestMapping("/test/thread/")
 @Slf4j
 public class ThreadTestController {
 

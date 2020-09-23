@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/mq/test/")
+@RequestMapping("/test/mq/")
 public class RabbitMqTestController {
 
     private static final Integer TYPE_TEN = 10;

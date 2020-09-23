@@ -1,13 +1,19 @@
 server:
-  port: 8080
+  port: 9999
 
 debug: false
+
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+
+  main:
+    allow-bean-definition-overriding: true
+
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: root
+#    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+
   rabbitmq:
     username: guest
     password: guest
@@ -15,6 +21,26 @@ spring:
 #    virtual-host: /
     connection-timeout: 3
 
+  shardingsphere:
+    datasource:
+      names: master,slave0
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name=com: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+        username: root
+        password: root
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name=com: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/spring_boot_slave?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+        username: root
+        password: root
+    masterslave:
+      load-balance-algorithm-type: round_robin
+      name: ms
+      master-data-source-name: master
+      slave-data-source-names: slave0
 jwt:
   token:
     secret: characterEncoding

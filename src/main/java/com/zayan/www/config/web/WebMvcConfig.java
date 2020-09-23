@@ -11,12 +11,6 @@ import org.springframework.web.servlet.config.annotation.*;
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**")
-//                .allowedOrigins("http://localhost:9090");
-//    }
-
     private CorsConfiguration corsConfig() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.addAllowedOrigin("*");
@@ -64,7 +58,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 "/api/product",
                 "/**/*.html",
                 "/**/*.js",
-                "/**/*.css"
+                "/**/*.css",
+                "/test/**"
         );
     }
 }
