@@ -3,7 +3,7 @@ package com.zayan.www.config.wx;
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.config.impl.WxMaDefaultConfigImpl;
-import com.zayan.www.constant.wx.WeiXin;
+import com.zayan.www.constant.common.wx.WeiXin;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
