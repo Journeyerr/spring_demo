@@ -157,6 +157,12 @@
             <version>4.0.0-RC1</version>
         </dependency>
 
+        <!--springboot和websocket整合包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

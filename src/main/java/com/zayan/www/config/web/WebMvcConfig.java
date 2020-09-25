@@ -7,8 +7,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.*;
 
-@Configuration
-@EnableWebMvc
+//@Configuration
+//@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private CorsConfiguration corsConfig() {
@@ -59,7 +59,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 "/**/*.html",
                 "/**/*.js",
                 "/**/*.css",
-                "/test/**"
+                "/test/**",
+                "/websocket/**"
+
         );
     }
 }

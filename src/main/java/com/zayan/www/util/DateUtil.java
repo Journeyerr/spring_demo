@@ -1,21 +1,33 @@
 package com.zayan.www.util;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author AnYuan
+ */
 public class DateUtil {
 
     /**
-     * @desc: yyyyMMddHHmmss时间格式转化为yyyy-MM-hhmmss
-     * @param:
-     * @return:
-     * @auther: AnYuan
-     * @date: 2019-03-04
+     * yyyyMMddHHmmss时间格式转化为yyyy-MM-hhmmss
+     * @param: dateString
+     * @return: LocalDateTime
      */
     public static LocalDateTime strDataToLocalDate(String dateString){
         return LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-hhmmss"));
+    }
+
+    /**
+     * 获取当前时间的字符串
+     * @return String
+     */
+    public static String localDateTimeStr() {
+        Date nowDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(nowDate);
     }
 
     /**
