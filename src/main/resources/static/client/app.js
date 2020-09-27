@@ -75,6 +75,11 @@ function showContent(serverMsg) {
     $("#notice").append("<tr><td>" + serverMsg.sendUserId + ": </td> <td>"+ serverMsg.content +"</td><td>"+ serverMsg.dateTime +"</td></tr>");
 }
 
+//显示实时在线用户
+function showOnlieUser(serverMsg) {
+    $("#online").html("<tr><td>" + serverMsg.content + "</td> <td>"+new Date(serverMsg.time).toLocaleTimeString()+"</td></tr>");
+}
+
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
