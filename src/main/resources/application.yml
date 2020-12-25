@@ -1,18 +1,44 @@
 server:
   port: 9999
 
-debug: false
 
 spring:
-
+  application:
+    name: user-server
   main:
     allow-bean-definition-overriding: true
 
-  #  datasource:
-  #    driver-class-name: com.mysql.jdbc.Driver
-  #    username: root
-  #    password: root
-  #    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+
+#  shardingsphere:
+#    datasource:
+#      names: master
+#      master:
+#        type: com.alibaba.druid.pool.DruidDataSource
+#        driver-class-name=com: com.mysql.jdbc.Driver
+#        url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+#        username: root
+#        password: root
+#          slave0:
+#            type: com.alibaba.druid.pool.DruidDataSource
+#            driver-class-name=com: com.mysql.jdbc.Driver
+#            url: jdbc:mysql://localhost:3306/spring_boot_slave?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+#            username: root
+#            password: root
+#    # 读写分离
+#    masterslave:
+#      load-balance-algorithm-type: round_robin
+#      name: ms
+#      master-data-source-name: master
+#      slave-data-source-names: master
+#    # 打印sql
+#    props:
+#      sql:
+#        show: false
 
   rabbitmq:
     username: guest
@@ -20,37 +46,6 @@ spring:
     addresses: localhost:5672
     #    virtual-host: /
     connection-timeout: 3
-
-  shardingsphere:
-    datasource:
-      names: master
-      master:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name=com: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-        username: root
-        password: root
-    #      slave0:
-    #        type: com.alibaba.druid.pool.DruidDataSource
-    #        driver-class-name=com: com.mysql.jdbc.Driver
-    #        url: jdbc:mysql://localhost:3306/spring_boot_slave?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-    #        username: root
-    #        password: root
-    # 读写分离
-    masterslave:
-      load-balance-algorithm-type: round_robin
-      name: ms
-      master-data-source-name: master
-      slave-data-source-names: master
-    # 打印sql
-    props:
-      sql:
-        show: false
-jwt:
-  token:
-    secret: characterEncoding
-    expiration: 600000
-    isuser: zayan
 
 logging:
   level:
@@ -66,3 +61,16 @@ netty:
 admin:
   sale: adminUserLoginSale
 
+jwt:
+  token:
+    secret: characterEncoding
+    expiration: 600000
+    isuser: zayan
+
+eureka:
+  client:
+    service-url:
+      #      eureka的注册中心地址
+      defaultZone: http://localhost:8888/eureka/
+
+debug: false

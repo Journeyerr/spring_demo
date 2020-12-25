@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import org.junit.Test;
 
 import java.util.Arrays;
 
@@ -52,7 +51,6 @@ public class GenertorServiceEntity {
      * 根据表名生成对应的实体类，repository，service，controller（都是单表）
      * 注: repository.xml默认生成在mapper/xml下，需要手动移动到resource/mapper下
      */
-    @Test
     public void generateCode() {
         generateByTables(PACKEGE_NAME, "banner");
     }
