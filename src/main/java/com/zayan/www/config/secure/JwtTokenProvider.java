@@ -27,17 +27,17 @@ public class JwtTokenProvider {
     private String isuser;
 
     @PostConstruct
-    protected void init(){
+    protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createTokenWithExpiration(Map<String, Object> data, Date expiration){
+    public String createTokenWithExpiration(Map<String, Object> data, Date expiration) {
         Claims claims = Jwts.claims().setSubject(data.get("userId").toString());
         if (Objects.nonNull(data)) {
             claims.put("user", data);
         }
         Date now = new Date();
-        if (Objects.isNull(expiration)){
+        if (Objects.isNull(expiration)) {
             expiration = new Date(now.getTime() + defaultExpiration);
         }
         return Jwts.builder()
@@ -45,7 +45,7 @@ public class JwtTokenProvider {
                 .setIssuedAt(now)
                 .setNotBefore(now)
                 .setExpiration(expiration)
-                .signWith(SignatureAlgorithm.HS256,secretKey)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .setIssuer(isuser)
                 .compact();
     }

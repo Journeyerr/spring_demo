@@ -8,8 +8,8 @@ import io.netty.util.CharsetUtil;
 
 /**
  * 服务端初始化需执行
- * @author AnYuan
  *
+ * @author AnYuan
  */
 
 public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {

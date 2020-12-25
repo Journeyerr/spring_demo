@@ -13,8 +13,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- *
  * 文档访问：http://localhost:9999/swagger-ui.html
+ *
  * @author AnYuan
  * @date 2020-08-16
  */
@@ -24,8 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2Config implements WebMvcConfigurer {
 
 
-
-//    @Bean
+    //    @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())

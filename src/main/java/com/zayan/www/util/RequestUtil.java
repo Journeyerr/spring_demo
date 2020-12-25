@@ -20,7 +20,7 @@ import java.util.Objects;
 @Slf4j
 public class RequestUtil {
 
-    public static Integer getUserIdFormContextToken(){
+    public static Integer getUserIdFormContextToken() {
         HttpServletRequest request = ((ServletRequestAttributes)
                 RequestContextHolder.currentRequestAttributes()).getRequest();
         try {
@@ -29,7 +29,7 @@ public class RequestUtil {
             String token = new String(decode.decode(split[1]));
             JSONObject jsonObject = JSONObject.parseObject(token).getJSONObject("user");
             return jsonObject.getInteger("userId");
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new UnAuthorizedException(ErrorEnum.TOKEN_EXCEPTION);
         }
     }

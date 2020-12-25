@@ -8,17 +8,17 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    username: root
-#    password: root
-#    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+  #  datasource:
+  #    driver-class-name: com.mysql.jdbc.Driver
+  #    username: root
+  #    password: root
+  #    url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
 
   rabbitmq:
     username: guest
     password: guest
     addresses: localhost:5672
-#    virtual-host: /
+    #    virtual-host: /
     connection-timeout: 3
 
   shardingsphere:
@@ -30,12 +30,12 @@ spring:
         url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
         username: root
         password: root
-#      slave0:
-#        type: com.alibaba.druid.pool.DruidDataSource
-#        driver-class-name=com: com.mysql.jdbc.Driver
-#        url: jdbc:mysql://localhost:3306/spring_boot_slave?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-#        username: root
-#        password: root
+    #      slave0:
+    #        type: com.alibaba.druid.pool.DruidDataSource
+    #        driver-class-name=com: com.mysql.jdbc.Driver
+    #        url: jdbc:mysql://localhost:3306/spring_boot_slave?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    #        username: root
+    #        password: root
     # 读写分离
     masterslave:
       load-balance-algorithm-type: round_robin

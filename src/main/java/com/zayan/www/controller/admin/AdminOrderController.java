@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author AnYuan
@@ -42,11 +42,11 @@ public class AdminOrderController {
     private OrderService orderService;
 
     @GetMapping("/list")
-    public BaseResult<IPage<OrderDetailVO>> orderList(@RequestParam(value="shopId",required=false) Integer shopId,
-                                       @RequestParam(value="status",required=false) String status,
-                                       @RequestParam(value="no",required=false) String no,
-                                       @RequestParam("page") Integer page,
-                                       @RequestParam("pageSize") Integer pageSize) {
+    public BaseResult<IPage<OrderDetailVO>> orderList(@RequestParam(value = "shopId", required = false) Integer shopId,
+                                                      @RequestParam(value = "status", required = false) String status,
+                                                      @RequestParam(value = "no", required = false) String no,
+                                                      @RequestParam("page") Integer page,
+                                                      @RequestParam("pageSize") Integer pageSize) {
 
         return BaseResult.success(orderService.orderIPage(new Page(page, pageSize), shopId, status, no));
     }
@@ -54,7 +54,7 @@ public class AdminOrderController {
     @GetMapping("/detail/{no}")
     public BaseResult<OrderDetailVO> orderList(@PathVariable String no) {
         OrderDetailVO orderDetailVO = orderMapper.getByNo(no);
-        orderDetailVO.getItems().forEach(item->{
+        orderDetailVO.getItems().forEach(item -> {
             item.setImage(ALiYunOss.BUCKET + item.getImage());
         });
         orderDetailVO.setStatusName(OrderStatusEnum.getMsgByCode(orderDetailVO.getStatus()));

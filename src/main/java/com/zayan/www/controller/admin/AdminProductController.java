@@ -21,7 +21,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author AnYuan
@@ -39,8 +39,8 @@ public class AdminProductController {
     @ApiOperation("商品图片列表")
     @GetMapping("/index")
     public BaseResult<IPage<ProductVO>> index(@RequestParam(value = "shopId", required = false) Integer shopId,
-                                                   @RequestParam("page") Integer page,
-                                                   @RequestParam("pageSize") Integer pageSize) {
+                                              @RequestParam("page") Integer page,
+                                              @RequestParam("pageSize") Integer pageSize) {
 
         return BaseResult.success(productService.listRecord(page, pageSize, shopId, null, null));
     }
@@ -48,7 +48,7 @@ public class AdminProductController {
 
     @ApiOperation("创建商品")
     @PostMapping("/store")
-    public BaseResult<ProductVO> store(@RequestBody ProductCreateForm createForm){
+    public BaseResult<ProductVO> store(@RequestBody ProductCreateForm createForm) {
         Product product = productService.saveProduct(createForm);
 
         ProductVO productVO = new ProductVO();
@@ -62,7 +62,7 @@ public class AdminProductController {
 
     @ApiOperation("删除商品")
     @PostMapping("/delete/{productId}")
-    public BaseResult<?> delete(@PathVariable("productId") Integer productId){
+    public BaseResult<?> delete(@PathVariable("productId") Integer productId) {
         Product product = productService.getById(productId);
 
         if (Objects.isNull(product)) {
@@ -75,7 +75,7 @@ public class AdminProductController {
 
     @ApiOperation("更新商品状态")
     @PostMapping("/update/{productId}")
-    public BaseResult<?> update(@PathVariable("productId") Integer productId){
+    public BaseResult<?> update(@PathVariable("productId") Integer productId) {
         Product product = productService.getById(productId);
 
         if (Objects.isNull(product)) {

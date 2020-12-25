@@ -4,12 +4,13 @@ import lombok.Getter;
 
 /**
  * 订单状态类型
+ *
  * @author AnYuan
  * @date 2020-09-15
  */
 
 @Getter
-public enum  OrderStatusEnum {
+public enum OrderStatusEnum {
 
     /**
      * code code name
@@ -33,9 +34,9 @@ public enum  OrderStatusEnum {
         this.message = msg;
     }
 
-    public static String getMsgByCode(String code){
+    public static String getMsgByCode(String code) {
         for (OrderStatusEnum value : OrderStatusEnum.values()) {
-            if(value.code.equals(code)){
+            if (value.code.equals(code)) {
                 return value.getMessage();
             }
         }

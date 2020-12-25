@@ -23,11 +23,12 @@ import java.net.URI;
 public class RestTemplateConfig {
 
     @Value("${restTemplateConfig.readTimeout:20000}")
-    private Integer readTimeout ;
+    private Integer readTimeout;
     @Value("${restTemplateConfig.connectTimeout:20000}")
     private Integer connectTimeout;
     @Value("${restTemplateConfig.connectionRequestTimeout:5000}")
     private Integer connectionRequestTimeout;
+
     @Value("${restTemplateConfig.connectionsMaxTotal:1000}")
 
     @Bean
@@ -49,6 +50,7 @@ public class RestTemplateConfig {
 
         return requestFactory;
     }
+
     private static final class HttpComponentsClientHttpRequestWithBodyFactory extends HttpComponentsClientHttpRequestFactory {
         @Override
         protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
@@ -57,6 +59,7 @@ public class RestTemplateConfig {
             }
             return super.createHttpUriRequest(httpMethod, uri);
         }
+
         private static final class HttpGetRequestWithEntity extends HttpEntityEnclosingRequestBase {
             HttpGetRequestWithEntity(final URI uri) {
                 super.setURI(uri);

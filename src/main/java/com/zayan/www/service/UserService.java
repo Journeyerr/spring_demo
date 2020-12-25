@@ -16,7 +16,8 @@ public interface UserService extends IService<User> {
 
     /**
      * 根据openid登录获取token
-     * @param openId openId
+     *
+     * @param openId     openId
      * @param sessionKey sessionKey
      * @return token
      * @Exception WxErrorException

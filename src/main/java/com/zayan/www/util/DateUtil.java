@@ -13,15 +13,17 @@ public class DateUtil {
 
     /**
      * yyyyMMddHHmmss时间格式转化为yyyy-MM-hhmmss
+     *
      * @param: dateString
      * @return: LocalDateTime
      */
-    public static LocalDateTime strDataToLocalDate(String dateString){
+    public static LocalDateTime strDataToLocalDate(String dateString) {
         return LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-hhmmss"));
     }
 
     /**
      * 获取当前时间的字符串
+     *
      * @return String
      */
     public static String localDateTimeStr() {
@@ -32,6 +34,7 @@ public class DateUtil {
 
     /**
      * 获取当前时间后 year 年的时间
+     *
      * @param year 单位
      * @return date
      */

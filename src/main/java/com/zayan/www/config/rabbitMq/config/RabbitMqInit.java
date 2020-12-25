@@ -16,14 +16,14 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class RabbitMqInit {
 
-//    @Bean
+    //    @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         log.info("rabbitTemplate init");
         return rabbitTemplate;
     }
 
-//    @Bean
+    //    @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
         RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory);
         log.info("rabbitAdmin init");

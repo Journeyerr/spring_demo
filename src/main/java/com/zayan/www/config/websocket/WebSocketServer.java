@@ -40,11 +40,12 @@ public class WebSocketServer {
 
     /**
      * 建立连接成功调用
+     *
      * @param session 用户集合
-     * @param uid 用户标志
+     * @param uid     用户标志
      */
     @OnOpen
-    public void onOpen(Session session, @PathParam(value = "uid") String uid){
+    public void onOpen(Session session, @PathParam(value = "uid") String uid) {
         SESSION_POOLS.put(uid, session);
         ONLINE_NUM.incrementAndGet();
         sendToAll(buildMsg(uid, "欢迎：" + uid + " 加入连接！"));
@@ -53,10 +54,11 @@ public class WebSocketServer {
 
     /**
      * 关闭连接时调用
+     *
      * @param uid 用户标志
      */
     @OnClose
-    public void onClose(@PathParam(value = "uid") String uid){
+    public void onClose(@PathParam(value = "uid") String uid) {
         SESSION_POOLS.remove(uid);
         ONLINE_NUM.decrementAndGet();
         sendToAll(buildMsg(uid, uid + " 断开连接"));
@@ -65,43 +67,46 @@ public class WebSocketServer {
 
     /**
      * 收到客户端信息
+     *
      * @param message 客户端发来的string
-     * @param uid uid 用户标志
+     * @param uid     uid 用户标志
      */
     @OnMessage
-    public void onMessage(String message, @PathParam(value = "uid") String uid){
+    public void onMessage(String message, @PathParam(value = "uid") String uid) {
         log.info("Client:[{}]， Message: [{}]", uid, message);
 
         JSONObject jsonObject = JSONObject.parseObject(message);
         Object toUserId = jsonObject.get("toUserId");
 
-        if (Objects.isNull(toUserId)){
+        if (Objects.isNull(toUserId)) {
             sendToAll(buildMsg(uid, jsonObject.get("content").toString()));
-        }else {
+        } else {
             sendMsgByUid(toUserId.toString(), buildMsg(uid, jsonObject.get("content").toString()));
         }
     }
 
     /**
      * 错误时调用
-     * @param session 用户标志
+     *
+     * @param session   用户标志
      * @param throwable throwable
      */
     @OnError
-    public void onError(Session session, Throwable throwable){
+    public void onError(Session session, Throwable throwable) {
         log.info("WebSocket_OnError:{}", session);
         throwable.printStackTrace();
     }
 
     /**
      * 给所有人发送消息
+     *
      * @param message msg
      */
     public void sendToAll(String message) {
-        for (Session session: SESSION_POOLS.values()) {
+        for (Session session : SESSION_POOLS.values()) {
             try {
                 sendMessage(session, message);
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -109,20 +114,22 @@ public class WebSocketServer {
 
     /**
      * 给指定用户发送信息
-     * @param uid 用户标志
+     *
+     * @param uid     用户标志
      * @param message 消息
      */
-    public void sendMsgByUid(String uid, String message){
+    public void sendMsgByUid(String uid, String message) {
         Session session = SESSION_POOLS.get(uid);
         try {
             sendMessage(session, message);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     /**
      * 发送消息
+     *
      * @param session 用户
      * @param message 消息
      * @throws IOException

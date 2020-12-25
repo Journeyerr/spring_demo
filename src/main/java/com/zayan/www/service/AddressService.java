@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author AnYuan
@@ -18,6 +18,7 @@ public interface AddressService extends IService<Address> {
 
     /**
      * 获取用户地址列表
+     *
      * @param userId userId
      * @return List<Address>
      */
@@ -25,8 +26,9 @@ public interface AddressService extends IService<Address> {
 
     /**
      * 创建用户地址
+     *
      * @param createForm createForm
-     * @param userId userId
+     * @param userId     userId
      * @return Address
      */
     Address saveAddress(AddressCreateForm createForm, Integer userId);

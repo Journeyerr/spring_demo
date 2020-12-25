@@ -49,7 +49,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private OrderMapper orderMapper;
 
-    @Transactional( rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Order storeOrder(CreateOrderForm form, Integer userId) {
 
@@ -64,7 +64,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Map<Integer, Product> idProductMap = products.stream().collect(Collectors.toMap(Product::getId, Function.identity()));
 
         BigDecimal totalFee = BigDecimal.ZERO;
-        for (OrderItemsForm itemsForm : itemsForms ) {
+        for (OrderItemsForm itemsForm : itemsForms) {
             Product product = idProductMap.get(itemsForm.getId());
             if (!product.getPrice().equals(itemsForm.getPrice())) {
                 throw new OrderException(ErrorEnum.ORDER_PRODUCT_PRICE_ERROR);
@@ -107,7 +107,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         IPage<OrderDetailVO> orderDetailVOIPage = orderMapper.listRecord(iPage, shopId, status, no);
         List<OrderDetailVO> records = orderDetailVOIPage.getRecords();
         if (!records.isEmpty()) {
-            records.forEach( order -> {
+            records.forEach(order -> {
                 order.setStatusName(OrderStatusEnum.getMsgByCode(order.getStatus()));
             });
         }

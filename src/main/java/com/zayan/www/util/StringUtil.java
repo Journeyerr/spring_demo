@@ -15,13 +15,14 @@ public class StringUtil {
 
     /**
      * 验证手机号
+     *
      * @param phone phone
      * @return bool
      */
     public static boolean isMobile(String phone) {
 
         String s2 = "^[1](([3][0-9])|([4][5,7,9])|([5][0-9])|([6][6])|([7][3,5,6,7,8])|([8][0-9])|([9][8,9]))[0-9]{8}$";
-        if(StringUtils.isNoneBlank(phone)){
+        if (StringUtils.isNoneBlank(phone)) {
             Pattern pattern = Pattern.compile(s2);
             Matcher matcher = pattern.matcher(phone);
             return matcher.matches();
@@ -31,6 +32,7 @@ public class StringUtil {
 
     /**
      * 生成订单号
+     *
      * @return String
      */
     public static String no() {
@@ -42,6 +44,7 @@ public class StringUtil {
 
     /**
      * md5加密
+     *
      * @return String
      */
     public static String md5(String string) {

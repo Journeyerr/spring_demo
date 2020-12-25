@@ -21,7 +21,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author AnYuan
@@ -29,27 +29,27 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/api/address")
-public class AddressController extends BaseController{
+public class AddressController extends BaseController {
 
     @Autowired
     private AddressService addressService;
 
     @ApiOperation("地址列表")
     @GetMapping("")
-    public BaseResult<List<Address>> index(){
+    public BaseResult<List<Address>> index() {
         User user = baseUser();
         return BaseResult.success(addressService.addressList(user.getId()));
     }
 
     @ApiOperation("创建地址")
     @PostMapping("/store")
-    public BaseResult<Address> store(@Valid @RequestBody AddressCreateForm createForm){
+    public BaseResult<Address> store(@Valid @RequestBody AddressCreateForm createForm) {
         return BaseResult.success(addressService.saveAddress(createForm, baseUser().getId()));
     }
 
     @ApiOperation("删除地址")
     @PostMapping("/delete/{addressId}")
-    public BaseResult<?> delete(@PathVariable("addressId") Integer addressId){
+    public BaseResult<?> delete(@PathVariable("addressId") Integer addressId) {
         User user = baseUser();
         Address address = addressService.getById(addressId);
         if (Objects.isNull(address) || !address.getUserId().equals(user.getId())) {

@@ -1,98 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zayan.www.repository.OrderMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Order">
-        <id column="id" property="id" />
-        <result column="no" property="no" />
-        <result column="user_id" property="userId" />
-        <result column="phone" property="phone" />
-        <result column="shop_id" property="shopId" />
-        <result column="is_takeaway" property="isTakeaway" />
-        <result column="location" property="location" />
-        <result column="total_fee" property="totalFee" />
-        <result column="payment" property="payment" />
-        <result column="box_fee" property="boxFee" />
-        <result column="delivery_fee" property="deliveryFee" />
-        <result column="discount_fee" property="discountFee" />
-        <result column="coupon_fee" property="couponFee" />
-        <result column="status" property="status" />
-        <result column="remarks" property="remarks" />
-        <result column="pickup_time" property="pickupTime" />
-        <result column="closed_at" property="closedAt" />
-        <result column="created_at" property="createdAt" />
-        <result column="updated_at" property="updatedAt" />
-        <result column="deleted_at" property="deletedAt" />
+        <id column="id" property="id"/>
+        <result column="no" property="no"/>
+        <result column="user_id" property="userId"/>
+        <result column="phone" property="phone"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="is_takeaway" property="isTakeaway"/>
+        <result column="location" property="location"/>
+        <result column="total_fee" property="totalFee"/>
+        <result column="payment" property="payment"/>
+        <result column="box_fee" property="boxFee"/>
+        <result column="delivery_fee" property="deliveryFee"/>
+        <result column="discount_fee" property="discountFee"/>
+        <result column="coupon_fee" property="couponFee"/>
+        <result column="status" property="status"/>
+        <result column="remarks" property="remarks"/>
+        <result column="pickup_time" property="pickupTime"/>
+        <result column="closed_at" property="closedAt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="deleted_at" property="deletedAt"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, no, user_id, phone, shop_id, is_takeaway, location, total_fee, payment, box_fee, delivery_fee, discount_fee, coupon_fee, status, remarks, pickup_time, closed_at, created_at, updated_at, deleted_at
+        id, no, user_id, phone, shop_id, is_takeaway, location, total_fee, payment, box_fee, delivery_fee, discount_fee,
+        coupon_fee, status, remarks, pickup_time, closed_at, created_at, updated_at, deleted_at
     </sql>
-
 
     <select id="listByUserId" resultMap="OrderDetailMap">
         select
-         a.id,
-         a.no,
-         a.user_id,
-         a.phone,
-         a.shop_id,
-         a.is_takeaway,
-         a.total_fee,
-         a.payment,
-         a.discount_fee,
-         a.delivery_fee,
-         a.coupon_fee,
-         a.status,
-         a.remarks,
-         a.pickup_time,
-         a.closed_at,
-         a.created_at,
-         b.id item_id,
-         b.order_id item_order_id,
-         b.product_id item_product_id,
-         b.name item_name,
-         b.discount_price item_discount_price,
-         b.price item_price,
-         b.total_fee item_total_fee,
-         b.quantity item_quantity,
-         b.actual_quantity item_actual_quantity,
-         b.image item_image,
-         b.created_at item_created_at,
-         c.name shop_name,
-         d.name address_name,
-         d.phone address_phone,
-         d.address address_address
-          from orders a
-           left join order_items b on a.id = b.order_id
-           left join shops c on a.shop_id = c.id
-           left join order_address d on a.id = d.order_id
+        a.id,
+        a.no,
+        a.user_id,
+        a.phone,
+        a.shop_id,
+        a.is_takeaway,
+        a.total_fee,
+        a.payment,
+        a.discount_fee,
+        a.delivery_fee,
+        a.coupon_fee,
+        a.status,
+        a.remarks,
+        a.pickup_time,
+        a.closed_at,
+        a.created_at,
+        b.id item_id,
+        b.order_id item_order_id,
+        b.product_id item_product_id,
+        b.name item_name,
+        b.discount_price item_discount_price,
+        b.price item_price,
+        b.total_fee item_total_fee,
+        b.quantity item_quantity,
+        b.actual_quantity item_actual_quantity,
+        b.image item_image,
+        b.created_at item_created_at,
+        c.name shop_name,
+        d.name address_name,
+        d.phone address_phone,
+        d.address address_address
+        from orders a
+        left join order_items b on a.id = b.order_id
+        left join shops c on a.shop_id = c.id
+        left join order_address d on a.id = d.order_id
         where a.user_id = #{userId} order by a.id desc
     </select>
 
     <select id="listRecord" resultMap="OrderDetailMap">
         select
-         a.id,
-         a.no,
-         a.user_id,
-         a.phone,
-         a.shop_id,
-         a.is_takeaway,
-         a.total_fee,
-         a.payment,
-         a.discount_fee,
-         a.delivery_fee,
-         a.coupon_fee,
-         a.status,
-         a.remarks,
-         a.pickup_time,
-         a.closed_at,
-         a.created_at,
-         c.name shop_name
-          from orders a
-           left join shops c on a.shop_id = c.id
+        a.id,
+        a.no,
+        a.user_id,
+        a.phone,
+        a.shop_id,
+        a.is_takeaway,
+        a.total_fee,
+        a.payment,
+        a.discount_fee,
+        a.delivery_fee,
+        a.coupon_fee,
+        a.status,
+        a.remarks,
+        a.pickup_time,
+        a.closed_at,
+        a.created_at,
+        c.name shop_name
+        from orders a
+        left join shops c on a.shop_id = c.id
         where a.deleted_at is null
         <if test="shopId != null and shopId != ''">
             and a.shop_id = #{shopId}
@@ -103,7 +102,7 @@
         <if test="no != null and no != ''">
             and a.no = #{no}
         </if>
-         order by a.id desc
+        order by a.id desc
     </select>
 
     <select id="getByNo" resultMap="OrderDetailMap">
@@ -145,7 +144,7 @@
         left join order_address d on a.id = d.order_id
         where a.no = #{no}
     </select>
-    
+
     <resultMap id="OrderDetailMap" type="com.zayan.www.model.vo.order.OrderDetailVO">
         <id column="id" property="id"/>
         <result column="no" property="no"/>

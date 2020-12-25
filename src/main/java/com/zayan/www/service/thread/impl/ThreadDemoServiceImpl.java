@@ -20,7 +20,7 @@ public class ThreadDemoServiceImpl implements ThreadDemoService {
 
     @Override
     public void printHelloWorld() {
-        new Thread(()->System.out.println("多线程任务执行！")).start();
+        new Thread(() -> System.out.println("多线程任务执行！")).start();
     }
 
     @Override
@@ -35,14 +35,14 @@ public class ThreadDemoServiceImpl implements ThreadDemoService {
         boolean terminated = executor.isTerminated();
     }
 
-    public synchronized void updateSku(String treadName){
+    public synchronized void updateSku(String treadName) {
         log.info("updateSku------->run:" + treadName);
 
         Skus sku = skusService.getById(1);
         log.info("byId---->{}", sku);
 
         Integer version = sku.getVersion();
-        sku.setStock(sku.getStock()-1);
+        sku.setStock(sku.getStock() - 1);
 
         boolean update = skusService.update(sku, new UpdateWrapper<Skus>().lambda().eq(Skus::getId, sku.getId()).eq(Skus::getVersion, version));
         log.info("update-result:{}", update);

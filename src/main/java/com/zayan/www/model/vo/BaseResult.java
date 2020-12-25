@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * @author AnYuan
  * @param <T>
+ * @author AnYuan
  */
 
 @Data
@@ -17,7 +17,7 @@ public class BaseResult<T> {
     private String requestId = "";
     private T data;
 
-    public static BaseResult<?> success(){
+    public static BaseResult<?> success() {
         return new BaseResult<>();
     }
 

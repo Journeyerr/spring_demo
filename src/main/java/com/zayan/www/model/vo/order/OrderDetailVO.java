@@ -102,7 +102,7 @@ public class OrderDetailVO {
     private LocalDateTime createdAt;
 
 
-    private List<OrderItemsVO>  items;
+    private List<OrderItemsVO> items;
 
     private AddressVO address;
 }

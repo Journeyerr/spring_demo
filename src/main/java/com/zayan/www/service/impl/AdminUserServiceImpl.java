@@ -23,7 +23,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author AnYuan
@@ -46,7 +46,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
                 .eq(AdminUser::getPhone, phone)
                 .eq(AdminUser::getPassword, DigestUtils.md5DigestAsHex(password.concat(sale).getBytes())));
 
-        if (Objects.isNull(adminUser)){
+        if (Objects.isNull(adminUser)) {
             throw new UserExcetpion(ErrorEnum.ACCOUNT_ERROR);
         }
 
@@ -72,7 +72,7 @@ public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser
     @Override
     public AdminUserVO editPassword(AdminEditPasswordForm form) {
 
-        if (!form.getPasswordNew().equals(form.getPasswordConfirm())){
+        if (!form.getPasswordNew().equals(form.getPasswordConfirm())) {
             throw new UserExcetpion(ErrorEnum.EDIT_PASSWORD_NO_EQUALS);
         }
         AdminUser adminUser = getById(form.getId());

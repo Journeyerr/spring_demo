@@ -21,6 +21,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         //如果设置为false时，被请求时，拦截器执行到此处将不会继续操作
         //如果设置为true时，请求将会继续执行后面的操作
     }
+
     /**
      * 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）
      */

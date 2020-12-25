@@ -21,8 +21,9 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 下单
+     *
      * @param createOrderForm createOrderForm
-     * @param userId userId
+     * @param userId          userId
      * @return Order
      */
     Order storeOrder(CreateOrderForm createOrderForm, Integer userId);
@@ -30,10 +31,11 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 分页查询订单
-     * @param iPage 分页
+     *
+     * @param iPage  分页
      * @param shopId shopId
      * @param status 订单状态
-     * @param no no
+     * @param no     no
      * @return ipage
      */
     IPage<OrderDetailVO> orderIPage(IPage iPage, Integer shopId, String status, String no);

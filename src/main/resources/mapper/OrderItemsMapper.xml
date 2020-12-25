@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zayan.www.repository.OrderItemsMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.OrderItems">
-        <id column="id" property="id" />
-        <result column="order_id" property="orderId" />
-        <result column="shop_id" property="shopId" />
-        <result column="product_id" property="productId" />
-        <result column="name" property="name" />
-        <result column="sku_id" property="skuId" />
-        <result column="quantity" property="quantity" />
-        <result column="discount_price" property="discountPrice" />
-        <result column="box_fee" property="boxFee" />
-        <result column="price" property="price" />
-        <result column="total_fee" property="totalFee" />
-        <result column="actual_quantity" property="actualQuantity" />
-        <result column="image" property="image" />
-        <result column="created_at" property="createdAt" />
-        <result column="updated_at" property="updatedAt" />
-        <result column="deleted_at" property="deletedAt" />
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="product_id" property="productId"/>
+        <result column="name" property="name"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="quantity" property="quantity"/>
+        <result column="discount_price" property="discountPrice"/>
+        <result column="box_fee" property="boxFee"/>
+        <result column="price" property="price"/>
+        <result column="total_fee" property="totalFee"/>
+        <result column="actual_quantity" property="actualQuantity"/>
+        <result column="image" property="image"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="deleted_at" property="deletedAt"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, order_id, shop_id, product_id, name, sku_id, quantity, discount_price, box_fee, price, total_fee, actual_quantity, image, created_at, updated_at, deleted_at
+        id, order_id, shop_id, product_id, name, sku_id, quantity, discount_price, box_fee, price, total_fee,
+        actual_quantity, image, created_at, updated_at, deleted_at
     </sql>
 
 </mapper>

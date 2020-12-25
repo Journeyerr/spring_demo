@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zayan.www.repository.ShopMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Shop">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="no" property="no" />
-        <result column="is_enable" property="isEnable" />
-        <result column="country" property="country" />
-        <result column="province" property="province" />
-        <result column="contact_phone" property="contactPhone" />
-        <result column="city" property="city" />
-        <result column="city_code" property="cityCode" />
-        <result column="district" property="district" />
-        <result column="district_code" property="districtCode" />
-        <result column="address" property="address" />
-        <result column="longitude" property="longitude" />
-        <result column="latitude" property="latitude" />
-        <result column="open_at" property="openAt" />
-        <result column="close_at" property="closeAt" />
-        <result column="delivery_distance" property="deliveryDistance" />
-        <result column="delivery_fee" property="deliveryFee" />
-        <result column="takeaway_status" property="takeawayStatus" />
-        <result column="tips" property="tips" />
-        <result column="qr_code" property="qrCode" />
-        <result column="created_at" property="createdAt" />
-        <result column="updated_at" property="updatedAt" />
-        <result column="deleted_at" property="deletedAt" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="no" property="no"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="country" property="country"/>
+        <result column="province" property="province"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="city" property="city"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="district" property="district"/>
+        <result column="district_code" property="districtCode"/>
+        <result column="address" property="address"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="open_at" property="openAt"/>
+        <result column="close_at" property="closeAt"/>
+        <result column="delivery_distance" property="deliveryDistance"/>
+        <result column="delivery_fee" property="deliveryFee"/>
+        <result column="takeaway_status" property="takeawayStatus"/>
+        <result column="tips" property="tips"/>
+        <result column="qr_code" property="qrCode"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="deleted_at" property="deletedAt"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, no, is_enable, country, province, contact_phone, city, city_code, district, district_code, address, longitude, latitude, open_at, close_at, delivery_distance, delivery_fee, takeaway_status, tips, qr_code, created_at, updated_at, deleted_at
+        id, name, no, is_enable, country, province, contact_phone, city, city_code, district, district_code, address,
+        longitude, latitude, open_at, close_at, delivery_distance, delivery_fee, takeaway_status, tips, qr_code,
+        created_at, updated_at, deleted_at
     </sql>
 
     <select id="list" resultType="com.zayan.www.model.entity.Shop">

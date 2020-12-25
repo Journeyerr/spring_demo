@@ -45,10 +45,11 @@ public class ListUtil {
 
     /**
      * 对List进行分页
-     * @param list 数据源
+     *
+     * @param list        数据源
      * @param currentPage 当前页
-     * @param size 每页显示的记录数
-     * @param pageNum 总页数
+     * @param size        每页显示的记录数
+     * @param pageNum     总页数
      * @return
      */
     public static List getPageList(List list, int currentPage, int size, int pageNum) {
@@ -57,7 +58,7 @@ public class ListUtil {
         int fromIndex = 0;
         // 截取几个
         int toIndex = 0;
-        if(list == null || list.size() == 0){
+        if (list == null || list.size() == 0) {
             return null;
         }
         // 当前页小于或等于总页数时执行

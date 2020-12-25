@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author AnYuan
@@ -28,7 +28,7 @@ public class BannerController {
     @GetMapping("")
     public BaseResult<IPage<BannerVO>> store(@RequestParam("shopId") Integer shopId,
                                              @RequestParam(value = "pageSize", required = false) Integer pageSize,
-                                             @RequestParam(value = "page", required = false) Integer page){
+                                             @RequestParam(value = "page", required = false) Integer page) {
 
         return BaseResult.success(bannerService.listRecord(shopId, 1, page, pageSize));
     }

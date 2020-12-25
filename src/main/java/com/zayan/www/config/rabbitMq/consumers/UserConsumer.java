@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * rabbit 消费
+ *
  * @author AnYuan
  * @date 03-14
  */

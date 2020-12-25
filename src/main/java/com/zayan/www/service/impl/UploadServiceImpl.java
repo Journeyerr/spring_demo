@@ -24,7 +24,7 @@ import java.util.UUID;
 @Slf4j
 public class UploadServiceImpl implements UploadService {
 
-    private String checkFile(MultipartFile multipartFile, List<String> allowSuffix)  {
+    private String checkFile(MultipartFile multipartFile, List<String> allowSuffix) {
 
         String originalFileName = multipartFile.getOriginalFilename();
         if (multipartFile.isEmpty() || Objects.isNull(originalFileName)) {
@@ -80,7 +80,7 @@ public class UploadServiceImpl implements UploadService {
             return "/" + filePath;
         } catch (IOException ioException) {
             log.info("文件读取失败：{}: error:{}", fileName, ioException.getMessage());
-        } catch (OSSException ossException){
+        } catch (OSSException ossException) {
             log.info("文件上传阿里云失败：{}: error:{}", fileName, ossException.getMessage());
         } catch (ClientException clientException) {
             System.out.println(clientException);

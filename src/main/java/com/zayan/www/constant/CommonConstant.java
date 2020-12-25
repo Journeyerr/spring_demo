@@ -2,8 +2,8 @@ package com.zayan.www.constant;
 
 /**
  * 公共常量
- * @author AnYuan
  *
+ * @author AnYuan
  */
 public interface CommonConstant {
 

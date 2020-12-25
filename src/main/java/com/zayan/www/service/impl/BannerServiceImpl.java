@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author AnYuan
@@ -32,7 +32,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
         if (CollectionUtils.isEmpty(listVo)) {
             return bannerVOIPage;
         }
-        listVo.forEach( v -> v.setBannerImage(ALiYunOss.BUCKET + v.getBannerImage()));
+        listVo.forEach(v -> v.setBannerImage(ALiYunOss.BUCKET + v.getBannerImage()));
         return bannerVOIPage;
     }
 }

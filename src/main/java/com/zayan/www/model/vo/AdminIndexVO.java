@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * 首页概况
+ *
  * @author AnYuan
  * @date 2020-08-26
  */
@@ -20,7 +21,7 @@ public class AdminIndexVO {
     private List<Info> infos;
 
     @Data
-    public static class Info{
+    public static class Info {
         private String name;
         private Integer count;
     }

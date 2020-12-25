@@ -18,7 +18,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author AnYuan
@@ -35,14 +35,14 @@ public class AdminBannerController {
     @GetMapping("/index")
     public BaseResult<IPage<BannerVO>> store(@RequestParam(value = "shopId", required = false) Integer shopId,
                                              @RequestParam("pageSize") Integer pageSize,
-                                             @RequestParam("page") Integer page){
+                                             @RequestParam("page") Integer page) {
 
         return BaseResult.success(bannerService.listRecord(shopId, 1, page, pageSize));
     }
 
     @ApiOperation("创建Banner")
     @PostMapping("/store")
-    public BaseResult<Banner> store(@RequestBody BannerCreateForm createForm){
+    public BaseResult<Banner> store(@RequestBody BannerCreateForm createForm) {
 
         Banner banner = new Banner();
         banner.setImageId(createForm.getImageId());
@@ -55,7 +55,7 @@ public class AdminBannerController {
 
     @ApiOperation("删除banner")
     @PostMapping("/delete/{bannerId}")
-    public BaseResult<?> delete(@PathVariable("bannerId") Integer bannerId){
+    public BaseResult<?> delete(@PathVariable("bannerId") Integer bannerId) {
         Banner banner = bannerService.getById(bannerId);
         if (Objects.isNull(banner)) {
             throw new BaseException(ErrorEnum.UPDATE_FAIL);
@@ -67,7 +67,7 @@ public class AdminBannerController {
 
     @ApiOperation("更新banner状态")
     @PostMapping("/update/{bannerId}")
-    public BaseResult<?> update(@PathVariable("bannerId") Integer bannerId){
+    public BaseResult<?> update(@PathVariable("bannerId") Integer bannerId) {
         Banner banner = bannerService.getById(bannerId);
         if (Objects.isNull(banner)) {
             throw new BaseException(ErrorEnum.UPDATE_FAIL);

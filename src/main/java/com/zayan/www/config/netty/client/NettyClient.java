@@ -8,6 +8,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * netty client
+ *
  * @author AnYuan
  */
 
@@ -39,7 +40,7 @@ public class NettyClient {
         } catch (InterruptedException e) {
             e.printStackTrace();
             group.shutdownGracefully();
-        }finally {
+        } finally {
             group.shutdownGracefully();
         }
     }

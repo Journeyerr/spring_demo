@@ -18,7 +18,7 @@ public class BaseController {
 
     protected User baseUser() {
         User user = userService.getById(RequestUtil.getUserIdFormContextToken());
-        if (Objects.isNull(user)){
+        if (Objects.isNull(user)) {
             throw new UnAuthorizedException(ErrorEnum.USER_EXCEPTION);
         }
         return user;

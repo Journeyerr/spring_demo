@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.zayan.www.repository")
-public class ZayanApplication{
+public class ZayanApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ZayanApplication.class, args);

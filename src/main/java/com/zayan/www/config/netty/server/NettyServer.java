@@ -12,6 +12,7 @@ import java.net.InetSocketAddress;
 
 /**
  * netty servers
+ *
  * @author AnYuan
  */
 
@@ -36,7 +37,7 @@ public class NettyServer {
 
             ChannelFuture future = serverBootstrap.bind(address).sync();
 
-            log.info("NettyServer start listen at: " + address.getHostName() + ":" +address.getPort());
+            log.info("NettyServer start listen at: " + address.getHostName() + ":" + address.getPort());
 
             future.channel().closeFuture().sync();
 

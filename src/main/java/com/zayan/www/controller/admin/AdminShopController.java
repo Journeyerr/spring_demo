@@ -35,7 +35,7 @@ public class AdminShopController {
 
     @GetMapping("/index")
     public BaseResult<IPage<Shop>> index(@RequestParam("page") Integer page,
-                                   @RequestParam("pageSize") Integer pageSize) {
+                                         @RequestParam("pageSize") Integer pageSize) {
         return BaseResult.success(shopMapper.list(new Page(page, pageSize)));
     }
 

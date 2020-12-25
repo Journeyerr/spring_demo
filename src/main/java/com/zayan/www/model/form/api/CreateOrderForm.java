@@ -40,7 +40,6 @@ public class CreateOrderForm {
     private String pickupTime;
 
 
-
     public static Order coverOrder(CreateOrderForm form, Integer userId) {
         Order order = new Order();
         order.setUserId(userId);

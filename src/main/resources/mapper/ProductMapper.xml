@@ -1,22 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zayan.www.repository.ProductMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.Product">
-        <id column="id" property="id" />
-        <result column="shop_id" property="shopId" />
-        <result column="name" property="name" />
-        <result column="price" property="price" />
-        <result column="quantity" property="quantity" />
-        <result column="unit" property="unit" />
-        <result column="remark" property="remark" />
-        <result column="image_id" property="imageId" />
-        <result column="sort" property="sort" />
-        <result column="status" property="status" />
-        <result column="created_at" property="createdAt" />
-        <result column="updated_at" property="updatedAt" />
-        <result column="deleted_at" property="deletedAt" />
+        <id column="id" property="id"/>
+        <result column="shop_id" property="shopId"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <result column="quantity" property="quantity"/>
+        <result column="unit" property="unit"/>
+        <result column="remark" property="remark"/>
+        <result column="image_id" property="imageId"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="deleted_at" property="deletedAt"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -24,7 +23,8 @@
         id, shop_id, name, price, quantity, unit, remark, image_id, status, sort, created_at, updated_at, deleted_at
     </sql>
     <select id="productsList" resultType="com.zayan.www.model.vo.product.ProductVO">
-        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.sort, a.created_at, b.path as product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
+        select a.id, a.name, a.price, a.quantity, a.unit, a.remark, a.shop_id, a.status, a.sort, a.created_at, b.path as
+        product_image, c.name as shop_name from products a left join images b on a.image_id = b.id
         left join shops c on a.shop_id = c.id
         where a.deleted_at is null
         <if test="shopId != null and shopId != ''">
@@ -46,7 +46,7 @@
 
     <select id="listProductByIds" resultType="com.zayan.www.model.entity.Product">
         select * from products where id IN
-        <foreach collection="ids" item="id"  open="(" close=")" separator=",">
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </select>

@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Transactional(rollbackFor = {WxErrorException.class})
     @Override
-    public String wxLoginGetToken(String openId, String sessionKey){
+    public String wxLoginGetToken(String openId, String sessionKey) {
 
         User userOne = getOne(new QueryWrapper<User>().lambda().eq(User::getWxOpenId, openId));
         Map<String, Object> userMap = Maps.newHashMap();
@@ -45,7 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             user.setLastLoginAt(LocalDateTime.now());
             save(user);
             userMap.put("userId", user.getId());
-        }else {
+        } else {
             userOne.setLastLoginAt(LocalDateTime.now());
             updateById(userOne);
             userMap.put("userId", userOne.getId());

@@ -9,12 +9,12 @@ import java.net.InetSocketAddress;
 
 /**
  * boot NettyApplication
- * @author AnYuan
  *
+ * @author AnYuan
  */
 
 //@SpringBootApplication
-public class NettyApplication implements CommandLineRunner{
+public class NettyApplication implements CommandLineRunner {
 
     @Value("${netty.port}")
     private Integer prot;
@@ -25,7 +25,7 @@ public class NettyApplication implements CommandLineRunner{
     @Autowired
     private NettyServer nettyServer;
 
-//    @Override
+    //    @Override
     public void run(String... args) throws Exception {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(url, prot);
         System.out.println("NettyApplication Run --->>> " + url + ":" + prot);

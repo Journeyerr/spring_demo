@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Slf4j
 @ControllerAdvice
-public class GlobalExceptionHandler{
+public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(value = BaseException.class)
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
-    public Map<String, Object> ValidExceptionHandle(MethodArgumentNotValidException e){
+    public Map<String, Object> ValidExceptionHandle(MethodArgumentNotValidException e) {
 
         BindingResult result = e.getBindingResult();
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(2);

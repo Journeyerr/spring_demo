@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author AnYuan
@@ -21,6 +21,7 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 保存图片路径 和 商品图片
+     *
      * @param createForm createForm
      * @return ProductImageShow
      */
@@ -28,10 +29,11 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 获取门店商品展示图
-     * @param page page
+     *
+     * @param page     page
      * @param pageSize pageSize
-     * @param shopId shopId
-     * @param status status
+     * @param shopId   shopId
+     * @param status   status
      * @param keyWorld keyWorld
      * @return List<ProductVO>
      */
@@ -39,6 +41,7 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 保存图片路径 和 商品图片
+     *
      * @param editFormForm createForm
      * @return ProductImageShow
      */

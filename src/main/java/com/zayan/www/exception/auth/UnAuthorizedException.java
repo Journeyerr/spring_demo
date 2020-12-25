@@ -9,7 +9,7 @@ import com.zayan.www.exception.BaseException;
 
 public class UnAuthorizedException extends BaseException {
 
-    public UnAuthorizedException(ErrorEnum errorEnum){
+    public UnAuthorizedException(ErrorEnum errorEnum) {
         super(errorEnum);
     }
 }

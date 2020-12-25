@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author AnYuan
@@ -16,6 +16,7 @@ public interface ShopMapper extends BaseMapper<Shop> {
 
     /**
      * 获取shop列表
+     *
      * @param page page
      * @return Shops
      */

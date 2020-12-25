@@ -21,7 +21,7 @@ import java.util.Objects;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author AnYuan
@@ -31,7 +31,7 @@ import java.util.Objects;
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
 
 
-    private Product buildProduct(Product product, ProductCreateForm createForm){
+    private Product buildProduct(Product product, ProductCreateForm createForm) {
 
         product.setName(createForm.getName());
         product.setImageId(createForm.getImageId());
@@ -54,12 +54,12 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public IPage<ProductVO> listRecord( Integer page, Integer pageSize, Integer shopId, Integer status, String keyWord) {
+    public IPage<ProductVO> listRecord(Integer page, Integer pageSize, Integer shopId, Integer status, String keyWord) {
 
         IPage<ProductVO> imageVOIPage = this.baseMapper.productsList(new Page(page, pageSize), shopId, status, keyWord);
         List<ProductVO> listVo = imageVOIPage.getRecords();
         if (!listVo.isEmpty()) {
-            listVo.forEach( v -> v.setProductImage(ALiYunOss.BUCKET + v.getProductImage()));
+            listVo.forEach(v -> v.setProductImage(ALiYunOss.BUCKET + v.getProductImage()));
         }
         return imageVOIPage;
     }

@@ -28,7 +28,7 @@ import java.util.Map;
 @Api(tags = "用户APi")
 @RestController
 @RequestMapping("/api/user")
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -37,13 +37,13 @@ public class UserController extends BaseController{
 
     @ApiOperation("微信登录")
     @GetMapping("/wx/login")
-    public BaseResult<?> wxLogin(@RequestParam("code") String code){
+    public BaseResult<?> wxLogin(@RequestParam("code") String code) {
         try {
             WxMaJscode2SessionResult result = wxMaService.jsCode2SessionInfo(code);
             Map<String, String> userMap = Maps.newHashMapWithExpectedSize(1);
             userMap.put("token", userService.wxLoginGetToken(result.getOpenid(), result.getSessionKey()));
             return BaseResult.success(userMap);
-        }catch (WxErrorException e){
+        } catch (WxErrorException e) {
             log.info("Wx_Login_Exception:{}", e.getMessage());
             throw new BaseException(ErrorEnum.SERVICE_ERROR);
         }
@@ -51,7 +51,7 @@ public class UserController extends BaseController{
 
     @ApiOperation("用户信息")
     @GetMapping("")
-    public BaseResult<UserVO> show(){
+    public BaseResult<UserVO> show() {
         User user = baseUser();
         UserVO userVO = new UserVO();
         BeanUtils.copyProperties(user, userVO);
@@ -61,7 +61,7 @@ public class UserController extends BaseController{
 
     @ApiOperation("微信后去用户信息更新")
     @PostMapping("/update")
-    public BaseResult<UserVO> updateUserInfo(@RequestBody UserUpdateInfoForm infoForm){
+    public BaseResult<UserVO> updateUserInfo(@RequestBody UserUpdateInfoForm infoForm) {
         User user = baseUser();
 
         user.setName(infoForm.getNickName());

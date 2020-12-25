@@ -20,6 +20,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     /**
      * 根据userId 查询所有订单
+     *
      * @param userId userId
      * @return List<OrderDetailVO>
      */
@@ -27,14 +28,15 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     /**
      * 根据shopId status查询所有订单
+     *
      * @param shopId shopId
      * @param status status
      * @return List<OrderDetailVO>
      */
     IPage<OrderDetailVO> listRecord(IPage iPage,
-                                   @Param("shopId") Integer shopId,
-                                   @Param("status") String status,
-                                   @Param("no") String no);
+                                    @Param("shopId") Integer shopId,
+                                    @Param("status") String status,
+                                    @Param("no") String no);
 
 
     OrderDetailVO getByNo(@Param("no") String no);

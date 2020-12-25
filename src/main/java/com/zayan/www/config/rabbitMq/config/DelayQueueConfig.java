@@ -24,6 +24,7 @@ public class DelayQueueConfig {
 
     /**
      * 声明延迟 Exchange
+     *
      * @return delayExchange
      */
     @Bean("delayExchange")
@@ -33,6 +34,7 @@ public class DelayQueueConfig {
 
     /**
      * 声明死信队列
+     *
      * @return deadLetterExchange
      */
     @Bean("deadLetterExchange")
@@ -68,41 +70,41 @@ public class DelayQueueConfig {
 
     // 声明死信队列A 用于接收延时10s处理的消息
     @Bean("deadLetterQueueA")
-    public Queue deadLetterQueueA(){
+    public Queue deadLetterQueueA() {
         return new Queue(DEAD_LETTER_QUEUEA);
     }
 
     // 声明死信队列B 用于接收延时60s处理的消息
     @Bean("deadLetterQueueB")
-    public Queue deadLetterQueueB(){
+    public Queue deadLetterQueueB() {
         return new Queue(DEAD_LETTER_QUEUEB);
     }
 
     // 将 队列A 绑定到延迟交换机上面
     @Bean
     public Binding delayBindingA(@Qualifier("delayQueueA") Queue queue,
-                                 @Qualifier("delayExchange") DirectExchange exchange){
+                                 @Qualifier("delayExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(DELAY_QUEUEA_ROUTING_KEY);
     }
 
     // 将 队列B 绑定到延迟交换机上面
     @Bean
     public Binding delayBindingB(@Qualifier("delayQueueB") Queue queue,
-                                 @Qualifier("delayExchange") DirectExchange exchange){
+                                 @Qualifier("delayExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(DELAY_QUEUEB_ROUTING_KEY);
     }
 
     // 将 死信队列A 绑定到死信交换机上
     @Bean
     public Binding deadLetterBindingA(@Qualifier("deadLetterQueueA") Queue queue,
-                                      @Qualifier("deadLetterExchange") DirectExchange exchange){
+                                      @Qualifier("deadLetterExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(DEAD_LETTER_QUEUEA_ROUTING_KEY);
     }
 
     // 将 死信队列B 绑定到死信交换机上
     @Bean
     public Binding deadLetterBindingB(@Qualifier("deadLetterQueueB") Queue queue,
-                                      @Qualifier("deadLetterExchange") DirectExchange exchange){
+                                      @Qualifier("deadLetterExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(DEAD_LETTER_QUEUEB_ROUTING_KEY);
     }
 

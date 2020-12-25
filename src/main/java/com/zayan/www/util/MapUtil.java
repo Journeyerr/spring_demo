@@ -5,6 +5,7 @@ package com.zayan.www.util;
 
 
 import org.apache.commons.lang3.StringUtils;
+
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -13,28 +14,29 @@ import java.util.*;
  */
 public class MapUtil {
 
-	public static Map<String, String> getMap(String mapStr) {
-		if(StringUtils.isEmpty(mapStr)) {
-			return null;
-		}
-		Map<String, String> map = new HashMap<>();
-		String[] key2ValArr = mapStr.replace("{", "").replace("}", "").split(", ");
-		for (int i = 0; i < key2ValArr.length; i++) {
-			String[] keyAndVal = key2ValArr[i].split("="); 
-			map.put(keyAndVal[0], keyAndVal[1]);
-		}
-		return map;
-	}
-	
+    public static Map<String, String> getMap(String mapStr) {
+        if (StringUtils.isEmpty(mapStr)) {
+            return null;
+        }
+        Map<String, String> map = new HashMap<>();
+        String[] key2ValArr = mapStr.replace("{", "").replace("}", "").split(", ");
+        for (int i = 0; i < key2ValArr.length; i++) {
+            String[] keyAndVal = key2ValArr[i].split("=");
+            map.put(keyAndVal[0], keyAndVal[1]);
+        }
+        return map;
+    }
+
     /**
      * map转为url
      * 结果类似 token=abccdssx&sign=ccsacccss
+     *
      * @return
      */
-    public static String toUrl(Map<String, String> map){
+    public static String toUrl(Map<String, String> map) {
 
         String url = "";
-        for(Map.Entry<String, String> entry : map.entrySet()){
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             url += entry.getKey() + "=" + entry.getValue() + "&";
         }
 
@@ -46,10 +48,11 @@ public class MapUtil {
 
     /**
      * map转url 排序后转
+     *
      * @param map
      * @return
      */
-    public static String toUrlWithSort(Map<String, String> map){
+    public static String toUrlWithSort(Map<String, String> map) {
         List<String> keys = new ArrayList<>(map.keySet());
         Collections.sort(keys);
 
@@ -70,10 +73,11 @@ public class MapUtil {
     /**
      * 去除不参与签名的参数
      * 支付宝中是去除sign和sign_type
+     *
      * @param map
      * @return
      */
-    public static Map<String, String> removeParamsForAlipaySign(Map<String, String> map){
+    public static Map<String, String> removeParamsForAlipaySign(Map<String, String> map) {
         map.remove("sign");
         map.remove("sign_type");
 
@@ -82,13 +86,14 @@ public class MapUtil {
 
     /**
      * 移除map中空的key和value
+     *
      * @param map
      * @return
      */
     public static Map<String, String> removeEmptyKeyAndValue(Map<String, String> map) {
 
         Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             Map.Entry<String, String> entry = it.next();
             String key = entry.getKey();
             String value = entry.getValue();
@@ -103,6 +108,7 @@ public class MapUtil {
 
     /**
      * 将map中的key转换成小写
+     *
      * @param map
      * @return
      */
@@ -110,7 +116,7 @@ public class MapUtil {
         Map<String, String> responseMap = new HashMap<>();
 
         Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             Map.Entry<String, String> entry = it.next();
             String key = entry.getKey();
             String value = entry.getValue();
@@ -123,10 +129,11 @@ public class MapUtil {
 
     /**
      * map转url 排序后转
+     *
      * @param map
      * @return
      */
-    public static String toUrlWithSortAndEncode(Map<String, String> map){
+    public static String toUrlWithSortAndEncode(Map<String, String> map) {
         List<String> keys = new ArrayList<>(map.keySet());
         Collections.sort(keys);
 

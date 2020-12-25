@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * rabbitmq 服务
+ *
  * @author AnYuan
  * @date 2020-06-23
  */

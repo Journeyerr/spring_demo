@@ -9,6 +9,7 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
  * server handler
+ *
  * @author AnYuan
  */
 
@@ -21,7 +22,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         channels.add(ctx.channel());
         System.out.println("NettyServerHandler handlerAdded --->>> "
                 + ctx.channel().id()
-                + " Join Room  --->>> Online:" +channels.size());
+                + " Join Room  --->>> Online:" + channels.size());
     }
 
     @Override
@@ -29,7 +30,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         channels.remove(ctx.channel());
         System.out.println("NettyServerHandler handlerRemoved --->>> "
                 + ctx.channel().id()
-                + " left Room  --->>> Online:" +channels.size());
+                + " left Room  --->>> Online:" + channels.size());
     }
 
 
@@ -50,10 +51,10 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("NettyServerHandler ChannelRead --->>> " + ctx.channel().id());
         System.out.println("Server: " + ctx.channel().remoteAddress() + " --->>> " + msg.toString());
 
-        channels.forEach( v -> {
+        channels.forEach(v -> {
             System.out.println("push------>> " + v.id());
 
-            v.writeAndFlush("NettyServerHandler " + ctx.channel().id() +" say: " + msg.toString());
+            v.writeAndFlush("NettyServerHandler " + ctx.channel().id() + " say: " + msg.toString());
         });
 //
 //        // 将消息写入返回ctx

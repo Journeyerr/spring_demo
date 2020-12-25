@@ -26,7 +26,7 @@ import java.util.Objects;
  */
 @RestController
 @RequestMapping("/api/order")
-public class OrdersController extends BaseController{
+public class OrdersController extends BaseController {
 
     @Autowired
     private OrderService orderService;

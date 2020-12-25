@@ -9,9 +9,10 @@ public interface RabbitMqService<T> {
 
     /**
      * 统一发送mq
-     * @param exchange 交换机
+     *
+     * @param exchange   交换机
      * @param routingKey 路由key
-     * @param data 数据
+     * @param data       数据
      */
     void send(String exchange, String routingKey, T data);
 }

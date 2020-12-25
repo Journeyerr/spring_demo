@@ -44,9 +44,9 @@ public class RabbitMqTestController {
 
         if (TYPE_TEN.equals(type)) {
             routingKey = DelayQueueConfig.DELAY_QUEUEA_ROUTING_KEY;
-        }else if (TYPE_SIXTY.equals(type)) {
+        } else if (TYPE_SIXTY.equals(type)) {
             routingKey = DelayQueueConfig.DELAY_QUEUEB_ROUTING_KEY;
-        }else {
+        } else {
             return BaseResult.error("type error");
         }
         rabbitMqService.send(DelayQueueConfig.DELAY_EXCHANGE, routingKey, msgMap);

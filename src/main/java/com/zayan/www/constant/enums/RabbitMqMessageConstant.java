@@ -2,6 +2,7 @@ package com.zayan.www.constant.enums;
 
 /**
  * rabbitMq消息队列
+ *
  * @author AnYuan
  * @date 03-12
  */

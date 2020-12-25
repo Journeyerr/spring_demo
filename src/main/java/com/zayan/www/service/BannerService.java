@@ -7,7 +7,7 @@ import com.zayan.www.model.vo.banner.BannerVO;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author AnYuan

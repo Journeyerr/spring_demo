@@ -26,18 +26,26 @@ import java.util.Arrays;
  */
 public class GenertorServiceEntity {
 
-    /** 作者. */
+    /**
+     * 作者.
+     */
     private static final String AUTHOR = "AnYuan";
 
-    /** 数据库 .*/
+    /**
+     * 数据库 .
+     */
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true" ;
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true";
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
 
-    /** 代码生成输出目录. */
+    /**
+     * 代码生成输出目录.
+     */
     private static final String OUTPUT_DIR = "/Users/AnYuan/web/java/study/spring_demo/";
-    /** 生成的包名 .*/
+    /**
+     * 生成的包名 .
+     */
     private static final String PACKEGE_NAME = "com.zayan.www";
 
     /**
@@ -67,7 +75,7 @@ public class GenertorServiceEntity {
                 .setRestControllerStyle(true) //生成controller的注解为@RestController
                 .setTableFillList(Arrays.asList(
                         new TableFill("created_at", FieldFill.INSERT),
-                        new TableFill("updated_at",FieldFill.INSERT_UPDATE)));
+                        new TableFill("updated_at", FieldFill.INSERT_UPDATE)));
 
         packageConfig.setParent(PACKEGE_NAME)
                 .setMapper("repository")
@@ -77,7 +85,7 @@ public class GenertorServiceEntity {
 
         globalConfig.setActiveRecord(false)
                 .setAuthor(AUTHOR)
-                .setOutputDir(OUTPUT_DIR+"/src/main/java")
+                .setOutputDir(OUTPUT_DIR + "/src/main/java")
                 .setFileOverride(false)
                 .setIdType(IdType.AUTO)     //主键策略
                 .setServiceName("%sService")

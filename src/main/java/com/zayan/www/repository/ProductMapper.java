@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author AnYuan
@@ -27,6 +27,7 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     /**
      * 查询商品list
+     *
      * @param ids ids
      * @return List<Product>
      */
