@@ -1,4 +1,4 @@
-package com.zayan.www.rabbitMq.config;
+package com.zayan.www.rabbitmq.config;
 
 import com.google.common.collect.Maps;
 import org.springframework.amqp.core.*;

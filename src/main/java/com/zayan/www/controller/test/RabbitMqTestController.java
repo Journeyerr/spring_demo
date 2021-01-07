@@ -1,8 +1,8 @@
 package com.zayan.www.controller.test;
 
 import com.google.common.collect.Maps;
-import com.zayan.www.rabbitMq.config.DelayQueueConfig;
-import com.zayan.www.constant.enums.RabbitMqMessageConstant;
+import com.zayan.www.constant.RabbitMqConstant;
+import com.zayan.www.rabbitmq.config.DelayQueueConfig;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.RabbitMqService;
 import com.zayan.www.service.UserService;
@@ -28,7 +28,7 @@ public class RabbitMqTestController {
 
     @GetMapping("send")
     public BaseResult<?> sendMq() {
-        rabbitMqService.send(RabbitMqMessageConstant.USER_EXCHANGE, "", userService.getById(1));
+        rabbitMqService.send(RabbitMqConstant.USER_EXCHANGE, "", userService.getById(1));
         return BaseResult.success();
     }
 

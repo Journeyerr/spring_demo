@@ -1,7 +1,7 @@
-package com.zayan.www.rabbitMq.consumers;
+package com.zayan.www.rabbitmq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zayan.www.constant.enums.RabbitMqMessageConstant;
+import com.zayan.www.constant.RabbitMqConstant;
 import com.zayan.www.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -23,8 +23,8 @@ public class UserConsumer {
 
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = RabbitMqMessageConstant.USER_QUEUE, durable = "true"),
-            exchange = @Exchange(value = RabbitMqMessageConstant.USER_EXCHANGE)
+            value = @Queue(value = RabbitMqConstant.USER_QUEUE, durable = "true"),
+            exchange = @Exchange(value = RabbitMqConstant.USER_EXCHANGE)
     ))
     public void onMassageUser(Message message) {
         log.info("UserConsumer 开始消费----->{}", message);

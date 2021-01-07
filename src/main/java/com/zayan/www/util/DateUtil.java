@@ -1,7 +1,9 @@
 package com.zayan.www.util;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,4 +47,13 @@ public class DateUtil {
         cal.add(Calendar.YEAR, year);
         return cal.getTime();
     }
+
+    /**
+     * 获取时间戳
+     * @return
+     */
+    public static long getTimestampByLocalDateTime() {
+        return LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
 }

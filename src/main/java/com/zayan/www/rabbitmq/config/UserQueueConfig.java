@@ -1,6 +1,6 @@
-package com.zayan.www.rabbitMq.config;
+package com.zayan.www.rabbitmq.config;
 
-import com.zayan.www.constant.enums.RabbitMqMessageConstant;
+import com.zayan.www.constant.RabbitMqConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 
@@ -17,13 +17,13 @@ public class UserQueueConfig {
     //    @Bean
     public Queue userMassageQueue() {
         log.info("userMassageQueue init");
-        return new Queue(RabbitMqMessageConstant.USER_QUEUE);
+        return new Queue(RabbitMqConstant.USER_QUEUE);
     }
 
     //    @Bean
     public DirectExchange userMassageExchange() {
         log.info("userMassageExchange init");
-        return new DirectExchange(RabbitMqMessageConstant.USER_EXCHANGE);
+        return new DirectExchange(RabbitMqConstant.USER_EXCHANGE);
     }
 
     //    @Bean
