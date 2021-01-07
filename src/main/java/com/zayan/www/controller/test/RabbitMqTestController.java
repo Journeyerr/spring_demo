@@ -1,10 +1,10 @@
 package com.zayan.www.controller.test;
 
 import com.google.common.collect.Maps;
-import com.zayan.www.config.rabbitMq.config.DelayQueueConfig;
+import com.zayan.www.rabbitMq.config.DelayQueueConfig;
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;
 import com.zayan.www.model.vo.BaseResult;
-import com.zayan.www.config.rabbitMq.publisher.RabbitMqService;
+import com.zayan.www.service.RabbitMqService;
 import com.zayan.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class RabbitMqTestController {
     private static final Integer TYPE_SIXTY = 60;
 
     @Autowired
-    private RabbitMqService<Object> rabbitMqService;
+    private RabbitMqService rabbitMqService;
 
     @Autowired
     private UserService userService;

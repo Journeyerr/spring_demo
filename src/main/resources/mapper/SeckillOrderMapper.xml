@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zayan.www.repository.SeckillOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zayan.www.model.entity.SeckillOrder">
+        <id column="id" property="id" />
+        <result column="no" property="no" />
+        <result column="user_id" property="userId" />
+        <result column="sku_no" property="skuNo" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="deleted_at" property="deletedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, no, user_id, sku_no, created_at, updated_at, deleted_at
+    </sql>
+
+</mapper>

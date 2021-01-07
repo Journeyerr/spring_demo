@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -55,5 +56,14 @@ public class StringUtil {
         } catch (Exception e) {
             throw new RuntimeException("加密出现错误");
         }
+    }
+
+    /**
+     * 获取uuid
+     * @param count 长度 min 1, max 32
+     * @return string
+     */
+    public static String getUuid(Integer count) {
+        return UUID.randomUUID().toString().replace("-", "").substring(0,count);
     }
 }

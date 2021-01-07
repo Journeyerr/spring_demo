@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SkusService extends IService<Skus> {
 
+    Skus getByNo(Integer no);
 }

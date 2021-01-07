@@ -1,9 +1,8 @@
-package com.zayan.www.config.rabbitMq.config;
+package com.zayan.www.rabbitMq.config;
 
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author AnYuan

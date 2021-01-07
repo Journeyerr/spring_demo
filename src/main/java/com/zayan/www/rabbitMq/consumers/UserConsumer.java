@@ -1,4 +1,4 @@
-package com.zayan.www.config.rabbitMq.consumers;
+package com.zayan.www.rabbitMq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.constant.enums.RabbitMqMessageConstant;
@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Component;
 
 /**
  * rabbit 消费
