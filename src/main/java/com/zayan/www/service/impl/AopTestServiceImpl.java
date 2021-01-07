@@ -18,12 +18,4 @@ public class AopTestServiceImpl implements AopTestService {
     public void aopTestMethodsPrint() {
         System.out.println("AopTestServiceImpl ----- aopTestMethodsPrint");
     }
-
-    @Override
-    public void aopTestMethodsPrintJoin(String printInfo) {
-        if (!"aopTestMethodsPrint".equals(printInfo)) {
-            throw new RuntimeException("Not equals ");
-        }
-        System.out.println("AopTestServiceImpl ---  join -- " + printInfo);
-    }
 }

@@ -8,6 +8,4 @@ public interface AopTestService {
     void aopTestPrint();
 
     void aopTestMethodsPrint();
-
-    void aopTestMethodsPrintJoin(String printInfo);
 }

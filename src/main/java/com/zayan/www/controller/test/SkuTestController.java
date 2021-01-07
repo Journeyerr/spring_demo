@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
-@RequestMapping("/test")
+@RequestMapping("/test/sku")
 public class SkuTestController {
 
     @Autowired
@@ -19,19 +19,19 @@ public class SkuTestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/sku/{id}")
+    @GetMapping("/{id}")
     public BaseResult<?> skuTest(@PathVariable("id") Integer id) {
         Skus skus = skusService.getById(id);
         return BaseResult.success(skus);
     }
 
-    @GetMapping("/sku/user/{id}")
+    @GetMapping("/user/{id}")
     public BaseResult<?> userTest(@PathVariable("id") Integer id) {
         User user = userService.getById(id);
         return BaseResult.success(user);
     }
 
-    @PostMapping("/sku")
+    @PostMapping("/")
     public BaseResult<?> skuTest() {
         Skus skus = new Skus();
         skus.setStock(1);

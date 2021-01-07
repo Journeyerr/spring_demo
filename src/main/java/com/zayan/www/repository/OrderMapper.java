@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zayan.www.model.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zayan.www.model.vo.order.OrderDetailVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
  * @author AnYuan
  * @since 2020-09-08
  */
+
+@Repository
 public interface OrderMapper extends BaseMapper<Order> {
 
     /**
