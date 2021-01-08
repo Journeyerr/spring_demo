@@ -1,10 +1,8 @@
 package com.zayan.www.controller.test;
 
-import cn.hutool.core.date.DateTime;
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.constant.RedisConstant;
 import com.zayan.www.constant.enums.SecKillTraceIdStatusEnum;
-import com.zayan.www.model.entity.SeckillOrder;
 import com.zayan.www.model.entity.Skus;
 import com.zayan.www.model.form.test.SecKillOrderCreateForm;
 import com.zayan.www.model.vo.BaseResult;
@@ -14,15 +12,12 @@ import com.zayan.www.service.RabbitMqService;
 import com.zayan.www.service.SeckillOrderService;
 import com.zayan.www.service.SkusService;
 import com.zayan.www.util.StringUtil;
-import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.Objects;
 
 /**
