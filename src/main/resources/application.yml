@@ -14,6 +14,7 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/spring_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
 
+
 #  shardingsphere:
 #    datasource:
 #      names: master
@@ -46,7 +47,15 @@ spring:
     addresses: localhost:5672
     #    virtual-host: /
     connection-timeout: 3
+  redis:
+    host: localhost
+    port: 6379
 
+#  redis:
+#    port: 6379
+#    username: root
+##    password: root
+#    host: localhost
 logging:
   level:
     com.zayan.www.repository: debug

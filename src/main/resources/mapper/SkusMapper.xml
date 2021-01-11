@@ -16,4 +16,8 @@
         id, no, stock, version, created_at, updated_at
     </sql>
 
+    <update id="decrementStock" >
+        update skus set stock = stock - 1 where `no` = #{skuNo}
+    </update>
+
 </mapper>

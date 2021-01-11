@@ -15,9 +15,10 @@ public enum SecKillTraceIdStatusEnum {
      * 秒杀状态
      */
 
-    WAIT("WAIT", "未下单"),
-    SUCCESS("SUCCESS", "已成功"),
+    NO_SUBMIT("NO_SUBMIT", "未下单"),
+    SUBMIT("SUBMIT", "已下单"),
     FAIL("FAIL", "已失败"),
+    PAID("PAID", "已支付"),
     ;
 
     private String code;

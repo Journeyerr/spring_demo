@@ -47,6 +47,15 @@ public class SeckillOrder implements Serializable {
     private Integer skuNo;
 
     /**
+     * 唯一标识
+     */
+    private String traceId;
+    /**
+     * 订单状态
+     */
+    private String status;
+
+    /**
      * 创建时间
      */
       @TableField(fill = FieldFill.INSERT)

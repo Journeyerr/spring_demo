@@ -16,4 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SkusMapper extends BaseMapper<Skus> {
 
+    void decrementStock(Integer skuNo);
 }

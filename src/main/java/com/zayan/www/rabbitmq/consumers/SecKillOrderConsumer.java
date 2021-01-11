@@ -1,6 +1,7 @@
 package com.zayan.www.rabbitmq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
+import com.mysql.jdbc.TimeUtil;
 import com.zayan.www.constant.RabbitMqConstant;
 import com.zayan.www.constant.RedisConstant;
 import com.zayan.www.constant.enums.SecKillTraceIdStatusEnum;
@@ -10,6 +11,7 @@ import com.zayan.www.model.form.test.SecKillOrderCreateForm;
 import com.zayan.www.model.vo.BaseResult;
 import com.zayan.www.service.SeckillOrderService;
 import com.zayan.www.util.DateUtil;
+import com.zayan.www.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * rabbit 消费秒杀队列
@@ -51,25 +54,28 @@ public class SecKillOrderConsumer {
         SecKillOrderCreateForm createForm = JSONObject.parseObject(new String(message.getBody()), SecKillOrderCreateForm.class);
 
         String stockKey = RedisConstant.secKillSkuStockKey(createForm.getSkuNo().toString());
+        String traceIdKey = RedisConstant.secKillTraceIdKey(createForm.getTraceId());
 
         Long decrementStock = redisTemplate.opsForValue().decrement(stockKey);
         if (Objects.isNull(decrementStock) || decrementStock.compareTo(0L) < 0) {
-            redisTemplate.opsForValue().set(RedisConstant.secKillTraceIdKey(createForm.getTraceId()), SecKillTraceIdStatusEnum.FAIL.getCode());
+            redisTemplate.opsForValue().set(traceIdKey, SecKillTraceIdStatusEnum.FAIL.getCode());
             return;
         }
 
         SeckillOrder seckillOrder = new SeckillOrder();
         seckillOrder.setUserId(createForm.getUserId());
         seckillOrder.setSkuNo(createForm.getSkuNo());
-        seckillOrder.setNo(String.valueOf(DateUtil.getTimestampByLocalDateTime()));
+        seckillOrder.setNo(StringUtil.no());
+        seckillOrder.setTraceId(createForm.getTraceId());
 
         boolean save = seckillOrderService.save(seckillOrder);
         if (save) {
-            redisTemplate.opsForValue().set(RedisConstant.secKillTraceIdKey(createForm.getTraceId()), SecKillTraceIdStatusEnum.SUCCESS.getCode());
+            redisTemplate.opsForValue().set(traceIdKey, SecKillTraceIdStatusEnum.SUBMIT.getCode());
         }else {
-            redisTemplate.opsForValue().set(RedisConstant.secKillTraceIdKey(createForm.getTraceId()), SecKillTraceIdStatusEnum.FAIL.getCode());
+            redisTemplate.opsForValue().set(traceIdKey, SecKillTraceIdStatusEnum.FAIL.getCode());
             redisTemplate.opsForValue().increment(stockKey);
         }
+        redisTemplate.expire(traceIdKey, 1, TimeUnit.DAYS);
 
         log.info("SecKillOrderConsumer 消费完成----->{}", createForm.getTraceId());
     }

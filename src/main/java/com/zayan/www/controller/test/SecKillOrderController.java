@@ -2,10 +2,14 @@ package com.zayan.www.controller.test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.constant.RedisConstant;
+import com.zayan.www.constant.enums.SecKillOrderStatusEnum;
 import com.zayan.www.constant.enums.SecKillTraceIdStatusEnum;
+import com.zayan.www.model.entity.SeckillOrder;
 import com.zayan.www.model.entity.Skus;
 import com.zayan.www.model.form.test.SecKillOrderCreateForm;
+import com.zayan.www.model.form.test.SecKillOrderPaymentForm;
 import com.zayan.www.model.vo.BaseResult;
+import com.zayan.www.model.vo.test.SecKillOrderCreateVO;
 import com.zayan.www.repository.SkusMapper;
 import com.zayan.www.service.AopTestService;
 import com.zayan.www.service.RabbitMqService;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author AnYuan
@@ -60,19 +65,64 @@ public class SecKillOrderController {
         String traceId = StringUtil.getUuid(32);
 
         // trace=> status（成功 or 未下单 or 失败） 存入redis
-        redisTemplate.opsForValue().set(RedisConstant.secKillTraceIdKey(traceId), SecKillTraceIdStatusEnum.WAIT.getCode());
+        String secKillTraceIdKey = RedisConstant.secKillTraceIdKey(traceId);
+
+        redisTemplate.opsForValue().set(secKillTraceIdKey, SecKillTraceIdStatusEnum.NO_SUBMIT.getCode());
         createForm.setTraceId(traceId);
 
         // 放入mq
         rabbitMqService.sendSecKillOrderExchange(JSONObject.toJSONString(createForm));
 
-        // 定时器扫描trace 是否成功
+        // 定时器扫描trace 是否成功支付，回收库存
 
         // 消费者判断状态->>消费mq， 执行下单前判断库存是否充足，充足再进行下单操作，成功后更新trace 如果消费失败则补充库存 （order 入库）
 
         // 整个过程返回trace给前端，前端轮循是否下单成功，成功则调起支付，失败则库存不足
+
         // 支付成功后扣减mysql库存
 
-        return BaseResult.success();
+        return BaseResult.success(new SecKillOrderCreateVO(traceId, SecKillTraceIdStatusEnum.NO_SUBMIT));
+    }
+
+    @GetMapping("check/status/{traceId}")
+    public BaseResult<?> checkStatus(@PathVariable String traceId) {
+
+        String secKillTraceIdKey = RedisConstant.secKillTraceIdKey(traceId);
+        String s = redisTemplate.opsForValue().get(secKillTraceIdKey);
+        if (Objects.isNull(s)) {
+            return BaseResult.error("Forbiddent");
+        }
+
+        SeckillOrder seckillOrder = seckillOrderService.getByTraceId(traceId);
+        if (Objects.nonNull(seckillOrder)) {
+            return BaseResult.success(seckillOrder);
+        }
+
+        return BaseResult.error("TraceId: "+ s);
+    }
+
+    @PostMapping("payment")
+    public BaseResult<?> payment(@Valid @RequestBody SecKillOrderPaymentForm paymentForm) {
+
+        SeckillOrder seckillOrder = seckillOrderService.getByTraceIdAndUserId(paymentForm.getTraceId(), paymentForm.getUserId());
+        if (Objects.isNull(seckillOrder)) {
+            return BaseResult.error("Forbiddent");
+        }
+
+        if (SecKillTraceIdStatusEnum.PAID.getCode().equals(seckillOrder.getStatus())) {
+            return BaseResult.success(seckillOrder);
+        }
+
+        seckillOrder.setStatus(SecKillOrderStatusEnum.PAID.getCode());
+        boolean update = seckillOrderService.updateById(seckillOrder);
+        if (update) {
+            String secKillTraceIdKey = RedisConstant.secKillTraceIdKey(paymentForm.getTraceId());
+            redisTemplate.opsForValue().set(secKillTraceIdKey, SecKillTraceIdStatusEnum.PAID.name());
+            redisTemplate.expire(secKillTraceIdKey, 1, TimeUnit.DAYS);
+
+            skusMapper.decrementStock(seckillOrder.getSkuNo());
+            return BaseResult.success(seckillOrder);
+        }
+        return BaseResult.error("NetWork Error");
     }
 }

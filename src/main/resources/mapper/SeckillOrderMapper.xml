@@ -8,6 +8,8 @@
         <result column="no" property="no" />
         <result column="user_id" property="userId" />
         <result column="sku_no" property="skuNo" />
+        <result column="status" property="status" />
+        <result column="trace_id" property="traceId" />
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
         <result column="deleted_at" property="deletedAt" />
@@ -15,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, no, user_id, sku_no, created_at, updated_at, deleted_at
+        id, no, user_id, sku_no, trace_id, status, created_at, updated_at, deleted_at
     </sql>
 
 </mapper>

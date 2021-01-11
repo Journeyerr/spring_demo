@@ -13,4 +13,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SeckillOrderService extends IService<SeckillOrder> {
 
+    /**
+     * 根据traceId查询order
+     * @param traceId traceId
+     * @return SeckillOrder
+     */
+    SeckillOrder getByTraceId(String traceId);
+
+    /**
+     * 根据traceId AND UserId 查询order
+     * @param traceId traceId
+     * @return SeckillOrder
+     */
+    SeckillOrder getByTraceIdAndUserId(String traceId, Integer userId);
 }
