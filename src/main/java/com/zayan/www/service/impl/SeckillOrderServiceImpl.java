@@ -24,7 +24,7 @@ public class SeckillOrderServiceImpl extends ServiceImpl<SeckillOrderMapper, Sec
     }
 
     @Override
-    public SeckillOrder getByTraceIdAndUserId(String traceId, Integer userId) {
-        return getOne(new QueryWrapper<SeckillOrder>().lambda().eq(SeckillOrder::getTraceId, traceId).eq(SeckillOrder::getUserId, userId));
+    public SeckillOrder getByNoAndUserId(String no, Integer userId) {
+        return getOne(new QueryWrapper<SeckillOrder>().lambda().eq(SeckillOrder::getNo, no).eq(SeckillOrder::getUserId, userId));
     }
 }

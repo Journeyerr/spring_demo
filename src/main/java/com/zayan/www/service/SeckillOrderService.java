@@ -22,8 +22,8 @@ public interface SeckillOrderService extends IService<SeckillOrder> {
 
     /**
      * 根据traceId AND UserId 查询order
-     * @param traceId traceId
+     * @param no no
      * @return SeckillOrder
      */
-    SeckillOrder getByTraceIdAndUserId(String traceId, Integer userId);
+    SeckillOrder getByNoAndUserId(String no, Integer userId);
 }

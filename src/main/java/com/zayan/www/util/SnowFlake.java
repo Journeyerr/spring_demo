@@ -97,7 +97,7 @@ public class SnowFlake {
     }
 
     public static void main(String[] args) {
-        SnowFlake snowFlake = new SnowFlake(3, 4);
+        SnowFlake snowFlake = new SnowFlake(2, 3);
         long start = System.currentTimeMillis();
         for (int i = 0; i < 1000; i++) {
             System.out.println("当前生成的有序数字串："+snowFlake.nextId());

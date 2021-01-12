@@ -104,7 +104,7 @@ public class SecKillOrderController {
     @PostMapping("payment")
     public BaseResult<?> payment(@Valid @RequestBody SecKillOrderPaymentForm paymentForm) {
 
-        SeckillOrder seckillOrder = seckillOrderService.getByTraceIdAndUserId(paymentForm.getTraceId(), paymentForm.getUserId());
+        SeckillOrder seckillOrder = seckillOrderService.getByNoAndUserId(paymentForm.getNo(), paymentForm.getUserId());
         if (Objects.isNull(seckillOrder)) {
             return BaseResult.error("Forbiddent");
         }
@@ -116,7 +116,7 @@ public class SecKillOrderController {
         seckillOrder.setStatus(SecKillOrderStatusEnum.PAID.getCode());
         boolean update = seckillOrderService.updateById(seckillOrder);
         if (update) {
-            String secKillTraceIdKey = RedisConstant.secKillTraceIdKey(paymentForm.getTraceId());
+            String secKillTraceIdKey = RedisConstant.secKillTraceIdKey(paymentForm.getNo());
             redisTemplate.opsForValue().set(secKillTraceIdKey, SecKillTraceIdStatusEnum.PAID.name());
             redisTemplate.expire(secKillTraceIdKey, 1, TimeUnit.DAYS);
 

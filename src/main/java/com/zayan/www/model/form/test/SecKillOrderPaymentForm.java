@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 @Data
 public class SecKillOrderPaymentForm {
 
-    @NotBlank(message = "唯一标志不能为空")
-    private String traceId;
+    @NotBlank(message = "订单号")
+    private String no;
 
     @NotNull(message = "用户不能为空")
     private Integer userId ;
