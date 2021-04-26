@@ -16,9 +16,6 @@ import java.util.Map;
 @RequestMapping("/test/mq/")
 public class RabbitMqTestController {
 
-    private static final Integer TYPE_TEN = 10;
-    private static final Integer TYPE_SIXTY = 60;
-
     @Autowired
     private RabbitMqService rabbitMqService;
 
@@ -33,23 +30,24 @@ public class RabbitMqTestController {
     }
 
     @GetMapping("/send/delay")
-    public BaseResult<?> sendDelayMsg(@RequestParam("type") Integer type, @RequestParam("msg") String msg) {
+    public BaseResult<?> sendDelayMsg(@RequestParam("msg") String msg) {
 
         Map<String, Object> msgMap = Maps.newHashMapWithExpectedSize(2);
-        msgMap.put("type", type);
         msgMap.put("msg", msg);
         msgMap.put("date", LocalDateTime.now());
+        rabbitMqService.send(DelayQueueConfig.DELAY_EXCHANGE, DelayQueueConfig.DELAY_QUEUE_ROUTING_KEY, msgMap);
+        return BaseResult.success();
+    }
 
-        String routingKey;
 
-        if (TYPE_TEN.equals(type)) {
-            routingKey = DelayQueueConfig.DELAY_QUEUEA_ROUTING_KEY;
-        } else if (TYPE_SIXTY.equals(type)) {
-            routingKey = DelayQueueConfig.DELAY_QUEUEB_ROUTING_KEY;
-        } else {
-            return BaseResult.error("type error");
-        }
-        rabbitMqService.send(DelayQueueConfig.DELAY_EXCHANGE, routingKey, msgMap);
+    @GetMapping("/send/delay/ttl")
+    public BaseResult<?> sendDelayTtlMsg(@RequestParam("msg") String msg, @RequestParam("ttl") Integer ttl) {
+
+        Map<String, Object> msgMap = Maps.newHashMapWithExpectedSize(3);
+        msgMap.put("msg", msg);
+        msgMap.put("date", LocalDateTime.now());
+        msgMap.put("ttl", ttl);
+        rabbitMqService.ttlSend(DelayQueueConfig.DELAY_EXCHANGE, DelayQueueConfig.DELAY_QUEUE_ROUTING_KEY, msgMap, ttl);
         return BaseResult.success();
     }
 }

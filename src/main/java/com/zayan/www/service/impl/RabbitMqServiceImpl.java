@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.constant.RabbitMqConstant;
 import com.zayan.www.service.RabbitMqService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,13 @@ public class RabbitMqServiceImpl implements RabbitMqService {
                         .setContentType("application/json")
                         .build()
         );
+    }
+
+    @Override
+    public void ttlSend(String exchange, String routingKey, Object data, Integer ttl) {
+        MessageProperties messageProperties = new MessageProperties();
+        messageProperties.setExpiration(ttl.toString());
+        Message message = new Message(JSONObject.toJSONString(data).getBytes(), messageProperties);
+        rabbitTemplate.convertAndSend(exchange, routingKey, message);
     }
 }

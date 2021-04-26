@@ -34,7 +34,7 @@ public class WebSocketServer {
         HashMap<String, Object> maps = Maps.newHashMapWithExpectedSize(3);
         maps.put("sendUserId", uid);
         maps.put("content", message);
-        maps.put("dateTime", DateUtil.localDateTimeStr());
+        maps.put("dateTime", DateUtil.nowDateTimeString());
         return JSONObject.toJSONString(maps);
     }
 

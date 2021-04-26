@@ -16,6 +16,6 @@ public class TimeTaskTest {
 
     @Scheduled(fixedRate = 5000L)
     private void taskTest() {
-        System.out.println("定时任务执行一次，时间：" + DateUtil.localDateTimeStr());
+        System.out.println("定时任务执行一次，时间：" + DateUtil.nowDateTimeString());
     }
 }

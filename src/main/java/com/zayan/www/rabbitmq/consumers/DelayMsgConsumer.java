@@ -2,15 +2,20 @@ package com.zayan.www.rabbitmq.consumers;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zayan.www.rabbitmq.config.DelayQueueConfig;
+import com.zayan.www.util.DateUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.util.DataUtils;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * 延时队列消息消费者
@@ -19,34 +24,26 @@ import java.time.LocalDateTime;
  * @date 2020-06-23
  */
 
-//@Component
+@Component
 @Slf4j
 public class DelayMsgConsumer {
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(DelayQueueConfig.DEAD_LETTER_QUEUEA),
+            value = @Queue(DelayQueueConfig.DEAD_LETTER_QUEUE),
             exchange = @Exchange(DelayQueueConfig.DEAD_LETTER_EXCHANGE)))
     public void queueAConsumer(Message message) {
-        log.info("DelayMsgConsumer 延时队列AAAAA 开始消费-----> {}", message);
         Msg msg = JSONObject.parseObject(new String(message.getBody()), Msg.class);
-        log.info("DelayMsgConsumer 延时队列AAAA 结果----> {}", msg);
-    }
 
-    @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(DelayQueueConfig.DEAD_LETTER_QUEUEB),
-            exchange = @Exchange(DelayQueueConfig.DEAD_LETTER_EXCHANGE)))
-    public void queueBConsumer(Message message) {
-        log.info("DelayMsgConsumer 延时队列BBBBB 开始消费-----> {}", message);
-        JSONObject jsonObject = JSONObject.parseObject(new String(message.getBody()));
-        log.info("DelayMsgConsumer 延时队列BBBBB 结果----> {}", jsonObject);
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(msg.getDate(), now);
+
+        log.info("DelayMsgConsumer死信队列消费----> 发送时间:{}, 当前时间:{}, ttl:{},  相差时间：{}秒",  DateUtil.localDateTimeToString(msg.getDate()), DateUtil.localDateTimeToString(now), msg.getTtl(), duration.getSeconds());
     }
 
     @Data
     public static class Msg {
-
-        private Integer type;
+        private String ttl;
         private String msg;
         private LocalDateTime date;
     }
-
 }

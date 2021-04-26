@@ -1,7 +1,5 @@
 package com.zayan.www.util;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -14,24 +12,12 @@ import java.util.Date;
 public class DateUtil {
 
     /**
-     * yyyyMMddHHmmss时间格式转化为yyyy-MM-hhmmss
-     *
-     * @param: dateString
-     * @return: LocalDateTime
-     */
-    public static LocalDateTime strDataToLocalDate(String dateString) {
-        return LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-hhmmss"));
-    }
-
-    /**
      * 获取当前时间的字符串
      *
      * @return String
      */
-    public static String localDateTimeStr() {
-        Date nowDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(nowDate);
+    public static String nowDateTimeString() {
+       return localDateTimeToString(LocalDateTime.now());
     }
 
     /**
@@ -54,6 +40,15 @@ public class DateUtil {
      */
     public static long getTimestampByLocalDateTime() {
         return LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    public static String localDateTimeToString(LocalDateTime localDateTime, String format) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
+        return localDateTime == null ? null : dateTimeFormatter.format(localDateTime);
+    }
+
+    public static String localDateTimeToString(LocalDateTime localDateTime){
+        return localDateTimeToString(localDateTime,"yyyy-MM-dd HH:mm:ss");
     }
 
 }
