@@ -57,11 +57,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 "/api/user/wx/login",
                 "/api/banner",
                 "/api/product",
-                "/**/*.html",
-                "/**/*.js",
-                "/**/*.css",
+//                "/**/*.html",
+//                "/**/*.js",
+//                "/**/*.css",
                 "/test/**",
-                "/websocket/**"
+                "/webSocket/**"
 
         );
     }
