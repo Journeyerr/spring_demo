@@ -4,6 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
+/**
+ * WebSocket服务配置
+ * @author AnYuan
+ */
+
 @Configuration
 public class WebsocketConfig {
 

@@ -1,16 +1,14 @@
 package com.zayan.www.config.websocket;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
-import com.zayan.www.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,6 +17,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 @Slf4j
 public class WebSocketServer {
+
+    /**
+     * 管理员发言名称
+     */
+    private static final String SPOKESMAN_ADMIN = "机器人";
 
     /**
      * concurrent包的线程安全Set，用来存放每个客户端对应的Session对象
@@ -30,14 +33,6 @@ public class WebSocketServer {
      */
     private static final AtomicInteger ONLINE_NUM = new AtomicInteger();
 
-    private String buildMsg(String uid, String message) {
-        HashMap<String, Object> maps = Maps.newHashMapWithExpectedSize(3);
-        maps.put("sendUserId", uid);
-        maps.put("content", message);
-        maps.put("dateTime", DateUtil.nowDateTimeString());
-        return JSONObject.toJSONString(maps);
-    }
-
     /**
      * 建立连接成功调用
      *
@@ -48,8 +43,7 @@ public class WebSocketServer {
     public void onOpen(Session session, @PathParam(value = "uid") String uid) {
         SESSION_POOLS.put(uid, session);
         ONLINE_NUM.incrementAndGet();
-        sendToAll(buildMsg(uid, "欢迎：" + uid + " 加入连接！"));
-        System.out.println(uid + "加入webSocket！当前人数为" + ONLINE_NUM);
+        sendToAll(null, uid + " 加入连接！");
     }
 
     /**
@@ -61,8 +55,7 @@ public class WebSocketServer {
     public void onClose(@PathParam(value = "uid") String uid) {
         SESSION_POOLS.remove(uid);
         ONLINE_NUM.decrementAndGet();
-        sendToAll(buildMsg(uid, uid + " 断开连接"));
-        System.out.println(uid + " 断开webSocket连接！当前人数为：" + ONLINE_NUM);
+        sendToAll(null, uid + " 断开连接！");
     }
 
     /**
@@ -74,15 +67,13 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, @PathParam(value = "uid") String uid) {
         log.info("Client:[{}]， Message: [{}]", uid, message);
-
-        JSONObject jsonObject = JSONObject.parseObject(message);
-        Object toUserId = jsonObject.get("toUserId");
-
-        if (Objects.isNull(toUserId)) {
-            sendToAll(buildMsg(uid, jsonObject.get("content").toString()));
-        } else {
-            sendMsgByUid(toUserId.toString(), buildMsg(uid, jsonObject.get("content").toString()));
+        WebsocketMsgDTO msgDTO = JSONObject.parseObject(message, WebsocketMsgDTO.class);
+        if (Strings.isNotBlank(msgDTO.getToUId())) {
+            sendMsgByUid(uid, msgDTO.getToUId(), msgDTO.getContent());
+            sendMsgByUid(uid, uid, msgDTO.getContent());
+            return;
         }
+        sendToAll(uid, msgDTO.getContent());
     }
 
     /**
@@ -99,13 +90,13 @@ public class WebSocketServer {
 
     /**
      * 给所有人发送消息
-     *
-     * @param message msg
+     * @param content content
      */
-    public void sendToAll(String message) {
+    public void sendToAll(String uid, String content) {
+        String msg = JSONObject.toJSONString(new WebsocketMsgDTO(Objects.isNull(uid) ? SPOKESMAN_ADMIN : uid, content));
         for (Session session : SESSION_POOLS.values()) {
             try {
-                sendMessage(session, message);
+                sendMessage(session, msg);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,13 +106,14 @@ public class WebSocketServer {
     /**
      * 给指定用户发送信息
      *
-     * @param uid     用户标志
-     * @param message 消息
+     * @param uid     发送消息用户
+     * @param toUId   接收消息用户
+     * @param content 消息
      */
-    public void sendMsgByUid(String uid, String message) {
-        Session session = SESSION_POOLS.get(uid);
+    public void sendMsgByUid(String uid, String toUId, String content) {
+        String msg = JSONObject.toJSONString(new WebsocketMsgDTO(uid, toUId, content));
         try {
-            sendMessage(session, message);
+            sendMessage(SESSION_POOLS.get(toUId), msg);
         } catch (Exception e) {
             e.printStackTrace();
         }

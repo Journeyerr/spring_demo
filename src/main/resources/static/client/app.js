@@ -32,8 +32,6 @@ function openSocket() {
         };
         //获得消息事件
         socket.onmessage = function (msg) {
-            var serverMsg = "服务端信息：" + msg.data;
-            console.log(JSON.parse(msg.data))
             showContent(JSON.parse(msg.data));
             //发现消息进入    开始处理前端触发逻辑
         };
@@ -63,7 +61,7 @@ function sendMessage() {
     if (typeof (WebSocket) == "undefined") {
         console.log("您的浏览器不支持WebSocket");
     } else {
-        var msg = '{"sendUserId":"' + $("#userId").val() + '", "toUserId": null, "content":"' + $("#content").val() + '"}';
+        var msg = '{"uid":"' + $("#userId").val() + '", "toUId": null, "content":"' + $("#content").val() + '"}';
         console.log("向服务端发送消息体：" + msg);
         socket.send(msg);
     }
@@ -71,7 +69,7 @@ function sendMessage() {
 
 //4、订阅的消息显示在客户端指定位置
 function showContent(serverMsg) {
-    $("#notice").append("<tr><td>" + serverMsg.sendUserId + ": </td> <td>" + serverMsg.content + "</td><td>" + serverMsg.dateTime + "</td></tr>");
+    $("#notice").append("<tr><td>" + serverMsg.uid + ": </td> <td>" + serverMsg.content + "</td><td>" + serverMsg.dateTime + "</td></tr>");
 }
 
 //显示实时在线用户
