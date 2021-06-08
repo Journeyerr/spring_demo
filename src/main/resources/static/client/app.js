@@ -23,7 +23,7 @@ function openSocket() {
             socket.close();
             socket = null;
         }
-        socket = new WebSocket("ws://localhost:9999/webSocket/" + $("#userId").val());
+        socket = new WebSocket("ws://localhost:7000/ws");
         //打开事件
         socket.onopen = function () {
             console.log("websocket已打开");

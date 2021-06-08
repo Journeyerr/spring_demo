@@ -1,9 +1,14 @@
 package com.zayan.www.config.netty.server;
 
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.http.HttpObjectAggregator;
+import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.util.CharsetUtil;
 
 /**
@@ -15,11 +20,22 @@ import io.netty.util.CharsetUtil;
 public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
-    protected void initChannel(SocketChannel ch) throws Exception {
-        ch.pipeline().addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));
-        ch.pipeline().addLast("encode", new StringEncoder(CharsetUtil.UTF_8));
-        ch.pipeline().addLast(new NettyServerHandler());
+    protected void initChannel(SocketChannel channel) throws Exception {
+        ChannelPipeline pipeline = channel.pipeline();
 
-        System.out.println("NettyChannelInit --->>> " + ch.id().toString());
+        //http解码器
+        pipeline.addLast(new HttpServerCodec());
+        //支持写大数据流
+        pipeline.addLast(new ChunkedWriteHandler());
+        //http聚合器
+        pipeline.addLast(new HttpObjectAggregator(1024*62));
+        //websocket支持,设置路由
+        pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
+
+        pipeline.addLast("decoder", new StringDecoder(CharsetUtil.UTF_8));
+        pipeline.addLast("encode", new StringEncoder(CharsetUtil.UTF_8));
+        pipeline.addLast(new NettyServerHandler());
+
+        System.out.println("Netty初始化连接 --->>> " + channel.id().toString());
     }
 }
