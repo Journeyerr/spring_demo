@@ -41,6 +41,11 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<TextWebSocke
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         System.out.println("NettyServerHandler 活动用户：" + ctx.channel().id());
+        WebsocketMsgDTO msgDTO = new WebsocketMsgDTO("机器人", ctx.channel().id() + "加入房间");
+        ctx.channel().writeAndFlush(new TextWebSocketFrame(JSONObject.toJSONString(msgDTO)));
+        CHANNELS.forEach(channel -> {
+            channel.writeAndFlush(new TextWebSocketFrame(JSONObject.toJSONString(msgDTO)));
+        });
     }
 
     @Override
