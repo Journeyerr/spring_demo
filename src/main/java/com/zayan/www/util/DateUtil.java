@@ -17,7 +17,7 @@ public class DateUtil {
      * @return String
      */
     public static String nowDateTimeString() {
-       return localDateTimeToString(LocalDateTime.now());
+       return localDateTimeToString(LocalDateTime.now(), "HH:mm:ss");
     }
 
     /**
@@ -50,5 +50,4 @@ public class DateUtil {
     public static String localDateTimeToString(LocalDateTime localDateTime){
         return localDateTimeToString(localDateTime,"yyyy-MM-dd HH:mm:ss");
     }
-
 }

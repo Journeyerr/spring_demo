@@ -23,22 +23,26 @@ function openSocket() {
             socket.close();
             socket = null;
         }
-        socket = new WebSocket("ws://localhost:7000/ws");
+        socket = new WebSocket("ws://localhost:9999/webSocket/" + $("#userId").val());
         //打开事件
-        socket.onopen = function () {
+        socket.onopen = function (msg) {
             console.log("websocket已打开");
             setConnected(true)
             // socket.send("这是来自客户端的消息" + location.href + new Date());
         };
         //获得消息事件
         socket.onmessage = function (msg) {
-            showContent(JSON.parse(msg.data));
+            const msgDto = JSON.parse(msg.data);
+            console.log(msg)
+            showContent(msgDto);
+            showOnlineUser(msgDto.onlineUser);
             //发现消息进入    开始处理前端触发逻辑
         };
         //关闭事件
         socket.onclose = function () {
             console.log("websocket已关闭");
             setConnected(false)
+            removeOnlineUser();
         };
         //发生了错误事件
         socket.onerror = function () {
@@ -67,14 +71,29 @@ function sendMessage() {
     }
 }
 
-//4、订阅的消息显示在客户端指定位置
+// 订阅的消息显示在客户端指定位置
 function showContent(serverMsg) {
-    $("#notice").append("<tr><td>" + serverMsg.uid + ": </td> <td>" + serverMsg.content + "</td><td>" + serverMsg.dateTime + "</td></tr>");
+    $("#notice").html("<tr><td>" + serverMsg.uid + ": </td> <td>" + serverMsg.content + "</td><td>" + serverMsg.dateTime + "</td></tr>" +  $("#notice").html())
+    // $("#notice").append("<tr><td>" + serverMsg.uid + ": </td> <td>" + serverMsg.content + "</td><td>" + serverMsg.dateTime + "</td></tr>");
 }
 
 //显示实时在线用户
-function showOnlieUser(serverMsg) {
-    $("#online").html("<tr><td>" + serverMsg.content + "</td> <td>" + new Date(serverMsg.time).toLocaleTimeString() + "</td></tr>");
+function showOnlineUser(serverMsg) {
+    if (null != serverMsg) {
+        let html = '';
+        for (let i = 0; i < serverMsg.length; i++) {
+            // $("#online").html("<tr><td>" + serverMsg[i] + "</td> <td>" + "时间" + "</td></tr>");
+            html += "<tr><td>" + serverMsg[i] + "</td></tr>";
+        }
+        $("#online").html(html);
+        $("#onLineUserCount").html(" ( " + serverMsg.length + " )");
+    }
+}
+
+//显示实时在线用户
+function removeOnlineUser() {
+    $("#online").html("");
+    $("#onLineUserCount").html("");
 }
 
 $(function () {
