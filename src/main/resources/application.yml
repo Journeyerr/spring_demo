@@ -51,11 +51,11 @@ spring:
     host: localhost
     port: 6379
 
-#  redis:
-#    port: 6379
-#    username: root
-##    password: root
-#    host: localhost
+  mail:
+    host: smtp.163.com
+    username: test@163.com
+    password: test
+
 logging:
   level:
     com.zayan.www.repository: debug
